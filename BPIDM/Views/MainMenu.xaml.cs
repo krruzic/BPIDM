@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using BPIDM.Controls;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Windows.Media;
 
 namespace BPIDM.Views
