@@ -1,8 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Controls;
-using BPIDM.Controls;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+
+using Newtonsoft.Json;
+
+using BPIDM.Controls;
+using BPIDM.Utils;
 
 namespace BPIDM.Views
 {
@@ -15,17 +20,29 @@ namespace BPIDM.Views
         public MainMenu()
         {
             InitializeComponent();
-            MenuContent = new ObservableCollection<BPMenuItem>();
-            for(int i = 0; i<10; i++)
-            {                BPMenuItem item = new BPMenuItem
-                {
-                    DisplayedName = "Test Item " + i,
-                    DisplayedPrice = 2 * i + 0.99,
-                    DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"C:\Users\krruz\Desktop\bpchicken.png"),
-                };
-                MenuContent.Add(item);
-            }
+            MenuContent = new ObservableCollection<BPMenuItem>();
+            FillList();
             this.DataContext = this;
+        }
+
+        public void FillList()
+        {
+            string json = LoadJson();
+            dynamic jsonObj = JsonConvert.DeserializeObject<RootMenuObject>(json);
+            foreach (var cat in jsonObj.Menu)
+            {
+                foreach (var item in cat.Content)
+                {
+                    BPMenuItem bpitem = new BPMenuItem
+                    { 
+                        DisplayedName = item.title,
+                        DisplayedPrice = item.retail_pricing,
+                        DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"C:\Users\krruz\Pictures\smartcrop\65-spaghetti.png"),
+                        DisplayedCategory = cat.CategoryName,
+                    };
+                    MenuContent.Add(bpitem);
+                }
+            }
         }
 
         public void UtilizeState(object state)
@@ -33,5 +50,12 @@ namespace BPIDM.Views
             throw new NotImplementedException();
         }
 
+        public string LoadJson()
+        {
+            using (StreamReader r = new StreamReader(@"Data/menu.json"))
+            {
+               return r.ReadToEnd();
+            }
+        }
     }
 }

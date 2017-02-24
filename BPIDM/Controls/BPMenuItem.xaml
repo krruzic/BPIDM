@@ -7,20 +7,29 @@
              mc:Ignorable="d" x:Name="BPMenuItemControl">
     <Grid>
         <Border Name="mask" Background="White" CornerRadius="20"/>
-            <Grid  Background='{StaticResource "BPRed"}'>
+        <Grid Width="256" Height="192" Background='{StaticResource "BPRed"}'>
                 <!-- Use a VisualBrush of 'mask' as the opacity mask -->
             <Grid.OpacityMask>
                 <VisualBrush Visual="{Binding ElementName=mask}"/>
             </Grid.OpacityMask>
             <Grid Margin="10,10,10,10">
                 <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="5*"/>
-                    </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="{Binding DisplayedName, ElementName=BPMenuItemControl}" HorizontalAlignment="Center" Foreground='{StaticResource "BPWhite"}' FontSize="24" VerticalAlignment="Top"/>
-                <Image Grid.Row="1" Source="{Binding DisplayedImage, ElementName=BPMenuItemControl}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Label Grid.Row="1" Content="{Binding DisplayedPrice, ElementName=BPMenuItemControl}" HorizontalAlignment="Right" Foreground='{StaticResource "BPWhite"}' FontSize="18" VerticalAlignment="Bottom" Opacity="0.7"/>
-                </Grid>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground='{StaticResource "BPWhite"}' FontSize="24" VerticalAlignment="Top">
+                    <Label.Content>
+                        <AccessText TextWrapping="Wrap" Text="{Binding DisplayedName, ElementName=BPMenuItemControl}" TextAlignment="Center"/>
+                    </Label.Content>
+                </Label>
+                <Image Grid.Row="1" Grid.Column="1" Source="{Binding DisplayedImage, ElementName=BPMenuItemControl}" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding DisplayedPrice, ElementName=BPMenuItemControl}" ContentStringFormat="c" HorizontalAlignment="Right" Foreground='{StaticResource "BPWhite"}' FontSize="18" VerticalAlignment="Bottom" Opacity="0.7"/>
             </Grid>
         </Grid>
+    </Grid>
 </UserControl>

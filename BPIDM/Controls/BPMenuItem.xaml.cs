@@ -13,6 +13,8 @@ namespace BPIDM.Controls
         public static readonly new DependencyProperty NameProperty = DependencyProperty.Register("DisplayedName", typeof(String), typeof(BPMenuItem));
         public static readonly DependencyProperty PriceProperty = DependencyProperty.Register("DisplayedPrice", typeof(double), typeof(BPMenuItem));
         public static readonly DependencyProperty ImageProperty = DependencyProperty.Register("DisplayedImage", typeof(ImageSource), typeof(BPMenuItem));
+        public static readonly DependencyProperty CategoryProperty = DependencyProperty.Register("DisplayedCategory", typeof(String), typeof(BPMenuItem));
+
         public BPMenuItem()
         {
             InitializeComponent();
@@ -37,10 +39,17 @@ namespace BPIDM.Controls
             get { return (string) GetValue(NameProperty); }
             set { SetValue(NameProperty, value); }
         }
+
         public ImageSource DisplayedImage
         {
             get { return (ImageSource)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
+        }
+
+        public string DisplayedCategory
+        {
+            get { return (string)GetValue(CategoryProperty); }
+            set { SetValue(CategoryProperty, value); }
         }
     }
 }
