@@ -20,14 +20,6 @@ namespace BPIDM.Controls
             InitializeComponent();
         }
 
-        public BPMenuItem(string n, double p, String i)
-        {
-            InitializeComponent();
-            this.DisplayedName = n;
-            this.DisplayedPrice = p;
-            this.DisplayedImage = (ImageSource) new ImageSourceConverter().ConvertFromString(i);
-        }
-
         public double DisplayedPrice
         {
             get { return (double) GetValue(PriceProperty); }

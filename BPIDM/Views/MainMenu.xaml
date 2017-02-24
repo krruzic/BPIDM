@@ -32,7 +32,7 @@
         </CollectionViewSource>
     </UserControl.Resources>
     
-    <ListBox HorizontalAlignment="Stretch" 
+    <ListView HorizontalAlignment="Stretch" 
              HorizontalContentAlignment="Center" 
              ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
              ItemsSource="{Binding Source={StaticResource MenuContent}}"
@@ -45,13 +45,13 @@
                 </Border>
             </DataTemplate>
         </lc:HeaderPersister.HeaderTemplate>
-        <ListBox.ItemsPanel>
+        <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
+        </ListView.ItemsPanel>
         <ListBox.GroupStyle>
             <GroupStyle HeaderStringFormat="" />
         </ListBox.GroupStyle>
-    </ListBox>
+    </ListView>
 </UserControl>

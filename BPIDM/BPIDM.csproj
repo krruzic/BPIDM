@@ -66,10 +66,10 @@
     <Compile Include="Controls\BPMenuItem.xaml.cs">
       <DependentUpon>BPMenuItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageSwitcher.xaml.cs">
+    <Compile Include="Utils\PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Switcher.cs" />
+    <Compile Include="Utils\Switcher.cs" />
     <Compile Include="Utils\MenuStructure.cs" />
     <Compile Include="Views\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -86,12 +86,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ISwitchable.cs" />
+    <Compile Include="Utils\ISwitchable.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PageSwitcher.xaml">
+    <Page Include="Utils\PageSwitcher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
