@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:BPIDM"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="BPRed">#FFEE3E42</SolidColorBrush>
+        <SolidColorBrush x:Key="BPBlue">#FF007CC1</SolidColorBrush>
+        <SolidColorBrush x:Key="BPWhite">#FFFEFCFF</SolidColorBrush>
     </Application.Resources>
 </Application>

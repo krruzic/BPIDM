@@ -1,0 +1,16 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Controls="clr-namespace:BPIDM.Controls"
+	mc:Ignorable="d"
+	x:Class="BPIDM.Views.MainMenu">
+    <ListBox HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding MenuContent}" >
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel ItemWidth="256" ItemHeight="256" Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+    </ListBox>
+</UserControl>
