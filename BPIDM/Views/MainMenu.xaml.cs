@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows;
 
 using Newtonsoft.Json;
-
+using Xceed.Wpf.Toolkit.Core.Utilities;
 using BPIDM.Controls;
 using BPIDM.Utils;
 using System.ComponentModel;
@@ -25,20 +25,25 @@ namespace BPIDM.Views
         public ICollectionView SourceCollection;
 
         public ObservableCollection<BPMenuItem> MenuContent { get; private set; }
+        public ObservableCollection<BPMenuItem> JumperContent { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainMenu()
         {
             InitializeComponent();
             MenuContent = new ObservableCollection<BPMenuItem>();
-            FillList();
-
+            JumperContent = new ObservableCollection<BPMenuItem>();
             menuCollection = new CollectionViewSource();
             ICollectionView SourceCollection = CollectionViewSource.GetDefaultView(MenuList.ItemsSource);
             menuCollection.Source = MenuContent;
             this.DataContext = this;
+            this.Loaded += new RoutedEventHandler(ComponentLoaded);
         }
 
+        private void ComponentLoaded(object sender, RoutedEventArgs e)
+        {
+            FillMenu();
+        }
 
         public string FilterText
         {
@@ -93,13 +98,33 @@ namespace BPIDM.Views
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void FillList()
+        private int findFirstInCategory(string str)
+        {
+            for (int i = 0; i < MenuList.Items.Count; i++)
+            {
+                BPMenuItem item = (BPMenuItem) MenuList.Items[i];
+                if (item.DisplayedCategory.Equals(str))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        private void FillMenu()
         {
             string json = LoadJson();
             dynamic jsonObj = JsonConvert.DeserializeObject<RootMenuObject>(json);
             int i = 0;
             foreach (var cat in jsonObj.Menu)
             {
+                BPMenuItem jumpitem = new BPMenuItem
+                {
+                    DisplayedName = cat.CategoryName,
+                    DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"C:\Users\krruz\Pictures\smartcrop\65-spaghetti.png"),
+                    DisplayedCategory = cat.CategoryName,
+                };
+                JumperContent.Add(jumpitem);
                 foreach (var item in cat.Content)
                 {
                     BPMenuItem bpitem = new BPMenuItem
@@ -114,6 +139,20 @@ namespace BPIDM.Views
                 }
             }
             Console.WriteLine(i);
+        }
+
+        private void listView_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as ListView).SelectedItem;
+            if (item != null)
+            {
+                BPMenuItem cur = (BPMenuItem) item;
+                int index = findFirstInCategory(cur.DisplayedCategory);
+                ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(MenuList);
+                sv.ScrollToBottom();
+                MenuList.ScrollIntoView(MenuList.Items[index]);
+                Console.WriteLine(cur.DisplayedCategory);
+            }
         }
 
         private string LoadJson()

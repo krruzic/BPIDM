@@ -11,13 +11,12 @@
         <Style TargetType="{x:Type GroupItem}">
             <Setter Property="TextBlock.FontSize" Value="32"/>
             <Setter Property="TextBlock.Foreground" Value="{StaticResource BPRed}"/>
+            <Setter Property="TextBlock.Background" Value="{StaticResource BPWhite}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GroupItem}">
-                        <StackPanel>
-                            <Border Background="White" Padding="10,3">
-                                <ContentPresenter x:Name="PART_Header"/>
-                            </Border>
+                        <StackPanel HorizontalAlignment="Stretch">
+                            <ContentPresenter x:Name="PART_Header"/>
                             <ItemsPresenter x:Name="ItemsPresenter"/>
                         </StackPanel>
                     </ControlTemplate>
@@ -32,38 +31,43 @@
         </CollectionViewSource>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
+    <DockPanel>
+        <ListView
+            DockPanel.Dock="Left"
+            HorizontalAlignment="Stretch" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            lc:HeaderPersister.IsEnabled="True" x:Name="MenuJumperList"
+            ItemsSource="{Binding Path=JumperContent}"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            PreviewMouseLeftButtonUp="listView_Click">
+        </ListView>
         <Controls:SearchBox 
-            HorizontalAlignment="Left" 
-            Height="32" Width="320" 
+            DockPanel.Dock="Top"
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Height="32" Width="320" Margin="10,0,0,0"
             SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"  
             x:Name="searchFilter"/>
         <ListView 
-            Grid.Row="2"
-            HorizontalAlignment="Stretch" 
+            Background="Transparent" BorderThickness="0"
+            Margin="10,0,0,0"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
             ItemsSource="{Binding Source={StaticResource SourceCollection}}"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <lc:HeaderPersister.HeaderTemplate>
                 <DataTemplate>
-                    <Border Background="White" Padding="10,3">
-                        <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}"/>
-                    </Border>
+                    <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}"/>
                 </DataTemplate>
             </lc:HeaderPersister.HeaderTemplate>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.GroupStyle>
                 <GroupStyle HeaderStringFormat=""/>
             </ListView.GroupStyle>
         </ListView>
-    </Grid>
+        <!--<Button Content="TEST"/>-->
+    </DockPanel>
 </UserControl>
