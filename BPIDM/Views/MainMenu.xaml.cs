@@ -121,7 +121,7 @@ namespace BPIDM.Views
                 BPMenuItem jumpitem = new BPMenuItem
                 {
                     DisplayedName = cat.CategoryName,
-                    DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"C:\Users\krruz\Pictures\smartcrop\65-spaghetti.png"),
+                    DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"Data/temp.png"),
                     DisplayedCategory = cat.CategoryName,
                 };
                 JumperContent.Add(jumpitem);
@@ -131,7 +131,7 @@ namespace BPIDM.Views
                     { 
                         DisplayedName = item.title,
                         DisplayedPrice = item.retail_pricing,
-                        DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"C:\Users\krruz\Desktop\bpchicken.png"),
+                        DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"Data/temp.png"),
                         DisplayedCategory = cat.CategoryName,
                     };
                     MenuContent.Add(bpitem);

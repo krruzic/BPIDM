@@ -47,7 +47,7 @@
         </Grid>
         </Border>
         <Border CornerRadius="2" Background="White" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-20" Width="96">
-            <Label Content="VIEW" Foreground="{StaticResource BPRed}" FontSize="18" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Button Content="VIEW" Style="{StaticResource BPButton}"/>
         </Border>
 
     </VirtualizingStackPanel>
