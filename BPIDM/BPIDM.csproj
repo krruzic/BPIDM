@@ -66,6 +66,7 @@
     <Compile Include="Controls\BPMenuItem.xaml.cs">
       <DependentUpon>BPMenuItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SearchBox\SearchBox.xaml.cs" />
     <Compile Include="Utils\PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
     </Compile>
@@ -77,6 +78,10 @@
     <Page Include="Controls\BPMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SearchBox\SearchBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +123,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Controls\SearchBox\SearchBoxFocused.png" />
+    <Resource Include="Controls\SearchBox\SearchBoxWithoutFocus.png" />
+    <Resource Include="Controls\SearchBox\iconsearch.png" />
     <Content Include="Data\menu.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

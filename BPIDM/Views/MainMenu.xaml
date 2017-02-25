@@ -25,33 +25,45 @@
             </Setter>
         </Style>
 
-        <CollectionViewSource x:Key="MenuContent" Source="{Binding Path=MenuContent}">
+        <CollectionViewSource x:Key="SourceCollection" Source="{Binding Path=MenuContent}" Filter="menuCollection_Filter">
             <CollectionViewSource.GroupDescriptions>
                 <PropertyGroupDescription PropertyName="DisplayedCategory"/>
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
-    
-    <ListView HorizontalAlignment="Stretch" 
-             HorizontalContentAlignment="Center" 
-             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-             ItemsSource="{Binding Source={StaticResource MenuContent}}"
-             lc:HeaderPersister.IsEnabled="True" 
-             Margin="25,25,25,25">
-        <lc:HeaderPersister.HeaderTemplate>
-            <DataTemplate>
-                <Border Background="White" Padding="10,3">
-                    <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}"/>
-                </Border>
-            </DataTemplate>
-        </lc:HeaderPersister.HeaderTemplate>
-        <ListView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </ItemsPanelTemplate>
-        </ListView.ItemsPanel>
-        <ListBox.GroupStyle>
-            <GroupStyle HeaderStringFormat="" />
-        </ListBox.GroupStyle>
-    </ListView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Controls:SearchBox 
+            HorizontalAlignment="Left" 
+            Height="32" Width="320" 
+            SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"  
+            x:Name="searchFilter"/>
+        <ListView 
+            Grid.Row="2"
+            HorizontalAlignment="Stretch" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
+            ItemsSource="{Binding Source={StaticResource SourceCollection}}"
+            ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <lc:HeaderPersister.HeaderTemplate>
+                <DataTemplate>
+                    <Border Background="White" Padding="10,3">
+                        <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}"/>
+                    </Border>
+                </DataTemplate>
+            </lc:HeaderPersister.HeaderTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.GroupStyle>
+                <GroupStyle HeaderStringFormat=""/>
+            </ListView.GroupStyle>
+        </ListView>
+    </Grid>
 </UserControl>

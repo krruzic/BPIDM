@@ -6,13 +6,12 @@
              xmlns:local="clr-namespace:BPIDM.Controls"
              mc:Ignorable="d" x:Name="BPMenuItemControl">
     <Grid>
-        <Border Name="mask" Background="White" CornerRadius="20"/>
-        <Grid Width="256" Height="192" Background='{StaticResource "BPRed"}'>
-                <!-- Use a VisualBrush of 'mask' as the opacity mask -->
-            <Grid.OpacityMask>
+        <Border Name="mask" Background="{StaticResource BPRed}" CornerRadius="20"/>
+        <VirtualizingStackPanel>
+            <VirtualizingStackPanel.OpacityMask>
                 <VisualBrush Visual="{Binding ElementName=mask}"/>
-            </Grid.OpacityMask>
-            <Grid Margin="10,10,10,10">
+            </VirtualizingStackPanel.OpacityMask>
+            <Grid Margin="10,10,10,10" Width="256" Height="192">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="4*"/>
@@ -22,14 +21,14 @@
                     <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground='{StaticResource "BPWhite"}' FontSize="24" VerticalAlignment="Top">
+                <Label Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="{StaticResource BPWhite}" FontSize="24" VerticalAlignment="Top">
                     <Label.Content>
                         <AccessText TextWrapping="Wrap" Text="{Binding DisplayedName, ElementName=BPMenuItemControl}" TextAlignment="Center"/>
                     </Label.Content>
                 </Label>
                 <Image Grid.Row="1" Grid.Column="1" Source="{Binding DisplayedImage, ElementName=BPMenuItemControl}" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding DisplayedPrice, ElementName=BPMenuItemControl}" ContentStringFormat="c" HorizontalAlignment="Right" Foreground='{StaticResource "BPWhite"}' FontSize="18" VerticalAlignment="Bottom" Opacity="0.7"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding DisplayedPrice, ElementName=BPMenuItemControl}" ContentStringFormat="c" HorizontalAlignment="Right" Foreground="{StaticResource BPWhite}" FontSize="18" VerticalAlignment="Bottom" Opacity="0.7"/>
             </Grid>
-        </Grid>
+        </VirtualizingStackPanel>
     </Grid>
 </UserControl>
