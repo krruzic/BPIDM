@@ -131,7 +131,7 @@ namespace BPIDM.Views
                     { 
                         DisplayedName = item.title,
                         DisplayedPrice = item.retail_pricing,
-                        DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"C:\Users\krruz\Pictures\smartcrop\65-spaghetti.png"),
+                        DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"C:\Users\krruz\Desktop\bpchicken.png"),
                         DisplayedCategory = cat.CategoryName,
                     };
                     MenuContent.Add(bpitem);
@@ -149,8 +149,11 @@ namespace BPIDM.Views
                 BPMenuItem cur = (BPMenuItem) item;
                 int index = findFirstInCategory(cur.DisplayedCategory);
                 ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(MenuList);
-                sv.ScrollToBottom();
-                MenuList.ScrollIntoView(MenuList.Items[index]);
+                if (index != -1)
+                {
+                    sv.ScrollToBottom();
+                    MenuList.ScrollIntoView(MenuList.Items[index]);
+                }
                 Console.WriteLine(cur.DisplayedCategory);
             }
         }

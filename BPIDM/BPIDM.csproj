@@ -150,6 +150,7 @@
     <Resource Include="Controls\SearchBox\SearchBoxFocused.png" />
     <Resource Include="Controls\SearchBox\SearchBoxWithoutFocus.png" />
     <Resource Include="Controls\SearchBox\iconsearch.png" />
+    <Resource Include="Data\body-bck.gif" />
     <Content Include="Data\menu.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

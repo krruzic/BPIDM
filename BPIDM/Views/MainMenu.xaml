@@ -5,8 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
 	xmlns:Controls="clr-namespace:BPIDM.Controls"
-	mc:Ignorable="d"
-	x:Class="BPIDM.Views.MainMenu">
+	mc:Ignorable="d" x:Class="BPIDM.Views.MainMenu">
     <UserControl.Resources>
         <Style TargetType="{x:Type GroupItem}">
             <Setter Property="TextBlock.FontSize" Value="32"/>
@@ -39,21 +38,22 @@
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuJumperList"
             ItemsSource="{Binding Path=JumperContent}"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
-            PreviewMouseLeftButtonUp="listView_Click">
+            PreviewMouseLeftButtonUp="listView_Click"
+            VirtualizingPanel.ScrollUnit="Pixel">
         </ListView>
         <Controls:SearchBox 
             DockPanel.Dock="Top"
             HorizontalAlignment="Left" VerticalAlignment="Top"
-            Height="32" Width="320" Margin="10,0,0,0"
-            SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"  
-            x:Name="searchFilter"/>
+            Height="32" Width="320" Margin="10,0,0,0" 
+            SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" x:Name="searchFilter"/>
         <ListView 
             Background="Transparent" BorderThickness="0"
             Margin="10,0,0,0"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
             ItemsSource="{Binding Source={StaticResource SourceCollection}}"
-            ScrollViewer.VerticalScrollBarVisibility="Visible">
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            VirtualizingPanel.ScrollUnit="Pixel">
             <lc:HeaderPersister.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}"/>
