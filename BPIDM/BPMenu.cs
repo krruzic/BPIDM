@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -6,7 +6,7 @@ namespace BPIDM
 {
     public class NutritionInfo
     {
-    }
+    }
     public class RootMenuObject
     {        private List<BPCategoryItem> _Menu;
         public List<BPCategoryItem> Menu {

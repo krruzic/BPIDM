@@ -1,5 +1,5 @@
-﻿using System.Windows.Controls;
-
+using System.Windows.Controls;
+
 namespace BPIDM
 {
     public static class Switcher

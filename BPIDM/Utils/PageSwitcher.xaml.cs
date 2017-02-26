@@ -1,4 +1,4 @@
-﻿using BPIDM.Views;
+using BPIDM.Views;
 using System;
 using System.Windows.Controls;
 
