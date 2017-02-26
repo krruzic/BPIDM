@@ -91,6 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BPMenu.cs" />
     <Compile Include="Controls\BPMenuItem.xaml.cs">
       <DependentUpon>BPMenuItem.xaml</DependentUpon>
     </Compile>
@@ -99,7 +100,6 @@
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Switcher.cs" />
-    <Compile Include="Utils\MenuStructure.cs" />
     <Compile Include="Views\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>

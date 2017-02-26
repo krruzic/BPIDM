@@ -1,7 +1,8 @@
 {
   "Menu":[
     {
-      "CategoryName":"Starters",
+      "CategoryName": "Starters",
+      "Description": "Anyone can serve wings in a basket. Introducing Wings Two-Four: Twenty-four wings served in a little beer case.",
       "Content":[
         {
           "description":"A triple order of wings in one little beer case. Choose two of your favourite flavours. You\u2019d better bring your appetite.",
@@ -535,7 +536,8 @@
       ]
     },
     {
-      "CategoryName":"Pizza",
+      "CategoryName": "Pizza",
+      "Description": "You can do irrefutably impossible things with the right amount of planning and support from intelligent and hardworking people and pizza. - Scott M. Gimple",
       "Content":[
         {
           "description":"Classic pizza with our signature pizza sauce and pizza mozzarella.",
@@ -916,7 +918,8 @@
       ]
     },
     {
-      "CategoryName":"Pasta",
+      "CategoryName": "Pasta",
+      "Description": "We'll see your low-carb diet, and raise you one big, hot, delicious bowl of pasta.",
       "Content":[
         {
           "option_groups":[
@@ -1191,7 +1194,8 @@
       ]
     },
     {
-      "CategoryName":"Sandwiches",
+      "CategoryName": "Sandwiches",
+      "Description":  "Now, this is double-fisting. All of our seriously hefty burgers and sandwiches are served with your choice of fries, Caesar or house salad.",
       "Content":[
         {
           "description":"It doesn\u2019t get any better than our reimagined beef dip. Thinly sliced steak piled high on a toasted garlic-brushed bun with melted pizza mozzarella, braised onions, roasted red peppers and crispy onion straws. Served with horseradish mayo and jus for dipping.",
@@ -1350,7 +1354,8 @@
       ]
     },
     {
-      "CategoryName":"Burgers & Mains",
+      "CategoryName": "Burgers & Mains",
+      "Description":  "For serious eaters only. All mains come with a ‘Do Not Disturb’ sign to hang around your neck.",
       "Content":[
         {
           "description":"Our signature patty \u2013 100% Canadian beef, salt and pepper, smothered in our BBQ sauce made with Jack Daniel\u2019s<sup>\u00ae</sup>, loaded with bacon and placed between a brioche bun. ",
@@ -1591,7 +1596,8 @@
       ]
     },
     {
-      "CategoryName":"Salads",
+      "CategoryName": "Salads",
+      "Description": "There's no such thing as food-envy here. Especially when you order our tasty salads.",
       "Content":[
         {
           "description":"BP\u2019s signature house blend of garden greens, red pepper, red onions and carrot ribbons tossed in our citrus vinaigrette. Topped with julienned beets.",
@@ -1859,7 +1865,8 @@
       ]
     },
     {
-      "CategoryName":"Desserts",
+      "CategoryName": "Desserts",
+      "Description":  "You only live once. Especially with our Died-and-Gone-To-Heaven desserts.",
       "Content":[
         {
           "description":"A decadent treat \u2013 moist Red Velvet Cake and a cheesecake mousse, served with berry sauce and topped with whipped cream and a white chocolate coin. $1 from every cake sold goes to Boston Pizza Foundation Future Prospects.",
@@ -2064,7 +2071,8 @@
       ]
     },
     {
-      "CategoryName":"Kids",
+      "CategoryName": "Kids",
+      "Description": "Hey, we’re here to make your mini-me’s happy too.", 
       "Content":[
         {
           "description":"What\u2019s better than one pint-sized cheeseburger topped with real Canadian cheddar cheese? Two! Served with ketchup and mustard. The new BP Kids Fun Pack comes free with every kids meal.",
@@ -2307,7 +2315,8 @@
       ]
     },
     {
-      "CategoryName":"GlutenWise",
+      "CategoryName": "GlutenWise",
+      "Description": "Try one of our Gluten Friendly Dishes. They're just as good... We promise!",
       "Content":[
         {
           "description":"Choose one of seven GlutenWise<sup>TM\u2021</sup> flavours. Twice-baked and served with ranch dipping sauce.",
@@ -2680,7 +2689,8 @@
       ]
     },
     {
-      "CategoryName":"Beverages & Sides",
+      "CategoryName": "Beverages & Sides",
+      "Description": "Gravy is not a drink",
       "Content":[
         {
           "description":"7Up<sup>\u00ae</sup>, Pepsi<sup>\u00ae</sup>, Diet Pepsi<sup>\u00ae</sup>, MUG<sup>\u00ae</sup> Root Beer, Brisk<sup>\u00ae</sup> Iced Tea 12 Oz can. Delivery / Pick-Up only.",

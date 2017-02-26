@@ -2,16 +2,13 @@
 using System.IO;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Windows.Media;
+using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows;
 
 using Newtonsoft.Json;
 using Xceed.Wpf.Toolkit.Core.Utilities;
-using BPIDM.Controls;
-using BPIDM.Utils;
-using System.ComponentModel;
+
 
 namespace BPIDM.Views
 {
@@ -24,15 +21,15 @@ namespace BPIDM.Views
         public CollectionViewSource menuCollection;
         public ICollectionView SourceCollection;
 
-        public ObservableCollection<BPMenuItem> MenuContent { get; private set; }
-        public ObservableCollection<BPMenuItem> JumperContent { get; private set; }
+        public ObservableCollection<BPMenu> MenuContent { get; private set; }
+        public ObservableCollection<BPCategoryItem> JumperContent { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainMenu()
         {
             InitializeComponent();
-            MenuContent = new ObservableCollection<BPMenuItem>();
-            JumperContent = new ObservableCollection<BPMenuItem>();
+            MenuContent = new ObservableCollection<BPMenu>();
+            JumperContent = new ObservableCollection<BPCategoryItem>();
             menuCollection = new CollectionViewSource();
             ICollectionView SourceCollection = CollectionViewSource.GetDefaultView(MenuList.ItemsSource);
             menuCollection.Source = MenuContent;
@@ -63,27 +60,8 @@ namespace BPIDM.Views
                 e.Accepted = true;
                 return;
             }
-            BPMenuItem item = e.Item as BPMenuItem;
-            if (item.DisplayedName.ToUpper().Contains(FilterText.ToUpper()))
-            {
-                e.Accepted = true;
-            }
-            else
-            {
-                e.Accepted = false;
-            }
-        }
-
-        private void SearchBox_Search(object sender, FilterEventArgs e)
-        {
-            if (string.IsNullOrEmpty(FilterText))
-            {
-                e.Accepted = true;
-                return;
-            }
-
-            BPMenuItem item = e.Item as BPMenuItem;
-            if (item.DisplayedName.ToUpper().Contains(FilterText.ToUpper()))
+            BPMenu item = e.Item as BPMenu;
+            if (item.title.ToUpper().Contains(FilterText.ToUpper()))
             {
                 e.Accepted = true;
             }
@@ -102,8 +80,8 @@ namespace BPIDM.Views
         {
             for (int i = 0; i < MenuList.Items.Count; i++)
             {
-                BPMenuItem item = (BPMenuItem) MenuList.Items[i];
-                if (item.DisplayedCategory.Equals(str))
+                BPMenu item = (BPMenu)MenuList.Items[i];
+                if (item.category.Equals(str))
                 {
                     return i;
                 }
@@ -116,45 +94,32 @@ namespace BPIDM.Views
             string json = LoadJson();
             dynamic jsonObj = JsonConvert.DeserializeObject<RootMenuObject>(json);
             int i = 0;
-            foreach (var cat in jsonObj.Menu)
+            foreach (BPCategoryItem cat in jsonObj.Menu)
             {
-                BPMenuItem jumpitem = new BPMenuItem
+                JumperContent.Add(cat);
+                foreach (BPMenu item in cat.Content)
                 {
-                    DisplayedName = cat.CategoryName,
-                    DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"Data/temp.png"),
-                    DisplayedCategory = cat.CategoryName,
-                };
-                JumperContent.Add(jumpitem);
-                foreach (var item in cat.Content)
-                {
-                    BPMenuItem bpitem = new BPMenuItem
-                    { 
-                        DisplayedName = item.title,
-                        DisplayedPrice = item.retail_pricing,
-                        DisplayedImage = (ImageSource)new ImageSourceConverter().ConvertFromString(@"Data/temp.png"),
-                        DisplayedCategory = cat.CategoryName,
-                    };
-                    MenuContent.Add(bpitem);
-                    i++;
+                    item.category = cat.CategoryName;
+                    MenuContent.Add(item);
                 }
             }
-            Console.WriteLine(i);
         }
 
         private void listView_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("ITEM SELECTED");
             var item = (sender as ListView).SelectedItem;
             if (item != null)
             {
-                BPMenuItem cur = (BPMenuItem) item;
-                int index = findFirstInCategory(cur.DisplayedCategory);
+                BPCategoryItem cur = (BPCategoryItem) item;
+                int index = findFirstInCategory(cur.CategoryName);
                 ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(MenuList);
                 if (index != -1)
                 {
                     sv.ScrollToBottom();
                     MenuList.ScrollIntoView(MenuList.Items[index]);
                 }
-                Console.WriteLine(cur.DisplayedCategory);
+                Console.WriteLine(cur.CategoryName);
             }
         }
 

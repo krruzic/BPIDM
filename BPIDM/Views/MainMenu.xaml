@@ -5,10 +5,105 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
 	xmlns:Controls="clr-namespace:BPIDM.Controls"
-	mc:Ignorable="d" x:Class="BPIDM.Views.MainMenu">
+    xmlns:a="BPIDM.App"
+    xmlns:bp="clr-namespace:BPIDM"
+    mc:Ignorable="d" x:Class="BPIDM.Views.MainMenu">
     <UserControl.Resources>
+        <DataTemplate x:Name="menuTemplate" DataType="{x:Type bp:BPMenu}">
+            <VirtualizingStackPanel>
+                <VirtualizingStackPanel.Background>
+                    <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
+                        <VisualBrush.Visual>
+                            <Image Source="/BPIDM;component/bpchicken.png">
+                                <Image.Effect>
+                                    <BlurEffect Radius="4"/>
+                                </Image.Effect>
+                            </Image>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </VirtualizingStackPanel.Background>
+                <Label 
+                    HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
+                    FontSize="20" VerticalAlignment="Top" FontWeight="Medium">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                    </Label.Background>
+                    <Label.Content>
+                        <AccessText 
+                            TextWrapping="Wrap" Text="{Binding title}" 
+                            TextAlignment="Center" MinHeight="160" MaxHeight="160"/>
+                    </Label.Content>
+                </Label>
+                <Label 
+                    HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}"
+                    FontSize="14" FontWeight="Light">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                    </Label.Background>
+                    <TextBlock VerticalAlignment="Bottom"
+                        TextWrapping="Wrap" Text="{Binding description}" TextAlignment="Left" 
+                        MinHeight="40" MaxHeight="40" TextTrimming="CharacterEllipsis"/>
+                </Label>
+                <Label
+                    Content="{Binding retail_pricing}"
+                    ContentStringFormat="c" HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Right"
+                    Foreground="{StaticResource BPGray}"
+                    FontSize="18" FontFamily="Times New Roman"
+                    VerticalAlignment="Bottom">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                    </Label.Background>
+                </Label>
+                <Border CornerRadius="2" Background="White" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-12" Width="96">
+                    <Button Content="VIEW" Style="{StaticResource BPButton}"/>
+                </Border>
+            </VirtualizingStackPanel>
+        </DataTemplate>
+        <DataTemplate x:Name="sidepaneTemplate" DataType="{x:Type bp:BPCategoryItem}">
+            <VirtualizingStackPanel>
+                <VirtualizingStackPanel.Background>
+                    <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
+                        <VisualBrush.Visual>
+                            <Image Source="/BPIDM;component/bpchicken.png">
+                                <Image.Effect>
+                                    <BlurEffect Radius="4"/>
+                                </Image.Effect>
+                            </Image>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </VirtualizingStackPanel.Background>
+                <Label 
+                    HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
+                    FontSize="20" VerticalAlignment="Top" FontWeight="Medium">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                    </Label.Background>
+                    <Label.Content>
+                        <AccessText 
+                            TextWrapping="Wrap" Text="{Binding CategoryName}" 
+                            TextAlignment="Center" MinHeight="160" MaxHeight="160"/>
+                    </Label.Content>
+                </Label>
+                <Label 
+                    HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}"
+                    FontSize="14" FontWeight="Light">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                    </Label.Background>
+                    <TextBlock VerticalAlignment="Bottom"
+                        TextWrapping="Wrap" Text="{Binding Description}" TextAlignment="Left" 
+                        MinHeight="50" MaxHeight="50" TextTrimming="CharacterEllipsis"/>
+                </Label>
+                <Rectangle Fill="White" HorizontalAlignment="Stretch" Height="20" Opacity="0.4"/>
+                <Border CornerRadius="2" Background="White" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-12" Width="96">
+                    <Button Content="VIEW" Style="{StaticResource BPButton}" FontWeight="Bold"/>
+                </Border>
+            </VirtualizingStackPanel>
+        </DataTemplate>
         <Style TargetType="{x:Type GroupItem}">
             <Setter Property="TextBlock.FontSize" Value="32"/>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
             <Setter Property="TextBlock.Foreground" Value="{StaticResource BPRed}"/>
             <Setter Property="TextBlock.Background" Value="{StaticResource BPWhite}"/>
             <Setter Property="Template">
@@ -22,10 +117,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
         <CollectionViewSource x:Key="SourceCollection" Source="{Binding Path=MenuContent}" Filter="menuCollection_Filter">
             <CollectionViewSource.GroupDescriptions>
-                <PropertyGroupDescription PropertyName="DisplayedCategory"/>
+                <PropertyGroupDescription PropertyName="category"/>
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
@@ -38,14 +132,15 @@
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuJumperList"
             ItemsSource="{Binding Path=JumperContent}"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
-            PreviewMouseLeftButtonUp="listView_Click"
-            VirtualizingPanel.ScrollUnit="Pixel">
-        </ListView>
+            VirtualizingPanel.ScrollUnit="Pixel"
+            Button.Click="listView_Click"
+            ItemContainerStyle="{StaticResource BPMenuItemStyle}"/>
         <Controls:SearchBox 
             DockPanel.Dock="Top"
             HorizontalAlignment="Left" VerticalAlignment="Top"
             Height="32" Width="320" Margin="10,0,0,0" 
-            SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" x:Name="searchFilter"/>
+            SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
+            x:Name="searchFilter"/>
         <ListView 
             Background="Transparent" BorderThickness="0"
             Margin="10,0,0,0"
@@ -53,10 +148,11 @@
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
             ItemsSource="{Binding Source={StaticResource SourceCollection}}"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
-            VirtualizingPanel.ScrollUnit="Pixel">
+            VirtualizingPanel.ScrollUnit="Pixel"
+            ItemContainerStyle="{StaticResource BPMenuItemStyle}">
             <lc:HeaderPersister.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}"/>
+                    <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}" FontWeight="Bold"/>
                 </DataTemplate>
             </lc:HeaderPersister.HeaderTemplate>
             <ListView.ItemsPanel>
@@ -68,6 +164,5 @@
                 <GroupStyle HeaderStringFormat=""/>
             </ListView.GroupStyle>
         </ListView>
-        <!--<Button Content="TEST"/>-->
     </DockPanel>
 </UserControl>

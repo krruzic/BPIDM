@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BPIDM.Controls"
              mc:Ignorable="d" x:Name="BPMenuItemControl">
 
-    <VirtualizingStackPanel Margin="16,16,16,24">
+    <Grid Margin="16,16,16,24">
         <Border CornerRadius="14" BorderBrush="Gray" BorderThickness="1">
         <Grid Grid.Row="0" Grid.Column="1" Width="256" Height="224">
             <Grid.RowDefinitions>
@@ -32,7 +32,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <Rectangle Fill="White" Opacity="0.4" Grid.ColumnSpan="3" Grid.RowSpan="3"></Rectangle>
-            <Label Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="{StaticResource BPRed}" FontSize="24" VerticalAlignment="Top">
+            <Label HorizontalAlignment="Center" Foreground="{StaticResource BPRed}" FontSize="24" VerticalAlignment="Top">
                 <Label.Content>
                     <AccessText TextWrapping="Wrap" Text="{Binding DisplayedName, ElementName=BPMenuItemControl}" TextAlignment="Center"/>
                 </Label.Content>
@@ -46,9 +46,55 @@
                 VerticalAlignment="Center"/>
         </Grid>
         </Border>
-        <Border CornerRadius="2" Background="White" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-20" Width="96">
+        <Border CornerRadius="2" Background="White" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-12" Width="96">
             <Button Content="VIEW" Style="{StaticResource BPButton}"/>
         </Border>
 
-    </VirtualizingStackPanel>
+    </Grid>
 </UserControl>
+<!--<VirtualizingStackPanel Margin="16,16,16,24">
+    <Grid>
+        <Border CornerRadius="14" BorderBrush="Gray" BorderThickness="1">
+            <Grid Grid.Row="0" Grid.Column="1" Width="256" Height="224">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=mask}" />
+                </Grid.OpacityMask>
+                <Border CornerRadius="8" Background="White" BorderThickness="1" Name="mask"/>
+                <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="3">
+                    <Rectangle.Effect>
+                        <BlurEffect Radius="4"></BlurEffect>
+                    </Rectangle.Effect>
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/BPIDM;component/bpchicken.png" Stretch="UniformToFill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Fill="White" Opacity="0.4" Grid.ColumnSpan="3" Grid.RowSpan="3"></Rectangle>
+                <Label Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="{StaticResource BPRed}" FontSize="24" VerticalAlignment="Top">
+                    <Label.Content>
+                        <AccessText TextWrapping="Wrap" Text="{Binding title}" TextAlignment="Center"/>
+                    </Label.Content>
+                </Label>
+                <Label 
+                                    Grid.Row="2" Grid.Column="2" 
+                                    Content="{Binding retail_pricing}" 
+                                    ContentStringFormat="c" HorizontalAlignment="Center" 
+                                    Foreground="{StaticResource BPBlue}" 
+                                    FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"
+                                    VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+        <Border CornerRadius="2" Background="White" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-12" Width="96">
+            <Button Content="VIEW" Style="{StaticResource BPButton}"/>
+        </Border>
+    </Grid>
+</VirtualizingStackPanel>-->
