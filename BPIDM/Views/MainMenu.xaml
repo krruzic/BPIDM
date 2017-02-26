@@ -65,7 +65,7 @@
                 <VirtualizingStackPanel.Background>
                     <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                         <VisualBrush.Visual>
-                            <Image Source="/BPIDM;component/bpchicken.png">
+                            <Image Source="/BPIDM;component/bpchicken.png" Width="128" Height="128">
                                 <Image.Effect>
                                     <BlurEffect Radius="4"/>
                                 </Image.Effect>
@@ -75,30 +75,16 @@
                 </VirtualizingStackPanel.Background>
                 <Label 
                     HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
-                    FontSize="20" VerticalAlignment="Top" FontWeight="Medium">
+                    FontSize="18" VerticalAlignment="Top" FontWeight="Medium">
                     <Label.Background>
                         <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
                     </Label.Background>
                     <Label.Content>
                         <AccessText 
                             TextWrapping="Wrap" Text="{Binding CategoryName}" 
-                            TextAlignment="Center" MinHeight="160" MaxHeight="160"/>
+                            TextAlignment="Center" MinHeight="128" MaxHeight="128"/>
                     </Label.Content>
                 </Label>
-                <Label 
-                    HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}"
-                    FontSize="14" FontWeight="Light">
-                    <Label.Background>
-                        <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
-                    </Label.Background>
-                    <TextBlock VerticalAlignment="Bottom"
-                        TextWrapping="Wrap" Text="{Binding Description}" TextAlignment="Left" 
-                        MinHeight="50" MaxHeight="50" TextTrimming="CharacterEllipsis"/>
-                </Label>
-                <Rectangle Fill="White" HorizontalAlignment="Stretch" Height="20" Opacity="0.4"/>
-                <Border CornerRadius="2" Background="White" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-12" Width="96">
-                    <Button Content="VIEW" Style="{StaticResource BPButton}" FontWeight="Bold"/>
-                </Border>
             </VirtualizingStackPanel>
         </DataTemplate>
         <Style TargetType="{x:Type GroupItem}">
@@ -133,8 +119,9 @@
             ItemsSource="{Binding Path=JumperContent}"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VirtualizingPanel.ScrollUnit="Pixel"
-            Button.Click="listView_Click"
-            ItemContainerStyle="{StaticResource BPMenuItemStyle}"/>
+            PreviewMouseLeftButtonUp="listView_Click"
+            ItemContainerStyle="{StaticResource BPCategoryItemStyle}">
+        </ListView>
         <Controls:SearchBox 
             DockPanel.Dock="Top"
             HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -149,6 +136,7 @@
             ItemsSource="{Binding Source={StaticResource SourceCollection}}"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VirtualizingPanel.ScrollUnit="Pixel"
+            HorizontalContentAlignment="Center"
             ItemContainerStyle="{StaticResource BPMenuItemStyle}">
             <lc:HeaderPersister.HeaderTemplate>
                 <DataTemplate>

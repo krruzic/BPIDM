@@ -9,6 +9,31 @@
         <SolidColorBrush x:Key="BPBlue">#FF0061AA</SolidColorBrush>
         <SolidColorBrush x:Key="BPWhite">#FFFEFCFF</SolidColorBrush>
         <SolidColorBrush x:Key="BPGray">#FF333333</SolidColorBrush>
+        <Style x:Key="BPCategoryItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Width" Value="128" />
+            <Setter Property="Height" Value="128" />
+            <Setter Property="Margin" Value="32" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Grid>
+                            <Border CornerRadius="8" BorderThickness="1" Name="mask" BorderBrush="DarkGray"/>
+                            <Grid>
+                                <Grid.OpacityMask>
+                                    <VisualBrush Visual="{Binding ElementName=mask}" />
+                                </Grid.OpacityMask>
+                            </Grid>
+                            <ContentPresenter x:Name="ContentHost" Margin="1"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="IsSelected" Value="True"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="BPMenuItemStyle" TargetType="{x:Type ListViewItem}">
             <Setter Property="Width" Value="256" />
             <Setter Property="Height" Value="256" />
