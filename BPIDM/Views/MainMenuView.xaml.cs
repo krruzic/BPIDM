@@ -31,19 +31,16 @@ namespace BPIDM.Views
 
         private void listView_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("ITEM SELECTED");
             var item = (sender as ListView).SelectedItem;
             if (item != null)
             {
-                BPCategoryViewModel cur = (BPCategoryViewModel)item;
-                int index = findFirstInCategory(cur.CategoryName);
+                int index = findFirstInCategory(item.ToString());
                 ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(MenuList);
                 if (index != -1)
                 {
                     sv.ScrollToTop();
                     MenuList.ScrollIntoView(MenuList.Items[index]);
                 }
-                Console.WriteLine(cur.CategoryName);
             }
         }
 

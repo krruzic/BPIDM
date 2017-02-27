@@ -33,7 +33,6 @@ namespace BPIDM.ViewModels
             MenuCollection.Source = this.MenuContent;
             MenuCollection.Filter += Filter;
             MenuCollection.GroupDescriptions.Add(new PropertyGroupDescription("category"));
-
             IsLoading = true;
             FillMenu();
         }
