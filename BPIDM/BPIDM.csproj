@@ -171,7 +171,6 @@
     <Resource Include="Controls\SearchBox\SearchBoxFocused.png" />
     <Resource Include="Controls\SearchBox\SearchBoxWithoutFocus.png" />
     <Resource Include="Controls\SearchBox\iconsearch.png" />
-    <Resource Include="1024px-Boston_Pizza.svg.ico" />
     <Resource Include="bp.ico" />
     <Content Include="Data\temp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

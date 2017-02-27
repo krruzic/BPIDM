@@ -66,8 +66,6 @@ namespace BPIDM.ViewModels
 
         private async Task FillMenu()
         {
-            if ((string) Application.Current.Properties["menuJSON"] == "")
-                Application.Current.Properties["menuJSON"] = LoadJson();
             dynamic jsonObj = JsonConvert.DeserializeObject<RootMenuObject>((string) Application.Current.Properties["menuJSON"]);
             BPCategoryViewModel temp = jsonObj.Menu[0];
             foreach (BPCategoryViewModel cat in jsonObj.Menu)
@@ -82,14 +80,6 @@ namespace BPIDM.ViewModels
                 JumperContent.Add(cat);
             }
             IsLoading = false;
-        }
-
-        private string LoadJson()
-        {
-            using (StreamReader r = new StreamReader(@"Data/menu.json"))
-            {
-                return r.ReadToEnd();
-            }
         }
 
         protected override void OnActivate()
