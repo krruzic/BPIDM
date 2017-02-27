@@ -8,6 +8,7 @@ using Caliburn.Micro;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Collections.Generic;
 
 namespace BPIDM.ViewModels
 {
@@ -69,6 +70,8 @@ namespace BPIDM.ViewModels
             BPCategoryViewModel temp = jsonObj.Menu[0];
             foreach (BPCategoryViewModel cat in jsonObj.Menu)
             {
+                cat.Image = cat.Content[0].image;
+                JumperContent.Add(cat);
                 foreach (BPMenuViewModel item in cat.Content)
                 {
                     cat.Image = item.image;
@@ -76,7 +79,6 @@ namespace BPIDM.ViewModels
                     MenuContent.Add(item);
                     await Task.Delay(1);
                 }
-                JumperContent.Add(cat);
             }
             IsLoading = false;
         }
