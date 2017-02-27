@@ -14,7 +14,7 @@
                 <VirtualizingStackPanel.Background>
                     <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                         <VisualBrush.Visual>
-                            <Image Source="/BPIDM;component/bpchicken.png">
+                            <Image Source="/BPIDM;component/Data/temp.png">
                                 <Image.Effect>
                                     <BlurEffect Radius="4"/>
                                 </Image.Effect>
@@ -65,7 +65,7 @@
                 <VirtualizingStackPanel.Background>
                     <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                         <VisualBrush.Visual>
-                            <Image Source="/BPIDM;component/bpchicken.png" Width="128" Height="128">
+                            <Image Source="/BPIDM;component/Data/temp.png" Width="128" Height="128">
                                 <Image.Effect>
                                     <BlurEffect Radius="4"/>
                                 </Image.Effect>
