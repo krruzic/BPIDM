@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Navigation;
 
 using Xceed.Wpf.Toolkit.Core.Utilities;
 using BPIDM.ViewModels;
@@ -12,7 +13,7 @@ namespace BPIDM.Views
         public MainMenuView()
         {
             InitializeComponent();
-            DataContext = new MainMenuViewModel();
+            DataContext = new MainMenuViewModel();            
         }
 
         private int findFirstInCategory(string str)
@@ -44,6 +45,15 @@ namespace BPIDM.Views
                 }
                 Console.WriteLine(cur.CategoryName);
             }
+        }
+
+        private void listViewDishClicked(object sender, RoutedEventArgs e)
+        {
+            _NavigationFrame.Navigate(new DishDetailsView());
+            this._NavigationFrame.NavigationService.Navigate(new Uri("Views/DishDetailsView.xaml", UriKind.Relative));
+            this.MenuJumperList.Visibility = Visibility.Hidden;
+            this.MenuList.Visibility = Visibility.Hidden;
+            this.searchFilter.Visibility = Visibility.Hidden;
         }
     }
 }

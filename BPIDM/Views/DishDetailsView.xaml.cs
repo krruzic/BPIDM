@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace BPIDM.Views
 {
     /// <summary>
-    /// Interaction logic for DishDetails.xaml
+    /// Interaction logic for DishDetailsView.xaml
     /// </summary>
-    public partial class DishDetails : Page
+    public partial class DishDetailsView : Page
     {
-        public DishDetails()
+        public DishDetailsView()
         {
             InitializeComponent();
+        }
+
+        private void close_details_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

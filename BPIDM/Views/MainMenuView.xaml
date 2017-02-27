@@ -107,6 +107,7 @@
     </UserControl.Resources>
 
     <DockPanel>
+        <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" />
         <ListView
             DockPanel.Dock="Left"
             HorizontalAlignment="Stretch" 
@@ -131,7 +132,7 @@
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Control Style="{StaticResource WaitSpinnerStyle}" Width="24" Foreground="{StaticResource BPBlue}" />
                 </Grid>
-            </Border>-->
+            </Border>-->            
             <ListView 
                 Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
@@ -139,7 +140,8 @@
                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                 VirtualizingPanel.ScrollUnit="Pixel"
                 ItemsSource="{Binding MenuCollection.View}"
-                ItemContainerStyle="{StaticResource BPMenuItemStyle}">
+                ItemContainerStyle="{StaticResource BPMenuItemStyle}"
+                PreviewMouseLeftButtonUp="listViewDishClicked">
                 <lc:HeaderPersister.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}" FontWeight="Bold"/>
