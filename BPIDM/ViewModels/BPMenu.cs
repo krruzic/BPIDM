@@ -8,8 +8,8 @@ namespace BPIDM
     {
     }
     public class RootMenuObject
-    {        private List<BPCategoryItem> _Menu;
-        public List<BPCategoryItem> Menu {
+    {        private List<BPCategoryViewModel> _Menu;
+        public List<BPCategoryViewModel> Menu {
             get { return _Menu; }
             set
             {
@@ -18,8 +18,7 @@ namespace BPIDM
         }
     }
 
-
-    public class BPCategoryItem : INotifyPropertyChanged
+    public class BPCategoryViewModel : INotifyPropertyChanged
     {
         private string _CategoryName;
         public string CategoryName {
@@ -41,8 +40,8 @@ namespace BPIDM
             }
         }
 
-        private List<BPMenu> _Content;
-        public List<BPMenu> Content {
+        private List<BPMenuViewModel> _Content;
+        public List<BPMenuViewModel> Content {
             get { return _Content; }
             set
             {
@@ -54,12 +53,11 @@ namespace BPIDM
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 
-    public class BPMenu : INotifyPropertyChanged
+    public class BPMenuViewModel : INotifyPropertyChanged
     {
         private string _description;
         public string description
@@ -197,7 +195,7 @@ namespace BPIDM
             set
             {
                 _id = value;
-                RaisePropertyChanged("id");
+                RaisePropertyChanged("nutrition_info");
             }
         }
 
@@ -214,8 +212,7 @@ namespace BPIDM
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
