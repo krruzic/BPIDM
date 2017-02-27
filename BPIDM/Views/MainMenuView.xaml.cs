@@ -39,7 +39,7 @@ namespace BPIDM.Views
                 ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(MenuList);
                 if (index != -1)
                 {
-                    sv.ScrollToBottom();
+                    sv.ScrollToTop();
                     MenuList.ScrollIntoView(MenuList.Items[index]);
                 }
                 Console.WriteLine(cur.CategoryName);
