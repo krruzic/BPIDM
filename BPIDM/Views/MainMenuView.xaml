@@ -9,6 +9,7 @@
     xmlns:bp="clr-namespace:BPIDM"
     mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="bvc" />
         <DataTemplate x:Name="menuTemplate" DataType="{x:Type bp:BPMenuViewModel}">
             <VirtualizingStackPanel>
                 <VirtualizingStackPanel.Background>
@@ -123,27 +124,36 @@
             Height="32" Width="320" Margin="10,0,0,0" 
             SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
             x:Name="searchFilter"/>
-        <ListView 
-            Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-            lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
-            ScrollViewer.VerticalScrollBarVisibility="Visible"
-            VirtualizingPanel.ScrollUnit="Pixel"
-            ItemsSource="{Binding MenuCollection.View}"
-            ItemContainerStyle="{StaticResource BPMenuItemStyle}">
-            <lc:HeaderPersister.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}" FontWeight="Bold"/>
-                </DataTemplate>
-            </lc:HeaderPersister.HeaderTemplate>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.GroupStyle>
-                <GroupStyle HeaderStringFormat="" />
-            </ListView.GroupStyle>
-        </ListView>
+        <Grid>
+            <!--<Border 
+                HorizontalAlignment="Right" VerticalAlignment="Top" IsHitTestVisible="True" 
+                Background="Transparent" CornerRadius="4" Visibility="{Binding Path=IsLoading, Converter={StaticResource bvc}}">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Control Style="{StaticResource WaitSpinnerStyle}" Width="24" Foreground="{StaticResource BPBlue}" />
+                </Grid>
+            </Border>-->
+            <ListView 
+                Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                VirtualizingPanel.ScrollUnit="Pixel"
+                ItemsSource="{Binding MenuCollection.View}"
+                ItemContainerStyle="{StaticResource BPMenuItemStyle}">
+                <lc:HeaderPersister.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}" FontWeight="Bold"/>
+                    </DataTemplate>
+                </lc:HeaderPersister.HeaderTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.GroupStyle>
+                    <GroupStyle HeaderStringFormat="" />
+                </ListView.GroupStyle>
+            </ListView>
+        </Grid>
     </DockPanel>
 </UserControl>

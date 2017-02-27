@@ -9,6 +9,7 @@ namespace BPIDM
     {
         public App()
         {
+            Application.Current.Properties["menuJSON"] = "";
             InitializeComponent();
         }
     }

@@ -6,6 +6,8 @@ using System.Windows.Data;
 using Newtonsoft.Json;
 using Caliburn.Micro;
 using System;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace BPIDM.ViewModels
 {
@@ -15,8 +17,10 @@ namespace BPIDM.ViewModels
     public partial class MainMenuViewModel : Screen
     {
         private string filterText;
-        public CollectionViewSource MenuCollection { get; set; }
 
+        public bool IsLoading;
+
+        public CollectionViewSource MenuCollection { get; set; }
         public ObservableCollection<BPMenuViewModel> MenuContent { get; private set; }
         public ObservableCollection<BPCategoryViewModel> JumperContent { get; private set; }
 
@@ -29,8 +33,11 @@ namespace BPIDM.ViewModels
             MenuCollection.Source = this.MenuContent;
             MenuCollection.Filter += Filter;
             MenuCollection.GroupDescriptions.Add(new PropertyGroupDescription("category"));
+
+            IsLoading = true;
             FillMenu();
         }
+
 
         public string FilterText
         {
@@ -66,10 +73,11 @@ namespace BPIDM.ViewModels
             MenuCollection.View.Refresh();
         }
 
-        private void FillMenu()
+        private async Task FillMenu()
         {
-            string json = LoadJson();
-            dynamic jsonObj = JsonConvert.DeserializeObject<RootMenuObject>(json);
+            if ((string) Application.Current.Properties["menuJSON"] == "")
+                Application.Current.Properties["menuJSON"] = LoadJson();
+            dynamic jsonObj = JsonConvert.DeserializeObject<RootMenuObject>((string) Application.Current.Properties["menuJSON"]);
             BPCategoryViewModel temp = jsonObj.Menu[0];
             foreach (BPCategoryViewModel cat in jsonObj.Menu)
             {
@@ -78,8 +86,10 @@ namespace BPIDM.ViewModels
                 {
                     item.category = cat.CategoryName;
                     MenuContent.Add(item);
+                    await Task.Delay(1);
                 }
             }
+            IsLoading = false;
         }
 
         private string LoadJson()

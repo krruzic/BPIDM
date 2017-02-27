@@ -106,9 +106,14 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="ViewModels\BPMenu.cs" />
     <Compile Include="Controls\SearchBox\SearchBox.xaml.cs" />
+    <Compile Include="ViewModels\DishDetailsViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Controls\SearchBox\SearchBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DishDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -119,6 +124,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\DishDetailsView.xaml.cs">
+      <DependentUpon>DishDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
