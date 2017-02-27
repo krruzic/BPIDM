@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BPIDM")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("An Interactive Menu for a popular Canadian Restaurant ;)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BPIDM")]
