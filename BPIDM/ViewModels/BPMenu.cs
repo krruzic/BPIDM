@@ -8,7 +8,8 @@ namespace BPIDM
     {
     }
     public class RootMenuObject
-    {        private List<BPCategoryViewModel> _Menu;
+    {
+        private List<BPCategoryViewModel> _Menu;
         public List<BPCategoryViewModel> Menu {
             get { return _Menu; }
             set
