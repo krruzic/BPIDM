@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BPIDM
+namespace BPIDM.ViewModels
 {
-    public interface ISwitchable
+    class DishDetailsViewModel
     {
-        void UtilizeState(object state);
     }
 }

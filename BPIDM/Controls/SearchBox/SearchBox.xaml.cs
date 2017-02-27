@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,7 +25,6 @@ namespace BPIDM.Controls
         public SearchBox()
         {
             InitializeComponent(); 
-            //DataContext = this;
         }
 
         private void OnPropertyChanged(string p)
