@@ -41,6 +41,17 @@ namespace BPIDM
             }
         }
 
+        private string _Image;
+        public string Image
+        {
+            get { return _Image; }
+            set
+            {
+                _Image = value;
+                RaisePropertyChanged("Image");
+            }
+        }
+
         private List<BPMenuViewModel> _Content;
         public List<BPMenuViewModel> Content {
             get { return _Content; }

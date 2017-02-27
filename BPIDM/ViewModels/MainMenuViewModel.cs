@@ -81,13 +81,14 @@ namespace BPIDM.ViewModels
             BPCategoryViewModel temp = jsonObj.Menu[0];
             foreach (BPCategoryViewModel cat in jsonObj.Menu)
             {
-                JumperContent.Add(cat);
                 foreach (BPMenuViewModel item in cat.Content)
                 {
+                    cat.Image = item.image;
                     item.category = cat.CategoryName;
                     MenuContent.Add(item);
                     await Task.Delay(1);
                 }
+                JumperContent.Add(cat);
             }
             IsLoading = false;
         }
