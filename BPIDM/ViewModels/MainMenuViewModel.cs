@@ -56,16 +56,7 @@ namespace BPIDM.ViewModels
                 e.Accepted = true;
                 return;
             }
-
-            BPMenuViewModel item = e.Item as BPMenuViewModel;
-            if (string.IsNullOrWhiteSpace(this.FilterText) || this.FilterText.Length == 0)
-            {
-                e.Accepted = true;
-            }
-            else
-            {
-                e.Accepted = item.title.ToUpper().Contains(FilterText.ToUpper());
-            }
+            e.Accepted = e.Item.ToString().ToUpper().Contains(FilterText.ToUpper());
         }
 
         private void OnFilterChanged()

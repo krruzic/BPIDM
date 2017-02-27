@@ -226,5 +226,10 @@ namespace BPIDM
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public override string ToString()
+        {
+            return this.title;
+        }
     }
 }

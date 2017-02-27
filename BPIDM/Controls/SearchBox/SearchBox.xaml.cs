@@ -25,7 +25,6 @@ namespace BPIDM.Controls
         public SearchBox()
         {
             InitializeComponent(); 
-            //DataContext = this;
         }
 
         private void OnPropertyChanged(string p)
