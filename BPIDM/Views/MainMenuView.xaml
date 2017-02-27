@@ -6,7 +6,7 @@
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
     xmlns:Controls="clr-namespace:BPIDM.Controls"
     xmlns:a="BPIDM.App"
-    xmlns:bp="clr-namespace:BPIDM"
+    xmlns:bp="clr-namespace:BPIDM" xmlns:cachedImage="clr-namespace:CachedImage;assembly=CachedImage"
     mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="bvc" />
@@ -15,11 +15,11 @@
                 <VirtualizingStackPanel.Background>
                     <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                         <VisualBrush.Visual>
-                            <Image Source="{Binding image}">
+                            <cachedImage:Image ImageUrl="{Binding image}">
                                 <Image.Effect>
                                     <BlurEffect Radius="4"/>
                                 </Image.Effect>
-                            </Image>
+                            </cachedImage:Image>
                         </VisualBrush.Visual>
                     </VisualBrush>
                 </VirtualizingStackPanel.Background>
@@ -66,11 +66,11 @@
                 <VirtualizingStackPanel.Background>
                     <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                         <VisualBrush.Visual>
-                            <Image Source="{Binding Image}" Width="128" Height="128">
+                            <cachedImage:Image ImageUrl="{Binding Image}" Width="128" Height="128">
                                 <Image.Effect>
                                     <BlurEffect Radius="4"/>
                                 </Image.Effect>
-                            </Image>
+                            </cachedImage:Image>
                         </VisualBrush.Visual>
                     </VisualBrush>
                 </VirtualizingStackPanel.Background>
