@@ -8,6 +8,7 @@ namespace BPIDM.ViewModels
     {
         public MainViewModel() 
         {
+            DisplayName = "BPIDM";
             this.ActivateItem(new MainMenuViewModel());
         }
     }

@@ -1,0 +1,149 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:bp="clr-namespace:BPIDM" xmlns:cachedImage="clr-namespace:CachedImage;assembly=CachedImage">
+    <Style TargetType="{x:Type GroupItem}">
+        <Setter Property="TextBlock.FontSize" Value="32"/>
+        <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BPRed}"/>
+        <Setter Property="TextBlock.Background" Value="{StaticResource BPWhite}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupItem}">
+                    <StackPanel HorizontalAlignment="Stretch">
+                        <ContentPresenter x:Name="PART_Header"/>
+                        <ItemsPresenter x:Name="ItemsPresenter"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BPCategoryItemStyle" TargetType="{x:Type ListViewItem}">
+        <Setter Property="Width" Value="128" />
+        <Setter Property="Height" Value="128" />
+        <Setter Property="Margin" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Grid>
+                        <Border CornerRadius="8" BorderThickness="1" Name="mask" BorderBrush="DarkGray"/>
+                        <Grid>
+                            <Grid.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=mask}" />
+                            </Grid.OpacityMask>
+                        </Grid>
+                        <ContentPresenter x:Name="ContentHost" Margin="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="IsSelected" Value="True"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="BPMenuItemStyle" TargetType="{x:Type ListViewItem}">
+        <Setter Property="Width" Value="256" />
+        <Setter Property="Height" Value="256" />
+        <Setter Property="Margin" Value="16" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Grid>
+                        <Border CornerRadius="8" BorderThickness="1" Name="mask" BorderBrush="DarkGray"/>
+                        <Grid>
+                            <Grid.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=mask}" />
+                            </Grid.OpacityMask>
+                        </Grid>
+                        <ContentPresenter x:Name="ContentHost" Margin="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="IsSelected" Value="True"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <DataTemplate x:Name="menuTemplate" DataType="{x:Type bp:BPMenuViewModel}">
+        <VirtualizingStackPanel>
+            <VirtualizingStackPanel.Background>
+                <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
+                    <VisualBrush.Visual>
+                        <cachedImage:Image ImageUrl="{Binding image}">
+                            <Image.Effect>
+                                <BlurEffect Radius="4"/>
+                            </Image.Effect>
+                        </cachedImage:Image>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </VirtualizingStackPanel.Background>
+            <Label 
+                HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
+                FontSize="20" VerticalAlignment="Top" FontWeight="Medium">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                </Label.Background>
+                <Label.Content>
+                    <AccessText 
+                        TextWrapping="Wrap" Text="{Binding title}" 
+                        TextAlignment="Center" MinHeight="160" MaxHeight="160"/>
+                </Label.Content>
+            </Label>
+            <Label 
+                HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}"
+                FontSize="14" FontWeight="Light">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                </Label.Background>
+                <TextBlock VerticalAlignment="Bottom"
+                    TextWrapping="Wrap" Text="{Binding description}" TextAlignment="Left" 
+                    MinHeight="40" MaxHeight="40" TextTrimming="CharacterEllipsis"/>
+            </Label>
+            <Label
+                Content="{Binding retail_pricing}"
+                ContentStringFormat="c" HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Right"
+                Foreground="{StaticResource BPGray}"
+                FontSize="18" FontFamily="Times New Roman"
+                VerticalAlignment="Bottom">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                </Label.Background>
+            </Label>
+            <Border CornerRadius="2" Background="White" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-12" Width="96">
+                <Button Content="VIEW" Style="{StaticResource BPButton}"/>
+            </Border>
+        </VirtualizingStackPanel>
+    </DataTemplate>
+    <DataTemplate x:Name="sidepaneTemplate" DataType="{x:Type bp:BPCategoryViewModel}">
+        <VirtualizingStackPanel>
+            <VirtualizingStackPanel.Background>
+                <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
+                    <VisualBrush.Visual>
+                        <cachedImage:Image ImageUrl="{Binding Image}" Width="128" Height="128">
+                            <Image.Effect>
+                                <BlurEffect Radius="4"/>
+                            </Image.Effect>
+                        </cachedImage:Image>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </VirtualizingStackPanel.Background>
+            <Label 
+                HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
+                FontSize="18" VerticalAlignment="Top" FontWeight="Medium">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.4"></SolidColorBrush>
+                </Label.Background>
+                <Label.Content>
+                    <AccessText 
+                        TextWrapping="Wrap" Text="{Binding CategoryName}" 
+                        TextAlignment="Center" MinHeight="128" MaxHeight="128"/>
+                </Label.Content>
+            </Label>
+        </VirtualizingStackPanel>
+    </DataTemplate>
+</ResourceDictionary>

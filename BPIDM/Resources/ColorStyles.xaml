@@ -1,0 +1,25 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:bp="clr-namespace:BPIDM">    <!-- colors from their logo and site -->    <SolidColorBrush x:Key="BPRed">#FFCC092F</SolidColorBrush>
+    <SolidColorBrush x:Key="BPBlue">#FF0061AA</SolidColorBrush>
+    <SolidColorBrush x:Key="BPWhite">#FFFEFCFF</SolidColorBrush>
+    <SolidColorBrush x:Key="BPGray">#FF333333</SolidColorBrush>    <!-- material design colors: https://www.materialui.co/colors -->    <SolidColorBrush x:Key="MaterialRed">#FFF44336</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialPink">#FFE91E63</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialPurple">#FF9C27B0</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialDeepPurple">#FF673AB7</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialIndigo">#FF3F51B5</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialBlue">#FF2196F3</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialLightBlue">#FF03A9F4</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialCyan">#FF00BCD4</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialTeal">#FF009688</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialGreen">#FF4CAF50</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialLightGreen">#FF8BC34A</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialLime">#FFCDDC39</SolidColorBrush>    <SolidColorBrush x:Key="MaterialYellow">#FFFFEB3B</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialAmber">#FFFFC107</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialOrange">#FFFF9800</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialDeepOrange">#FFFF5722</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialBrown">#FF795548</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialGrey">#FF9E9E9E</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialBlueGrey">#FF607D8B</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialBlack">#FF212121</SolidColorBrush></ResourceDictionary>
