@@ -236,4 +236,10 @@ namespace BPIDM
             return this.title;
         }
     }
+
+    public class BPOrderViewModel : BPMenuViewModel
+    {
+
+
+    }
 }
