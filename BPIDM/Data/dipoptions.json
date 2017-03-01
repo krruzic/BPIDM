@@ -1,0 +1,298 @@
+  {  
+               "id":"2c808e71-e356-4418-9cf5-93daf9e2d38d",
+               "title":"Add Dip",
+               "display_template":"dropdown",
+               "tags":[  
+
+               ],
+               "quantity_editor_style":"none",
+               "min_qty":1,
+               "max_qty":1,
+               "multiple_of":0,
+               "upsell":false,
+               "option_items":[  
+                  {  
+                     "id":"546b1b2b-b734-49fb-b202-5dd601e3d3aa",
+                     "title":"Creamy Alfredo",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":3.0,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"4459b8ba-9c9a-4bdf-8d38-60f001e3d385",
+                     "title":"Blue Cheese",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"90c8f02f-8cda-45d4-9de7-3a0a02e3d3ed",
+                     "title":"Bolognese",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":3.0,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"229125d6-78d0-4610-b969-a62202e3d3e4",
+                     "title":"Cactus Dip",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"a5a3cea4-9ee5-4f64-b87a-863e02e3d306",
+                     "title":"Caesar Dip",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"b6352fd2-396d-41d5-bb3f-305402e3d3a1",
+                     "title":"Chipotle",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"880c4fbb-ae25-4252-8d38-c810f9e2d3b4",
+                     "title":"Fifty-50 (Rosé sauce)",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":3.0,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"f3a9cc83-7489-4a04-8b14-49a102e3d3e7",
+                     "title":"Marinara",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":3.0,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"b6d2a38e-7b65-4e8d-b268-99b202e3d39a",
+                     "title":"Mayo",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"f884915a-4c27-455c-9dda-a7c202e3d39a",
+                     "title":"Pizza Sauce",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"6a9d1cb7-95a4-4a13-8154-02d602e3d34e",
+                     "title":"Ranch",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"e48d12cc-629e-4714-9598-c6e802e3d3fd",
+                     "title":"Salsa",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"5bb92215-fc47-41fb-bdbf-91fe02e3d387",
+                     "title":"Santa Fe Dip",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":2.5,
+                     "quantity":0,
+                     "default_quantity":0,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  },
+                  {  
+                     "id":"b0febe06-8278-4e6d-abd4-575ed37a1205",
+                     "title":"No Thanks",
+                     "tags":[  
+
+                     ],
+                     "free_text":false,
+                     "min_qty":0,
+                     "multiple_of":0,
+                     "price":0.0,
+                     "quantity":1,
+                     "default_quantity":1,
+                     "upsell":false,
+                     "options":[  
+
+                     ],
+                     "nutrition_info":{  
+
+                     }
+                  }
+               ],
+               "nutrition_info":{  
+
+               }
+            }
