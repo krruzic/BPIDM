@@ -179,12 +179,9 @@
     <Resource Include="Controls\SearchBox\SearchBoxWithoutFocus.png" />
     <Resource Include="Controls\SearchBox\iconsearch.png" />
     <Resource Include="bp.ico" />
-    <Content Include="Data\temp.png">
+    <Resource Include="Data\temp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\menu.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <None Include="Data\dipoptions.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
