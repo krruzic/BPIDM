@@ -107,7 +107,6 @@
     </UserControl.Resources>
 
     <DockPanel>
-        <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" />
         <ListView
             DockPanel.Dock="Left"
             HorizontalAlignment="Stretch" 
@@ -126,6 +125,7 @@
             SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
             x:Name="searchFilter"/>
         <Grid>
+            <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"/>
             <!--<Border 
                 HorizontalAlignment="Right" VerticalAlignment="Top" IsHitTestVisible="True" 
                 Background="Transparent" CornerRadius="4" Visibility="{Binding Path=IsLoading, Converter={StaticResource bvc}}">

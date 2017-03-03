@@ -126,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\DrinkDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,6 +140,9 @@
     </Compile>
     <Compile Include="Views\DishDetailsView.xaml.cs">
       <DependentUpon>DishDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DrinkDetails.xaml.cs">
+      <DependentUpon>DrinkDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
