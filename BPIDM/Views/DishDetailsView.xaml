@@ -12,9 +12,27 @@
             <RowDefinition Height="6*"/>
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0"  Margin="162,35,11,479" Width="532" Height="113" Visibility="Hidden" />
+        <DataGrid x:Name="nutrition_data_grid" Grid.Row="0"  Margin="330,35,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="235" Visibility="Hidden" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
+                <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
+                <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
+                <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
+                <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
+                <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
+                <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
+                <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
+                <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
+                <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
+                <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
+                <DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>
+                <DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>
+                <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
+                <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" Margin="328,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
-        <Button Grid.Row="0" x:Name="nutr_button" Content="Nutrition" HorizontalAlignment="Left" Margin="444,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
+        <Button Grid.Row="0" Content="Nutrition" HorizontalAlignment="Left" Margin="444,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14" Click="nutr_button_Click"/>
         <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="438,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
         <Image Grid.Row="0" x:Name="dish_image" HorizontalAlignment="Left" Height="229" Margin="10,41,0,0" VerticalAlignment="Top" Width="315" Source="/BPIDM;component/Data/bbqburger.png"/>
         <TextBlock Grid.Row="0" x:Name="dish_description" HorizontalAlignment="Left" Margin="330,35,0,0" TextWrapping="Wrap" Text="Our signature patty - 100% Canadian beef, salt and pepper, smothered in our BBQ sauce made with Jack Daniel's, loaded with bacon and placed between a brioche bun." VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
