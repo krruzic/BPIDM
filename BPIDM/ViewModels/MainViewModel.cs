@@ -47,9 +47,12 @@ namespace BPIDM.ViewModels
         public void Handle(TestEvent message)
         {
             if (message.Res == "BACK")
-                this.ActivateItem(this.MenuPane);
+                this.ActivateItem(new MainMenuViewModel(_events));
             else
+            {
+                MenuPane = null;
                 this.ActivateItem(new DishDetailsViewModel(_events));
+            }
         }
     }
 }

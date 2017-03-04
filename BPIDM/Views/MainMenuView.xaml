@@ -18,7 +18,6 @@
     </UserControl.Resources>
 
     <DockPanel>
-        <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" />
         <ListView
             DockPanel.Dock="Left"
             HorizontalAlignment="Stretch" 

@@ -1,10 +1,6 @@
-using System;
-using System.Windows.Controls;
 using System.Windows;
-using System.Windows.Navigation;
-
+using System.Windows.Controls;
 using Xceed.Wpf.Toolkit.Core.Utilities;
-using BPIDM.ViewModels;
 
 namespace BPIDM.Views
 {
