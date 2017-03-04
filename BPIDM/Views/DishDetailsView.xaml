@@ -10,16 +10,16 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0"  Margin="162,35,11,479" Width="532" Height="113" Visibility="Hidden" />
-        <Button Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" Margin="162,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
-        <Button Grid.Row="0" x:Name="nutr_button" Content="Nutrition" HorizontalAlignment="Left" Margin="278,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
-        <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="272,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-        <Image Grid.Row="0" x:Name="dish_image" HorizontalAlignment="Left" Height="107" Margin="10,41,0,0" VerticalAlignment="Top" Width="147" Source="../Data/temp.png"/>
-        <TextBlock Grid.Row="0" x:Name="dish_description" HorizontalAlignment="Left" Margin="162,35,0,0" TextWrapping="Wrap" Text="A spicy mix of chipotle seasoning, smoky bacon and our signature alfredo sauce, tossed with penne, fresh mushrooms, green onions, diced tomatoes, cheddar and pizza mozzarella, then topped with more cheddar and pizza mozzarella and baked to perfection." VerticalAlignment="Top" Height="113" Width="533" FontSize="14"/>
+        <Button Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" Margin="328,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
+        <Button Grid.Row="0" x:Name="nutr_button" Content="Nutrition" HorizontalAlignment="Left" Margin="444,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
+        <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="438,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Image Grid.Row="0" x:Name="dish_image" HorizontalAlignment="Left" Height="229" Margin="10,41,0,0" VerticalAlignment="Top" Width="315" Source="/BPIDM;component/Data/bbqburger.png"/>
+        <TextBlock Grid.Row="0" x:Name="dish_description" HorizontalAlignment="Left" Margin="330,35,0,0" TextWrapping="Wrap" Text="Our signature patty - 100% Canadian beef, salt and pepper, smothered in our BBQ sauce made with Jack Daniel's, loaded with bacon and placed between a brioche bun." VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
         <StackPanel Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Expander x:Name="sides_expander" Header="Sides - (Fries Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Background="#FFE5E5E5">
@@ -102,7 +102,7 @@
             <Button DockPanel.Dock="Right" x:Name="confirm_selection" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="60" FontSize="18"/>
             <Button DockPanel.Dock="Left"   x:Name="close_details" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="close_details_Click" Height="60" FontSize="18"/>
         </DockPanel>
-        <Label  Grid.Row="0" x:Name="dish_name" Content="Thai Chicken Bites" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Height="26" Width="147" FontSize="14"/>
+        <Label  Grid.Row="0" x:Name="dish_name" Content="Double Bacon BBQ Burger" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Height="28" Width="172" FontSize="14"/>
 
     </Grid>
 </Page>
