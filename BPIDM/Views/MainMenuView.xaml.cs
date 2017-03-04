@@ -46,17 +46,17 @@ namespace BPIDM.Views
 
         private void listViewDishClicked(object sender, RoutedEventArgs e)
         {
-            //_NavigationFrame.Navigate(new DishDetailsView());
-            //this._NavigationFrame.NavigationService.Navigate(new Uri("Views/DishDetailsView.xaml", UriKind.Relative));
+            _NavigationFrame.Navigate(new DishDetailsView());
+            this._NavigationFrame.NavigationService.Navigate(new Uri("Views/DishDetailsView.xaml", UriKind.Relative));
             //this._NavigationFrame.NavigationService.Navigate(new Uri("Views/DrinkDetails.xaml", UriKind.Relative));
 
-            Window window = new Window
-            {
-                Title = "Drink Details",
-                Content = new DrinkDetails()
-            };
+            //Window window = new Window
+            //{
+            //    Title = "Drink Details",
+            //    Content = new DrinkDetails()
+            //};
 
-            window.ShowDialog();
+            //window.ShowDialog();
             this.MenuJumperList.Visibility = Visibility.Hidden;
             this.MenuList.Visibility = Visibility.Hidden;
             this.searchFilter.Visibility = Visibility.Hidden;
