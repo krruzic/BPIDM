@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace BPIDM.Views
 {
     /// <summary>
-    /// Interaction logic for DishDetailsView.xaml
+    /// Interaction logic for FooterView.xaml
     /// </summary>
-    public partial class DishDetailsView : UserControl
+    public partial class FooterView : UserControl
     {
-        public DishDetailsView()
+        public FooterView()
         {
             InitializeComponent();
-        }
-
-        private void close_details_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

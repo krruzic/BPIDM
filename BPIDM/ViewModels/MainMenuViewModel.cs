@@ -9,26 +9,32 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using BPIDM.Views;
 
 namespace BPIDM.ViewModels
 {
     /// <summary>
     /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class MainMenuViewModel : Screen
+    [Export(typeof(MainMenuViewModel))]
+    public partial class MainMenuViewModel : Screen, IDeactivate
     {
         private string filterText;
-
+        
         public bool IsLoading;
 
         public CollectionViewSource MenuCollection { get; set; }
-        public ObservableCollection<BPMenuViewModel> MenuContent { get; private set; }
-        public ObservableCollection<BPCategoryViewModel> JumperContent { get; private set; }
+        public BindableCollection<BPMenuViewModel> MenuContent { get; private set; }
+        public BindableCollection<BPCategoryViewModel> JumperContent { get; private set; }
+        private readonly IEventAggregator _events;
 
-        public MainMenuViewModel()
+        [ImportingConstructor]
+        public MainMenuViewModel(IEventAggregator events)
         {
-            MenuContent = new ObservableCollection<BPMenuViewModel>();
-            JumperContent = new ObservableCollection<BPCategoryViewModel>();
+            _events = events;
+            MenuContent = new BindableCollection<BPMenuViewModel>();
+            JumperContent = new BindableCollection<BPCategoryViewModel>();
 
             MenuCollection = new CollectionViewSource();
             MenuCollection.Source = this.MenuContent;
@@ -37,7 +43,6 @@ namespace BPIDM.ViewModels
             IsLoading = true;
             FillMenu();
         }
-
 
         public string FilterText
         {
@@ -66,21 +71,31 @@ namespace BPIDM.ViewModels
 
         private async Task FillMenu()
         {
-            dynamic jsonObj = JsonConvert.DeserializeObject<RootMenuObject>((string) Application.Current.Properties["menuJSON"]);
-            BPCategoryViewModel temp = jsonObj.Menu[0];
-            foreach (BPCategoryViewModel cat in jsonObj.Menu)
+            RootMenuObject jsonObj = getJsonFromFile((string)Application.Current.Properties["menuJSON"]);
+            foreach (dynamic cat in jsonObj.Menu)
             {
                 cat.Image = cat.Content[0].image;
-                JumperContent.Add(cat);
-                foreach (BPMenuViewModel item in cat.Content)
+                BPCategoryViewModel cur = new BPCategoryViewModel(cat);
+                JumperContent.Add(cur);
+                foreach (dynamic item in cat.Content)
                 {
-                    cat.Image = item.image;
                     item.category = cat.CategoryName;
-                    MenuContent.Add(item);
+                    BPMenuViewModel curM = new BPMenuViewModel(item, _events);
+                    cur.Image = item.image;
+                    MenuContent.Add(curM);
                     await Task.Delay(1);
                 }
             }
             IsLoading = false;
+        }
+
+        private RootMenuObject getJsonFromFile(string path)
+        {
+            using (StreamReader file = File.OpenText(path))
+            {
+                JsonSerializer s = new JsonSerializer();
+                return (RootMenuObject)s.Deserialize(file, typeof(RootMenuObject));
+            }
         }
 
         protected override void OnActivate()

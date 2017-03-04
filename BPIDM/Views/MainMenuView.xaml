@@ -4,8 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
-    xmlns:Controls="clr-namespace:BPIDM.Controls" xmlns:bp="clr-namespace:BPIDM"
-    mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView">
+    xmlns:Controls="clr-namespace:BPIDM.Controls" xmlns:cal="http://www.caliburnproject.org"
+    xmlns:bp="clr-namespace:BPIDM" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,6 +29,11 @@
             VirtualizingPanel.ScrollUnit="Pixel"
             PreviewMouseLeftButtonUp="listView_Click"
             ItemContainerStyle="{StaticResource BPCategoryItemStyle}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding .}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
         <Controls:SearchBox 
             DockPanel.Dock="Top"
@@ -46,16 +51,15 @@
             </Border>-->            
             <ListView 
                 Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                 VirtualizingPanel.ScrollUnit="Pixel"
                 ItemsSource="{Binding MenuCollection.View}"
-                ItemContainerStyle="{StaticResource BPMenuItemStyle}"
-                PreviewMouseLeftButtonUp="listViewDishClicked">
+                ItemContainerStyle="{StaticResource BPMenuItemStyle}">
                 <lc:HeaderPersister.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="{StaticResource BPWhite}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="White" FontWeight="Bold"/>
                     </DataTemplate>
                 </lc:HeaderPersister.HeaderTemplate>
                 <ListView.ItemsPanel>
@@ -63,6 +67,11 @@
                         <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl cal:View.Model="{Binding .}" HorizontalAlignment="Left"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 <ListView.GroupStyle>
                     <GroupStyle HeaderStringFormat="" />
                 </ListView.GroupStyle>

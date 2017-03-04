@@ -1,3 +1,4 @@
+using BPIDM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,13 @@ using System.Windows.Shapes;
 namespace BPIDM.Views
 {
     /// <summary>
-    /// Interaction logic for DishDetailsView.xaml
+    /// Interaction logic for HeaderView.xaml
     /// </summary>
-    public partial class DishDetailsView : UserControl
+    public partial class HeaderView : UserControl
     {
-        public DishDetailsView()
+        public HeaderView()
         {
             InitializeComponent();
-        }
-
-        private void close_details_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

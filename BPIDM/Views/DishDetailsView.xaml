@@ -1,12 +1,10 @@
-<Page x:Class="BPIDM.Views.DishDetailsView"
+<UserControl x:Class="BPIDM.Views.DishDetailsView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BPIDM.Views"
-      mc:Ignorable="d" 
-       d:DesignHeight="392.646" d:DesignWidth="705.322"
-      Title="DishDetails">
+      mc:Ignorable="d">
 
     <Grid>
         <Button x:Name="desc_button" Content="Description" HorizontalAlignment="Left" Margin="162,10,0,0" VerticalAlignment="Top" Width="105"/>
@@ -93,8 +91,8 @@
             </Expander>
         </StackPanel>
         <Button x:Name="confirm_selection" Content="Confirm" HorizontalAlignment="Left" Margin="620,363,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="close_details" Content="Close" HorizontalAlignment="Left" Margin="10,363,0,0" VerticalAlignment="Top" Width="75" Click="close_details_Click"/>
+        <Button x:Name="closeDetails" Content="Close" HorizontalAlignment="Left" Margin="10,363,0,0" VerticalAlignment="Top" Width="75" Click="close_details_Click"/>
         <Label x:Name="dish_name" Content="Thai Chicken Bites" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
     </Grid>
-</Page>
+</UserControl>

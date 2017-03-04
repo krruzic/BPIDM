@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace BPIDM.Views
 {
     /// <summary>
-    /// Interaction logic for DishDetailsView.xaml
+    /// Interaction logic for BPMenuItem.xaml
     /// </summary>
-    public partial class DishDetailsView : UserControl
+    public partial class BPMenuView : UserControl
     {
-        public DishDetailsView()
+        public BPMenuView()
         {
             InitializeComponent();
-        }
-
-        private void close_details_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
