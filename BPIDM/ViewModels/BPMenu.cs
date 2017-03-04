@@ -1,11 +1,7 @@
 using BPIDM.Events;
 using Caliburn.Micro;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Runtime.Serialization;
 
 namespace BPIDM
 {

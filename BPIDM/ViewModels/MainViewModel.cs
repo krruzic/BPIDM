@@ -1,7 +1,6 @@
-using System;
+using BPIDM.Events;
 using Caliburn.Micro;
 using System.ComponentModel.Composition;
-using BPIDM.Events;
 namespace BPIDM.ViewModels
 {
     [Export(typeof(MainViewModel))]

@@ -3,15 +3,14 @@ namespace BPIDM
     using Caliburn.Micro;
     using System;
     using System.Collections.Generic;
-    using System.Windows.Media.Imaging;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
     using System.ComponentModel.Composition.Primitives;
-    using ViewModels;
     using System.Linq;
-    using Views;
     using System.Windows.Controls;
-    using CachedImage;
+    using System.Windows.Media.Imaging;
+    using ViewModels;
+    using Views;
     public class AppBootstrapper : BootstrapperBase
     {
         private CompositionContainer container;

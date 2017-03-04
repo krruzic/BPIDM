@@ -1,16 +1,10 @@
-using System.IO;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Data;
-
-using Newtonsoft.Json;
 using Caliburn.Micro;
-using System;
+using Newtonsoft.Json;
+using System.ComponentModel.Composition;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using BPIDM.Views;
+using System.Windows.Data;
 
 namespace BPIDM.ViewModels
 {

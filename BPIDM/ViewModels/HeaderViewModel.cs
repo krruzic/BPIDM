@@ -1,13 +1,5 @@
-using BPIDM.Events;
 using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Threading;
 
 namespace BPIDM.ViewModels
 {
