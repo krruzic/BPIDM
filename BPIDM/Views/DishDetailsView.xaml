@@ -5,20 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BPIDM.Views"
       mc:Ignorable="d" 
-       d:DesignHeight="626.82" d:DesignWidth="705.322"
-      Title="DishDetails">
+      
+      Title="DishDetails" Background="#FFA81919">
 
     <Grid>
-        <DataGrid  Margin="162,35,11,479" Width="532" Height="113" Visibility="Hidden" />
-        <Button x:Name="desc_button" Content="Description" HorizontalAlignment="Left" Margin="162,10,0,0" VerticalAlignment="Top" Width="105" Height="20"/>
-        <Button x:Name="nutr_button" Content="Nutrition" HorizontalAlignment="Left" Margin="278,10,0,0" VerticalAlignment="Top" Width="105" Height="20"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="272,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-        <Image x:Name="dish_image" HorizontalAlignment="Left" Height="107" Margin="10,41,0,0" VerticalAlignment="Top" Width="147" Source="../Data/temp.png"/>
-        <TextBlock x:Name="dish_description" HorizontalAlignment="Left" Margin="162,35,0,0" TextWrapping="Wrap" Text="A spicy mix of chipotle seasoning, smoky bacon and our signature alfredo sauce, tossed with penne, fresh mushrooms, green onions, diced tomatoes, cheddar and pizza mozzarella, then topped with more cheddar and pizza mozzarella and baked to perfection." VerticalAlignment="Top" Height="113" Width="533" FontSize="10"/>
-        <StackPanel Margin="0,7,0,0">
-            <Expander x:Name="sides_expander" Header="Sides - (Fries Selected)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,150,0,-151" Width="685">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0"  Margin="162,35,11,479" Width="532" Height="113" Visibility="Hidden" />
+        <Button Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" Margin="162,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
+        <Button Grid.Row="0" x:Name="nutr_button" Content="Nutrition" HorizontalAlignment="Left" Margin="278,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
+        <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="272,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Image Grid.Row="0" x:Name="dish_image" HorizontalAlignment="Left" Height="107" Margin="10,41,0,0" VerticalAlignment="Top" Width="147" Source="../Data/temp.png"/>
+        <TextBlock Grid.Row="0" x:Name="dish_description" HorizontalAlignment="Left" Margin="162,35,0,0" TextWrapping="Wrap" Text="A spicy mix of chipotle seasoning, smoky bacon and our signature alfredo sauce, tossed with penne, fresh mushrooms, green onions, diced tomatoes, cheddar and pizza mozzarella, then topped with more cheddar and pizza mozzarella and baked to perfection." VerticalAlignment="Top" Height="113" Width="533" FontSize="14"/>
+        <StackPanel Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Expander x:Name="sides_expander" Header="Sides - (Fries Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Background="#FFE5E5E5">
-                    <StackPanel x:Name="vertical_stackpanel" Margin="10,4,0,0" Orientation="Vertical">
+                    <StackPanel x:Name="vertical_stackpanel"  Orientation="Vertical">
 
                         <StackPanel x:Name="horizontal_stackpanel_1" Margin="10,4,0,0" Orientation="Horizontal">
                             <RadioButton x:Name="fries_rbn" Margin="6" Content="Fries"/>
@@ -44,7 +49,7 @@
                     </StackPanel>
                 </Grid>
             </Expander>
-            <Expander x:Name="extras_expander" Header="Extras - (Gravy &amp; Bacon Selected)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,156,0,-155" Width="685">
+            <Expander x:Name="extras_expander" Header="Extras - (Gravy &amp; Bacon Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel Margin="4" Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
@@ -65,7 +70,7 @@
                     </StackPanel>
                 </Grid>
             </Expander>
-            <Expander x:Name="allergies_expander" Header="Allergies - (None Selected)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,162,0,-161" Width="685">
+            <Expander x:Name="allergies_expander" Header="Allergies - (None Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel Orientation="Horizontal">
                         <CheckBox x:Name="nut_allergies"  Content="Nuts" Margin="6"/>
@@ -75,14 +80,14 @@
                     </StackPanel>
                 </Grid>
             </Expander>
-            <Expander x:Name="soi_expander" Header="Special Order Instructions - (None)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,168,0,-167" Width="685">
+            <Expander x:Name="soi_expander" Header="Special Order Instructions - (None)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel Orientation="Vertical">
                         <RichTextBox x:Name="soi_input" Height="50" />
                     </StackPanel>
                 </Grid>
             </Expander>
-            <Expander x:Name="bill_expander" Header="Bill - (Bill 1 Selected)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0174,0,-173" Width="685">
+            <Expander x:Name="bill_expander" Header="Bill - (Bill 1 Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="add_new_bill" Content="Add Bill" Margin="4"/>
@@ -93,9 +98,11 @@
                 </Grid>
             </Expander>
         </StackPanel>
-        <Button x:Name="confirm_selection" Content="Confirm" HorizontalAlignment="Left" Margin="620,600,0,0" VerticalAlignment="Top" Width="75" Height="20"/>
-        <Button x:Name="close_details" Content="Close" HorizontalAlignment="Left" Margin="10,600,0,0" VerticalAlignment="Top" Width="75" Click="close_details_Click" Height="20"/>
-        <Label x:Name="dish_name" Content="Thai Chicken Bites" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Height="26" Width="106"/>
+        <DockPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="10">
+            <Button DockPanel.Dock="Right" x:Name="confirm_selection" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="60" FontSize="18"/>
+            <Button DockPanel.Dock="Left"   x:Name="close_details" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="close_details_Click" Height="60" FontSize="18"/>
+        </DockPanel>
+        <Label  Grid.Row="0" x:Name="dish_name" Content="Thai Chicken Bites" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Height="26" Width="147" FontSize="14"/>
 
     </Grid>
 </Page>
