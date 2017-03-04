@@ -5,8 +5,35 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BPIDM.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="392.646" d:DesignWidth="705.322">
     <Grid>
-            
+        <Grid Margin="0,10,0,-10">
+            <Label x:Name="label" Content="Bill Summary" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="109" />
+            <Label x:Name="label1" Content="Drinks" HorizontalAlignment="Left" Height="27" Margin="10,40,0,0" VerticalAlignment="Top" Width="75"/>
+            <Label x:Name="lbl_Drink1"  Content="Mugs" HorizontalAlignment="Left" Height="54" Margin="10,72,0,0" VerticalAlignment="Top" Width="99" Background="#FF4CAF50"/>
+            <Label x:Name="lbl_Drink2" Content="7-UP" HorizontalAlignment="Left" Height="54" Margin="114,72,0,0" VerticalAlignment="Top" Width="99" Background="#FF03A9F4"/>
+            <Label x:Name="lbl_Drink3" Content="Pepsi" HorizontalAlignment="Left" Height="54" Margin="218,72,0,0" VerticalAlignment="Top" Width="99" Background="#FFF44336"/>
+            <Label x:Name="lbl_Entree1" Content="Veggie Burger" HorizontalAlignment="Left" Height="54" Margin="10,199,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="0.589,2.176" Background="#FF4CAF50"/>
+            <Label x:Name="lbl_Entree2" Content="Pizza Burger" HorizontalAlignment="Left" Height="54" Margin="114,199,0,0" VerticalAlignment="Top" Width="99" Background="#FFF44336"/>
+            <Label x:Name="lbl_Entree3" Content="Ribber Winger" HorizontalAlignment="Left" Height="54" Margin="218,199,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="2.471,2.012" Background="#FF03A9F4"/>
+            <Label x:Name="label1_Copy" Content="Entrees" HorizontalAlignment="Left" Height="27" Margin="10,167,0,0" VerticalAlignment="Top" Width="75"/>
+            <Label x:Name="label3" Content="Select Next Color for Next Bill" HorizontalAlignment="Left" Height="37" Margin="218,337,0,0" VerticalAlignment="Top" Width="292"/>
+            <Label x:Name="label4" Content="Bill 1" HorizontalAlignment="Left" Height="32" Margin="599,22,0,0" VerticalAlignment="Top" Width="96"/>
+            <Label x:Name="label4_Copy" Content="Bill 2" HorizontalAlignment="Left" Height="32" Margin="599,83,0,0" VerticalAlignment="Top" Width="96"/>
+            <Label x:Name="label4_Copy1" Content="Bill 3" HorizontalAlignment="Left" Height="32" Margin="599,144,0,0" VerticalAlignment="Top" Width="96"/>
+            <Ellipse Fill="#FFF44336" HorizontalAlignment="Left" Height="24" Margin="579,115,0,0" Stroke="Black" VerticalAlignment="Top" Width="24"/>
+            <Ellipse Fill="#FF03A9F4" HorizontalAlignment="Left" Height="24" Margin="579,167,0,0" Stroke="Black" VerticalAlignment="Top" Width="24" RenderTransformOrigin="0.49,-0.856"/>
+            <Ellipse Fill="#FF4CAF50" HorizontalAlignment="Left" Height="24" Margin="579,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="24"/>
+            <Button x:Name="btn_ReadyToPay" Content="Ready To Pay" HorizontalAlignment="Left" Height="66" Margin="579,317,0,0" VerticalAlignment="Top" Width="116" Click="button_Click"/>
+            <Button x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Height="66" Margin="10,317,0,0" VerticalAlignment="Top" Width="116" Click="button_Click"/>
+            <Label x:Name="lbl_bill1" Content="$18.98" HorizontalAlignment="Left" Height="24" Margin="608,54,0,0" VerticalAlignment="Top" Width="62" Background="#FF4CAF50"/>
+            <Label x:Name="lbl_bill2" Content="$21.98" HorizontalAlignment="Left" Height="24" Margin="608,115,0,0" VerticalAlignment="Top" Width="62" Background="#FFF44336"/>
+            <Label x:Name="lbl_bill3" Content="$17.98" HorizontalAlignment="Left" Height="24" Margin="608,170,0,0" VerticalAlignment="Top" Width="62" Background="#FF03A9F4"/>
+            <Ellipse Fill="#FF9E9E9E" HorizontalAlignment="Left" Height="24" Margin="579,215,0,0" Stroke="Black" VerticalAlignment="Top" Width="24" RenderTransformOrigin="0.49,-0.856"/>
+            <Label x:Name="lbl_Plus" Content=" +" HorizontalAlignment="Left" Height="24" Margin="579,215,0,0" VerticalAlignment="Top" Width="57"/>
+            <Button x:Name="btn_AddBill" Content="Button" HorizontalAlignment="Left" Height="22" Margin="579,217,0,0" VerticalAlignment="Top" Width="33" Opacity="0"/>
+
+        </Grid>
+
     </Grid>
 </UserControl>
