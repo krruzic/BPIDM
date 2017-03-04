@@ -2,11 +2,10 @@ namespace BPIDM.Events
 {
     public class TestEvent
     {
+        public string res { get; private set; }
         public TestEvent(string t)
         {
-            Res = t;
+            res = t;
         }
-
-        public string Res { get; private set; }
     }
 }

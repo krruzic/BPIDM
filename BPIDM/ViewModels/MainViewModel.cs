@@ -1,10 +1,11 @@
 using BPIDM.Events;
 using Caliburn.Micro;
+using System;
 using System.ComponentModel.Composition;
 namespace BPIDM.ViewModels
 {
     [Export(typeof(MainViewModel))]
-    class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>
+    class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>
     {
         private readonly IEventAggregator _events;
         private HeaderViewModel _Header;
@@ -32,7 +33,7 @@ namespace BPIDM.ViewModels
         public MainMenuViewModel MenuPane { get; private set; }
 
         [ImportingConstructor]
-        public MainViewModel(HeaderViewModel Header, FooterViewModel Footer, MainMenuViewModel MenuPane, IEventAggregator events) 
+        public MainViewModel(HeaderViewModel Header, FooterViewModel Footer, MainMenuViewModel MenuPane, IEventAggregator events)
         {
             this.Header = Header;
             this.Footer = Footer;
@@ -45,13 +46,16 @@ namespace BPIDM.ViewModels
 
         public void Handle(TestEvent message)
         {
-            if (message.Res == "BACK")
-                this.ActivateItem(new MainMenuViewModel(_events));
-            else
-            {
-                MenuPane = null;
-                this.ActivateItem(new DishDetailsViewModel(_events));
-            }
+            // remove this later, but images aren't being freed!
+            // see http://stackoverflow.com/a/11203193
+            GC.Collect();
+            this.ActivateItem(new MainMenuViewModel(_events));
+        }
+
+        public void Handle(DishDetailEvent message)
+        {
+            MenuPane = null;
+            this.ActivateItem(new DishDetailsViewModel(_events, message.item));
         }
     }
 }

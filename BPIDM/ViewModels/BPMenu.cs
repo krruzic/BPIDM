@@ -247,13 +247,62 @@ namespace BPIDM
 
         public void listButton()
         {
-            _events.PublishOnUIThread(new TestEvent("test"));
+            _events.PublishOnUIThread(new DishDetailEvent(this));
         }
     }
 
-    //public class BPOrderViewModel : BPMenuViewModel
-    //{
+    public class BPOrderViewModel : PropertyChangedBase
+    {
+        public BPOrderViewModel(BPMenuViewModel item)
+        {
+            this.title = item.title;
+            this.image = item.image;
+            this.description = item.description;
+            this.price = item.price;
+        }
 
+        private string title;
+        public string _title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                NotifyOfPropertyChange(() => title);
+            }
+        }
 
-    //}
+        private string _image;
+        public string image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                NotifyOfPropertyChange(() => image);
+            }
+        }
+
+        private string _description;
+        public string description
+        {
+            get { return _description; }
+            set
+            {
+                _description = value;
+                NotifyOfPropertyChange(() => description);
+            }
+        }
+
+        private double _price;
+        public double price
+        {
+            get { return _price; }
+            set
+            {
+                _price = value;
+                NotifyOfPropertyChange(() => price);
+            }
+        }
+    }
 }

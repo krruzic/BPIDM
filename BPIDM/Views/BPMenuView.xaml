@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" xmlns:cachedImage="clr-namespace:CachedImage;assembly=CachedImage">
     <VirtualizingStackPanel>
-        <Border CornerRadius="12" BorderThickness="1" Name="mask" BorderBrush="DarkGray">
+        <Border CornerRadius="12" BorderThickness="1" Name="mask" BorderBrush="DarkGray" Height="256" Width="254">
             <Border.Background>
                 <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                     <VisualBrush.Visual>
@@ -14,7 +14,7 @@
                     </VisualBrush.Visual>
                 </VisualBrush>
             </Border.Background>
-            <DockPanel Height="256" Width="256">
+            <DockPanel Height="264" Width="256">
                 <DockPanel.Background>
                     <SolidColorBrush Color="White" Opacity="0.4"/>
                 </DockPanel.Background>

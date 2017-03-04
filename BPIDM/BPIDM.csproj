@@ -136,6 +136,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Events\DishDetailEvent.cs" />
+    <Compile Include="Events\ItemConfirmedEvent.cs" />
     <Compile Include="Views\BPCategoryView.xaml.cs">
       <DependentUpon>BPCategoryView.xaml</DependentUpon>
     </Compile>
@@ -181,6 +183,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BPOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CurrentOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +220,9 @@
     </Compile>
     <Compile Include="Views\BillView.xaml.cs">
       <DependentUpon>BillView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BPOrderView.xaml.cs">
+      <DependentUpon>BPOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CurrentOrderView.xaml.cs">
       <DependentUpon>CurrentOrderView.xaml</DependentUpon>

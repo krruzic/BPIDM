@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="2*" MinHeight="64"/>
         </Grid.RowDefinitions>
         <DataGrid x:Name="nutrition_data_grid" Grid.Row="0"  Margin="330,35,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="235" Visibility="Hidden" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -34,8 +34,8 @@
         <Button Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" Margin="328,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
         <Button Grid.Row="0" Content="Nutrition" HorizontalAlignment="Left" Margin="444,10,0,0" VerticalAlignment="Top" Width="105" Height="25" FontSize="14" Click="nutr_button_Click"/>
         <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="438,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-        <Image Grid.Row="0" x:Name="dish_image" HorizontalAlignment="Left" Height="229" Margin="10,41,0,0" VerticalAlignment="Top" Width="315" Source="/BPIDM;component/Data/bbqburger.png"/>
-        <TextBlock Grid.Row="0" x:Name="dish_description" HorizontalAlignment="Left" Margin="330,35,0,0" TextWrapping="Wrap" Text="Our signature patty - 100% Canadian beef, salt and pepper, smothered in our BBQ sauce made with Jack Daniel's, loaded with bacon and placed between a brioche bun." VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
+        <Image Grid.Row="0" x:Name="item_image" HorizontalAlignment="Left" Height="229" Margin="10,41,0,0" VerticalAlignment="Top" Width="315"/>
+        <TextBlock Grid.Row="0" x:Name="item_description" HorizontalAlignment="Left" Margin="330,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
         <StackPanel Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Expander x:Name="sides_expander" Header="Sides - (Fries Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Background="#FFE5E5E5">
@@ -114,9 +114,13 @@
                 </Grid>
             </Expander>
         </StackPanel>
-        <DockPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="10">
-            <Button DockPanel.Dock="Right" x:Name="confirm_selection" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="60" FontSize="18"/>
-            <Button DockPanel.Dock="Left"  x:Name="closeDetails" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="close_details_Click" Height="60" FontSize="18"/>
+        <DockPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="4">
+            <Border DockPanel.Dock="Right" HorizontalAlignment="Right" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
+                <Button Name="confirmSelection" Style="{StaticResource BPStandardButton}" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border DockPanel.Dock="Left" HorizontalAlignment="Left" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
+                <Button Name="closeDetails" Style="{StaticResource BPStandardButton}" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
         </DockPanel>
         <Label  Grid.Row="0" x:Name="dish_name" Content="Double Bacon BBQ Burger" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Height="28" Width="172" FontSize="14"/>
     </Grid>

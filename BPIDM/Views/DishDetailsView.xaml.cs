@@ -17,7 +17,7 @@ namespace BPIDM.Views
 
         private void nutr_button_Click(object sender, RoutedEventArgs e)
         {
-            dish_description.Visibility = Visibility.Hidden;
+            item_description.Visibility = Visibility.Hidden;
             nutrition_data_grid.Visibility = Visibility.Visible;
             var data = new Nutrition
             {

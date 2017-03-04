@@ -4,10 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BPIDM.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" xmlns:cal="http://www.caliburnproject.org">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <BooleanToVisibilityConverter x:Key="bvc" />
+                </ResourceDictionary>
+                <ResourceDictionary Source="../Resources/MainMenuStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     <Grid>
-        <Label Content="IT works!"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" HorizontalAlignment="Left" MaxWidth="36" MinWidth="36" MinHeight="36" MaxHeight="36" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
+            <Button Name="ScrollLeft" Style="{StaticResource BPStandardButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <ListView Grid.Column="1"
+            Background="Transparent" BorderThickness="0"
+            HorizontalAlignment="Stretch" 
+            ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+            x:Name="OrderList"
+            ItemsSource="{Binding Path=OrderContent}"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            VirtualizingPanel.ScrollUnit="Item"
+            ItemContainerStyle="{StaticResource BPOrderItemStyle}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding .}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+        <Border Grid.Column="2" HorizontalAlignment="Right" MaxWidth="36" MinWidth="36" MinHeight="36" MaxHeight="36" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
+            <Button Name="ScrollRight" Style="{StaticResource BPStandardButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <Border Grid.Column="3" HorizontalAlignment="Right" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
+            <Button Name="SubmitOrder" Style="{StaticResource BPStandardButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
     </Grid>
 </UserControl>
