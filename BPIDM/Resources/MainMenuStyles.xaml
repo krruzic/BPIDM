@@ -1,8 +1,7 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:bp="clr-namespace:BPIDM" xmlns:cachedImage="clr-namespace:CachedImage;assembly=CachedImage"
-    xmlns:cal="http://www.caliburnproject.org">
+    xmlns:bp="clr-namespace:BPIDM" xmlns:cal="http://www.caliburnproject.org">
 
     <Style TargetType="{x:Type GroupItem}">
         <Setter Property="TextBlock.FontSize" Value="32"/>

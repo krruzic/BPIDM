@@ -68,14 +68,13 @@ namespace BPIDM.ViewModels
             RootMenuObject jsonObj = getJsonFromFile((string)Application.Current.Properties["menuJSON"]);
             foreach (dynamic cat in jsonObj.Menu)
             {
-                cat.Image = cat.Content[0].image;
                 BPCategoryViewModel cur = new BPCategoryViewModel(cat);
+                cur.Image = cat.Content[0].image;
                 JumperContent.Add(cur);
                 foreach (dynamic item in cat.Content)
                 {
                     item.category = cat.CategoryName;
                     BPMenuViewModel curM = new BPMenuViewModel(item, _events);
-                    cur.Image = item.image;
                     MenuContent.Add(curM);
                     await Task.Delay(1);
                 }

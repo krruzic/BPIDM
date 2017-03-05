@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
-             mc:Ignorable="d" xmlns:cachedImage="clr-namespace:CachedImage;assembly=CachedImage">
+             mc:Ignorable="d">
     <VirtualizingStackPanel>
         <Border CornerRadius="12" BorderThickness="1" Name="mask" BorderBrush="DarkGray" Height="60" Width="60">
             <Border.Background>
                 <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                     <VisualBrush.Visual>
-                        <cachedImage:Image ImageUrl="{Binding image}"/>
+                        <Image Source="{Binding image}"/>
                     </VisualBrush.Visual>
                 </VisualBrush>
             </Border.Background>

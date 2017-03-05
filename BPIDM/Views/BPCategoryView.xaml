@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
-             mc:Ignorable="d" xmlns:cachedImage="clr-namespace:CachedImage;assembly=CachedImage">
+             mc:Ignorable="d" xmlns:Utils="clr-namespace:BPIDM.Utils">
+    <UserControl.Resources>
+        <Utils:PathToBitmapImagelConverter x:Key="bic"/>
+    </UserControl.Resources>
     <VirtualizingStackPanel>
         <Border CornerRadius="12" BorderThickness="1" Name="mask" BorderBrush="DarkGray" Height="124" Width="124">
             <Border.Background>
                 <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
                     <VisualBrush.Visual>
-                        <cachedImage:Image ImageUrl="{Binding Image}"/>
+                        <Image Source="{Binding Image}"/>
                     </VisualBrush.Visual>
                 </VisualBrush>
             </Border.Background>

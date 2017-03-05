@@ -49,13 +49,13 @@ namespace BPIDM.ViewModels
             // remove this later, but images aren't being freed!
             // see http://stackoverflow.com/a/11203193
             GC.Collect();
-            this.ActivateItem(new MainMenuViewModel(_events));
+            this.ActivateItem(MenuPane);
         }
 
         public void Handle(DishDetailEvent message)
         {
-            MenuPane = null;
             this.ActivateItem(new DishDetailsViewModel(_events, message.item));
+            GC.Collect();
         }
     }
 }

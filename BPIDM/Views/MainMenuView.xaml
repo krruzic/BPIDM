@@ -34,47 +34,77 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Controls:SearchBox 
-            DockPanel.Dock="Top"
-            HorizontalAlignment="Left" VerticalAlignment="Top"
-            Height="32" Width="320" Margin="10,0,0,0" 
-            SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
-            x:Name="searchFilter"/>
-        <Grid>
-            <!--<Border 
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Controls:SearchBox 
+                Grid.Column="0"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Height="32" Width="320" Margin="10,0,0,0" 
+                SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
+                x:Name="searchFilter"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="https://images.krruzic.xyz/BPIDM/new-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center">New</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="https://images.krruzic.xyz/BPIDM/bpfavourite-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center">BP Favourites</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="https://images.krruzic.xyz/BPIDM/spicy-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center">Spicy</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="https://images.krruzic.xyz/BPIDM/vegetarian-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center">Vegetarian</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <!--<Border 
                 HorizontalAlignment="Right" VerticalAlignment="Top" IsHitTestVisible="True" 
                 Background="Transparent" CornerRadius="4" Visibility="{Binding Path=IsLoading, Converter={StaticResource bvc}}">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Control Style="{StaticResource WaitSpinnerStyle}" Width="24" Foreground="{StaticResource BPBlue}" />
                 </Grid>
-            </Border>-->            
-            <ListView 
-                Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
-                ScrollViewer.VerticalScrollBarVisibility="Visible"
-                VirtualizingPanel.ScrollUnit="Pixel"
-                ItemsSource="{Binding MenuCollection.View}"
-                ItemContainerStyle="{StaticResource BPMenuItemStyle}">
-                <lc:HeaderPersister.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="White" FontWeight="Bold"/>
-                    </DataTemplate>
-                </lc:HeaderPersister.HeaderTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Model="{Binding .}" HorizontalAlignment="Left"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.GroupStyle>
-                    <GroupStyle HeaderStringFormat="" />
-                </ListView.GroupStyle>
-            </ListView>
-        </Grid>
+            </Border>-->
+        <ListView 
+            Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            VirtualizingPanel.ScrollUnit="Pixel"
+            ItemsSource="{Binding MenuCollection.View}"
+            ItemContainerStyle="{StaticResource BPMenuItemStyle}">
+            <lc:HeaderPersister.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="White" FontWeight="Bold"/>
+                </DataTemplate>
+            </lc:HeaderPersister.HeaderTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding .}" HorizontalAlignment="Left"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupStyle>
+                <GroupStyle HeaderStringFormat="" />
+            </ListView.GroupStyle>
+        </ListView>
     </DockPanel>
 </UserControl>

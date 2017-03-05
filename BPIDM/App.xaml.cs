@@ -37,8 +37,6 @@ namespace BPIDM
             Application.Current.Properties["menuJSON"] = dataPath;
 
             // caching images
-            CachedImage.FileCache.AppCacheMode = CachedImage.FileCache.CacheMode.Dedicated;
-            CachedImage.FileCache.AppCacheDirectory = imagePath;
             InitializeComponent();
         }
     }
