@@ -42,8 +42,12 @@
             </DockPanel>
         </StackPanel>
         <StackPanel Margin="12" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="View Your Overall Tab"/>
-            <Image Source="https://cdn0.iconfinder.com/data/icons/the-essential/30/bill-512.png" Width="64" Height="64"/>
+            <Button x:Name="viewBill">
+                <StackPanel>
+                    <Label Content="View Your Overall Tab"/>
+                    <Image Source="https://cdn0.iconfinder.com/data/icons/the-essential/30/bill-512.png" Width="64" Height="64"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

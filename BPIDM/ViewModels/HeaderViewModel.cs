@@ -1,3 +1,4 @@
+using BPIDM.Events;
 using Caliburn.Micro;
 using System.ComponentModel.Composition;
 
@@ -31,6 +32,11 @@ namespace BPIDM.ViewModels
                 FlagText = "Flag";
             else
                 FlagText = "Flagged!";
+        }
+
+        public void ViewBill()
+        {
+            _events.PublishOnUIThread(new TestEvent("BILL"));
         }
     }
 }

@@ -49,7 +49,10 @@ namespace BPIDM.ViewModels
             // remove this later, but images aren't being freed!
             // see http://stackoverflow.com/a/11203193
             GC.Collect();
-            this.ActivateItem(MenuPane);
+            if (message.res != "BILL")
+                this.ActivateItem(MenuPane);
+            else
+                this.ActivateItem(new BillSplittingViewModel());
         }
 
         public void Handle(DishDetailEvent message)
