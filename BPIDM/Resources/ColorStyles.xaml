@@ -4,8 +4,11 @@
     xmlns:bp="clr-namespace:BPIDM">
     <!-- colors from their logo and site -->
     <SolidColorBrush x:Key="BPRed">#FFCC092F</SolidColorBrush>
+    <SolidColorBrush x:Key="BPDarkRed">#FF330000</SolidColorBrush>
+    
     <SolidColorBrush x:Key="BPBlue">#FF0061AA</SolidColorBrush>
-    <SolidColorBrush x:Key="BPWhite">#FFFEFCFF</SolidColorBrush>
+    <SolidColorBrush x:Key="BPDarkBlue">#FF00002B</SolidColorBrush>
+
     <SolidColorBrush x:Key="BPGray">#FF333333</SolidColorBrush>
 
     <!-- material design colors: https://www.materialui.co/colors -->

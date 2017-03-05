@@ -1,6 +1,7 @@
+using BPIDM.Events;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace BPIDM
 {
@@ -9,8 +10,8 @@ namespace BPIDM
     }
     public class RootMenuObject
     {
-        private List<BPCategoryViewModel> _Menu;
-        public List<BPCategoryViewModel> Menu {
+        private List<dynamic> _Menu;
+        public List<dynamic> Menu {
             get { return _Menu; }
             set
             {
@@ -19,15 +20,22 @@ namespace BPIDM
         }
     }
 
-    public class BPCategoryViewModel : INotifyPropertyChanged
+    public class BPCategoryViewModel : PropertyChangedBase
     {
+        public BPCategoryViewModel(dynamic cat)
+        {
+            this.CategoryName = cat.CategoryName;
+            this.Image = cat.Image;
+            this.Description = cat.Description;
+        }
+
         private string _CategoryName;
         public string CategoryName {
             get { return _CategoryName; }
             set
             {
                 _CategoryName = value;
-                RaisePropertyChanged("CategoryName");
+                NotifyOfPropertyChange(() => CategoryName);
             }
         }
 
@@ -37,7 +45,7 @@ namespace BPIDM
             set
             {
                 _Description = value;
-                RaisePropertyChanged("Description");
+                NotifyOfPropertyChange(() => Description);
             }
         }
 
@@ -48,7 +56,7 @@ namespace BPIDM
             set
             {
                 _Image = value;
-                RaisePropertyChanged("Image");
+                NotifyOfPropertyChange(() => Image);
             }
         }
 
@@ -58,23 +66,30 @@ namespace BPIDM
             set
             {
                 _Content = value;
-                RaisePropertyChanged("Content");
+                NotifyOfPropertyChange(() => Content);
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
         public override string ToString()
         {
             return this.CategoryName;
         }
     }
 
-    public class BPMenuViewModel : INotifyPropertyChanged
+    public class BPMenuViewModel : PropertyChangedBase
     {
+        private readonly IEventAggregator _events;
+        public BPMenuViewModel(dynamic item, IEventAggregator events)
+        {
+            this.title = item.title;
+            this.image = item.image;
+            this.description = item.description;
+            this.price = item.retail_pricing;
+            this.category = item.category;
+
+            this._events = events;
+        }
+
         private string _description;
         public string description
         {
@@ -82,7 +97,7 @@ namespace BPIDM
             set
             {
                 _description = value;
-                RaisePropertyChanged("description");
+                NotifyOfPropertyChange(() => description);
             }
         }
 
@@ -93,7 +108,7 @@ namespace BPIDM
             set
             {
                 _show_quick_add = value;
-                RaisePropertyChanged("show_quick_add");
+                NotifyOfPropertyChange(() => show_quick_add);
             }
         }
 
@@ -104,7 +119,7 @@ namespace BPIDM
             set
             {
                 _image = value;
-                RaisePropertyChanged("image");
+                NotifyOfPropertyChange(() => image);
             }
         }
 
@@ -115,7 +130,7 @@ namespace BPIDM
             set
             {
                 _tags = value;
-                RaisePropertyChanged("tags");
+                NotifyOfPropertyChange(() => tags);
             }
         }
 
@@ -126,7 +141,7 @@ namespace BPIDM
             set
             {
                 _option_groups = value;
-                RaisePropertyChanged("option_groups");
+                NotifyOfPropertyChange(() => option_groups);
             }
         }
 
@@ -137,18 +152,18 @@ namespace BPIDM
             set
             {
                 _show_customize = value;
-                RaisePropertyChanged("show_customize");
+                NotifyOfPropertyChange(() => show_customize);
             }
         }
 
-        private double _retail_pricing;
-        public double retail_pricing
+        private double _price;
+        public double price
         {
-            get { return _retail_pricing; }
+            get { return _price; }
             set
             {
-                _retail_pricing = value;
-                RaisePropertyChanged("retail_pricing");
+                _price = value;
+                NotifyOfPropertyChange(() => price);
             }
         }
 
@@ -159,7 +174,7 @@ namespace BPIDM
             set
             {
                 _default_pricing = value;
-                RaisePropertyChanged("default_pricing");
+                NotifyOfPropertyChange(() => default_pricing);
             }
         }
 
@@ -170,7 +185,7 @@ namespace BPIDM
             set
             {
                 _title = value;
-                RaisePropertyChanged("title");
+                NotifyOfPropertyChange(() => title);
             }
         }
 
@@ -180,7 +195,7 @@ namespace BPIDM
             set
             {
                 _quantity = value;
-                RaisePropertyChanged("quantity");
+                NotifyOfPropertyChange(() => quantity);
             }
         }
 
@@ -190,7 +205,7 @@ namespace BPIDM
             set
             {
                 _nutrition_info = value;
-                RaisePropertyChanged("nutrition_info");
+                NotifyOfPropertyChange(() => nutrition_info);
             }
         }
 
@@ -200,7 +215,7 @@ namespace BPIDM
             set
             {
                 _upsell = value;
-                RaisePropertyChanged("upsell");
+                NotifyOfPropertyChange(() => upsell);
             }
         }
 
@@ -211,7 +226,7 @@ namespace BPIDM
             set
             {
                 _id = value;
-                RaisePropertyChanged("nutrition_info");
+                NotifyOfPropertyChange(() => id);
             }
         }
 
@@ -221,25 +236,73 @@ namespace BPIDM
             set
             {
                 _category = value;
-                RaisePropertyChanged("category");
+                NotifyOfPropertyChange(() => category);
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public override string ToString()
         {
             return this.title;
         }
+
+        public void listButton()
+        {
+            _events.PublishOnUIThread(new DishDetailEvent(this));
+        }
     }
 
-    public class BPOrderViewModel : BPMenuViewModel
+    public class BPOrderViewModel : PropertyChangedBase
     {
+        public BPOrderViewModel(BPMenuViewModel item)
+        {
+            this.title = item.title;
+            this.image = item.image;
+            this.description = item.description;
+            this.price = item.price;
+        }
 
+        private string title;
+        public string _title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                NotifyOfPropertyChange(() => title);
+            }
+        }
 
+        private string _image;
+        public string image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                NotifyOfPropertyChange(() => image);
+            }
+        }
+
+        private string _description;
+        public string description
+        {
+            get { return _description; }
+            set
+            {
+                _description = value;
+                NotifyOfPropertyChange(() => description);
+            }
+        }
+
+        private double _price;
+        public double price
+        {
+            get { return _price; }
+            set
+            {
+                _price = value;
+                NotifyOfPropertyChange(() => price);
+            }
+        }
     }
 }

@@ -34,20 +34,10 @@ namespace BPIDM
                     client.DownloadFile(src, dataPath);
                 }
             }
-            // then read it in :)
-            Application.Current.Properties["menuJSON"] = LoadJson(dataPath);
+            Application.Current.Properties["menuJSON"] = dataPath;
 
             // caching images
-            CachedImage.FileCache.AppCacheMode = CachedImage.FileCache.CacheMode.Dedicated;
-            CachedImage.FileCache.AppCacheDirectory = imagePath;
             InitializeComponent();
-        }
-        private string LoadJson(string dp)
-        {
-            using (StreamReader r = new StreamReader(dp))
-            {
-                return r.ReadToEnd();
-            }
         }
     }
 }

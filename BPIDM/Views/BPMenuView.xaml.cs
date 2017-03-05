@@ -3,11 +3,11 @@ using System.Windows.Controls;
 namespace BPIDM.Views
 {
     /// <summary>
-    /// Interaction logic for CurrentOrderView.xaml
+    /// Interaction logic for BPMenuItem.xaml
     /// </summary>
-    public partial class CurrentOrderView : UserControl
+    public partial class BPMenuView : UserControl
     {
-        public CurrentOrderView()
+        public BPMenuView()
         {
             InitializeComponent();
         }
