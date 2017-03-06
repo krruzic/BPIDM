@@ -1,0 +1,35 @@
+<UserControl x:Class="BPIDM.Controls.ToggleImageButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BPIDM.Controls"
+             mc:Ignorable="d" Name="myToggle"
+             d:DesignHeight="64" d:DesignWidth="64">
+    <Grid MouseLeftButtonDown="Image_Click" MouseEnter="Highlight_Circle" MouseLeave="Reset_Circle">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="0.75*"/>
+        </Grid.ColumnDefinitions>
+        <!--<Border Grid.ColumnSpan="3" Grid.RowSpan="3" Background="DarkGray" Name="circleBorder" CornerRadius="100">
+            <Ellipse Margin="1" Name="circle" Fill="White"/>
+        </Border>-->
+        <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3" Fill="{Binding Path=HighlightColor, ElementName=myToggle}" x:Name="ImageRect" Visibility="Visible">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="{Binding Path=NonImage, ElementName=myToggle}"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        <Ellipse Grid.Row="3" Grid.ColumnSpan="3" Fill="DarkGray" Name="Shadow" Visibility="Hidden">
+            <Ellipse.Effect>
+                <BlurEffect Radius="9"></BlurEffect>
+            </Ellipse.Effect>
+        </Ellipse>
+    </Grid>
+</UserControl>

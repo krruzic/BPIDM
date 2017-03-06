@@ -1,6 +1,7 @@
 namespace BPIDM
 {
     using Caliburn.Micro;
+    using Controls;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
@@ -22,12 +23,6 @@ namespace BPIDM
 
         public AppBootstrapper()
         {
-            // no idea why this is needed!
-            ViewLocator.NameTransformer.AddRule(typeof(BPMenuViewModel).FullName, typeof(BPMenuView).FullName);
-            ViewLocator.NameTransformer.AddRule(typeof(BPCategoryViewModel).FullName, typeof(BPCategoryView).FullName);
-            ViewLocator.NameTransformer.AddRule(typeof(BPOrderViewModel).FullName, typeof(BPOrderView).FullName);
-            ViewLocator.NameTransformer.AddRule(typeof(BillSplittingViewModel).FullName, typeof(BillSpilttingView).FullName);
-
             // add bindings to use fancy caliburn binds with new controls
             ConventionManager.AddElementConvention<Label>(Label.ContentProperty,
                 "Content",

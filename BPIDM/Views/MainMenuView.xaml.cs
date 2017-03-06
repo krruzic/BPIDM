@@ -1,3 +1,4 @@
+using BPIDM.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 using Xceed.Wpf.Toolkit.Core.Utilities;

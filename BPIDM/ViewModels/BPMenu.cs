@@ -3,7 +3,7 @@ using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 
-namespace BPIDM
+namespace BPIDM.ViewModels
 {
     public class NutritionInfo
     {
@@ -84,7 +84,13 @@ namespace BPIDM
             this.title = item.title;
             this.image = item.image;
             this.description = item.description;
-            this.price = item.retail_pricing;
+            try
+            {
+                this.price = item.retail_pricing;
+            } catch
+            {
+                this.price = 4.99;
+            }
             this.category = item.category;
 
             this._events = events;

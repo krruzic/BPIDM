@@ -132,7 +132,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Controls\ToggleImageButton\ToggleImageButton.xaml.cs">
+      <DependentUpon>ToggleImageButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Events\DishDetailEvent.cs" />
+    <Compile Include="Events\FilterEvent.cs" />
     <Compile Include="Events\ItemConfirmedEvent.cs" />
     <Compile Include="Views\BPCategoryView.xaml.cs">
       <DependentUpon>BPCategoryView.xaml</DependentUpon>
@@ -151,6 +155,10 @@
     <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Controls\ToggleImageButton\ToggleImageButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BPCategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,7 +179,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BillSpilttingView.xaml">
+    <Page Include="Views\BillSplittingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,8 +219,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\BillSpilttingView.xaml.cs">
-      <DependentUpon>BillSpilttingView.xaml</DependentUpon>
+    <Compile Include="Views\BillSplittingView.xaml.cs">
+      <DependentUpon>BillSplittingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BillView.xaml.cs">
       <DependentUpon>BillView.xaml</DependentUpon>

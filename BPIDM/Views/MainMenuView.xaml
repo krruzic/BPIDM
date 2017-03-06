@@ -5,13 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
     xmlns:Controls="clr-namespace:BPIDM.Controls" xmlns:cal="http://www.caliburnproject.org"
-    xmlns:bp="clr-namespace:BPIDM" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView">
+    xmlns:bp="clr-namespace:BPIDM" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView"
+    x:Name="MenuControl">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <BooleanToVisibilityConverter x:Key="bvc" />
-                </ResourceDictionary>
                 <ResourceDictionary Source="../Resources/MainMenuStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -23,69 +21,48 @@
             HorizontalAlignment="Stretch" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuJumperList"
-            ItemsSource="{Binding Path=JumperContent}"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VirtualizingPanel.ScrollUnit="Pixel"
             PreviewMouseLeftButtonUp="listView_Click"
             ItemContainerStyle="{StaticResource BPCategoryItemStyle}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding .}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
         </ListView>
-        <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="4*"/>
-            </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left">
             <Controls:SearchBox 
-                Grid.Column="0"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                Height="32" Width="320" Margin="10,0,0,0" 
+                Height="48" Width="320" Margin="10,0,0,0" 
                 SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                 x:Name="searchFilter"/>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
-                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="https://images.krruzic.xyz/BPIDM/new-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">New</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="https://images.krruzic.xyz/BPIDM/bpfavourite-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">BP Favourites</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="https://images.krruzic.xyz/BPIDM/spicy-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">Spicy</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button BorderThickness="0" Height="36" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="https://images.krruzic.xyz/BPIDM/vegetarian-non.png" Width="32" Height="32" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">Vegetarian</TextBlock>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <!--<Border 
-                HorizontalAlignment="Right" VerticalAlignment="Top" IsHitTestVisible="True" 
-                Background="Transparent" CornerRadius="4" Visibility="{Binding Path=IsLoading, Converter={StaticResource bvc}}">
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Control Style="{StaticResource WaitSpinnerStyle}" Width="24" Foreground="{StaticResource BPBlue}" />
-                </Grid>
-            </Border>-->
+            <Controls:ToggleImageButton Margin="25,0,0,0" Width="48" Height="48" HightlightColor="{StaticResource MaterialYellow}"
+                NonImage="https://images.krruzic.xyz/BPIDM/new-non.png"
+                ClickedImage="https://images.krruzic.xyz/BPIDM/new-fill.png"/>
+            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" 
+                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">NEW</Label>
+
+            <Controls:ToggleImageButton Width="48" Height="48" HightlightColor="{StaticResource MaterialBlue}"
+                NonImage="https://images.krruzic.xyz/BPIDM/bpfavourite-non.png"
+                ClickedImage="https://images.krruzic.xyz/BPIDM/bpfavourite-fill.png"/>
+            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" 
+                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">BP FAVOURITES</Label>
+
+            <Controls:ToggleImageButton x:Name="TES" Width="48" Height="48" HightlightColor="{StaticResource MaterialRed}"
+                NonImage="https://images.krruzic.xyz/BPIDM/spicy-non.png"
+                ClickedImage="https://images.krruzic.xyz/BPIDM/spicy-fill.png"
+                cal:Message.Attach="[Event ImageClicked] = [Action FilterButtonPressed('testspicy')]"/>
+            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">SPICY</Label>
+
+            <Controls:ToggleImageButton Width="48" Height="48" HightlightColor="{StaticResource MaterialGreen}"
+                NonImage="https://images.krruzic.xyz/BPIDM/vegetarian-non.png"
+                ClickedImage="https://images.krruzic.xyz/BPIDM/vegetarian-fill.png"/>
+            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" 
+                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">VEGETARIAN</Label>
+        </StackPanel>
         <ListView 
             Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VirtualizingPanel.ScrollUnit="Pixel"
-            ItemsSource="{Binding MenuCollection.View}"
             ItemContainerStyle="{StaticResource BPMenuItemStyle}">
             <lc:HeaderPersister.HeaderTemplate>
                 <DataTemplate>
@@ -97,11 +74,6 @@
                     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding .}" HorizontalAlignment="Left"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
             <ListView.GroupStyle>
                 <GroupStyle HeaderStringFormat="" />
             </ListView.GroupStyle>
