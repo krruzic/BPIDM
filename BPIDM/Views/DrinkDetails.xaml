@@ -28,8 +28,12 @@
             <CheckBox Grid.Row="3" x:Name="no_ice_checkbox" Content="No Ice" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
         </StackPanel>
         <DockPanel VerticalAlignment="Bottom" Grid.Row="4" Margin="5">
-            <Button DockPanel.Dock="Right" x:Name="confirm_button" Content="Confirm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" FontSize="18"/>
-            <Button DockPanel.Dock="Left" x:Name="close_button" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" FontSize="18"/>
+            <Border DockPanel.Dock="Right" HorizontalAlignment="Right" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
+                <Button Name="confirmSelection" Style="{StaticResource BPStandardButton}" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border DockPanel.Dock="Left" HorizontalAlignment="Left" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
+                <Button Name="closeDetails" Style="{StaticResource BPStandardButton}" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
         </DockPanel>                        
     </Grid>
 </UserControl>
