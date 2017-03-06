@@ -3,47 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium" TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
-    <VirtualizingStackPanel>
-        <Border CornerRadius="12" BorderThickness="1" Name="mask" BorderBrush="DarkGray" Height="60" Width="60">
-            <Border.Background>
-                <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
-                    <VisualBrush.Visual>
-                        <Image Source="{Binding image}"/>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Border.Background>
-            <DockPanel Height="64" Width="64">
-                <DockPanel.Background>
-                    <SolidColorBrush Color="White" Opacity="0.7"/>
-                </DockPanel.Background>
-                <Label DockPanel.Dock="Top"
-                    HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
-                    FontSize="20" VerticalAlignment="Top" FontWeight="Medium">
-                    <Label.Content>
-                        <AccessText
-                            TextWrapping="Wrap" Name="title"
-                            TextAlignment="Center"/>
-                    </Label.Content>
-                </Label>
-                <Grid DockPanel.Dock="Bottom">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Name="price" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,0,6,3"
-                        ContentStringFormat="c" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"
-                        Foreground="{StaticResource BPGray}"
-                        FontSize="18" FontFamily="Times New Roman"
-                        VerticalAlignment="Bottom"/>
-                </Grid>
+    <md:Card Width="86" Height="76">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="58" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="86" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Top" Source="{Binding image}" Width="86" Height="76" Stretch="UniformToFill" />
+            <!--<TextBlock Grid.Row="1" Grid.ColumnSpan="2" MaxHeight="86" VerticalAlignment="Top"
+                Style="{DynamicResource MaterialDesignHeadlineTextBlock}" 
+                Foreground="{DynamicResource PrimaryHueDarkBrush}" x:Name="title" 
+                TextAlignment="Center" TextWrapping="Wrap">TEST</TextBlock>-->
+            <DockPanel Grid.Row="0" Height="22">
+                <Label DockPanel.Dock="Left" ContentStringFormat="c" Content="TEST" FontWeight="Medium" Foreground="Black" x:Name="price" FontSize="12"/>
+                <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Center" Height="22" Width="26" Style="{DynamicResource MaterialDesignFlatToggleButton}">
+                    <md:PackIcon Kind="Close" Height="22" Width="26" />
+                </ToggleButton>
             </DockPanel>
-        </Border>
-    </VirtualizingStackPanel>
+        </Grid>
+    </md:Card>
 </UserControl>

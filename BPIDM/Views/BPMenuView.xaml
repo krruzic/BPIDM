@@ -9,21 +9,22 @@
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
-    <md:Card Width="250">
+    <md:Card Width="312" Height="312">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="264" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" VerticalAlignment="Center" Source="{Binding image}" Width="250" Stretch="UniformToFill" />
-            <Rectangle Grid.Row="0" Fill="White" Opacity="0.6"/>
+            <Image Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Source="{Binding image}" Stretch="UniformToFill" />
+            <Rectangle Grid.Row="0" Grid.RowSpan="2" Fill="White" Opacity="0.3"/>
             <TextBlock Grid.Row="0" MaxHeight="104" VerticalAlignment="Top"
                 Style="{DynamicResource MaterialDesignHeadlineTextBlock}" 
                 Foreground="{DynamicResource PrimaryHueDarkBrush}" x:Name="title" 
                 TextAlignment="Center" TextWrapping="Wrap">TEST</TextBlock>
-            <DockPanel Height="150" Width="250" VerticalAlignment="Bottom">
+            <DockPanel Grid.Row="1" VerticalAlignment="Bottom">
                 <Grid DockPanel.Dock="Bottom">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="4*"/>
@@ -35,7 +36,7 @@
                     </Grid.ColumnDefinitions>
                     <Label
                         HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}" VerticalAlignment="Bottom"
-                        FontWeight="Light" Grid.Row="0" Grid.ColumnSpan="2">
+                        FontWeight="Medium" Grid.Row="0" Grid.ColumnSpan="2">
                         <TextBlock VerticalAlignment="Bottom" Name="description"
                             TextWrapping="Wrap" TextAlignment="Left" 
                             TextTrimming="CharacterEllipsis"/>

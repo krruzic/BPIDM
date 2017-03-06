@@ -10,6 +10,7 @@ using System;
 using BPIDM.Events;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace BPIDM.ViewModels
 {
@@ -54,7 +55,6 @@ namespace BPIDM.ViewModels
             FilterButtonText = new BindableCollection<string>();
             MenuCollection = CollectionViewSource.GetDefaultView(MenuList);
             MenuCollection.GroupDescriptions.Add(new PropertyGroupDescription("category"));
-            FillMenu();
         }
 
         private string filterText;
@@ -83,6 +83,8 @@ namespace BPIDM.ViewModels
         // if you click the search button
         public void Search()
         {
+            if (FilterText == null)
+                return;
             foreach (BPMenuViewModel i in MenuList)
             {
                 if (i.ToString().ToUpper().Contains(FilterText.ToUpper()) || String.IsNullOrEmpty(FilterText))
@@ -91,6 +93,7 @@ namespace BPIDM.ViewModels
                     i.isVisible = false;
             }
         }
+
         private async Task FillMenu()
         {
             RootMenuObject jsonObj = getJsonFromFile((string)Application.Current.Properties["menuJSON"]);
@@ -98,13 +101,18 @@ namespace BPIDM.ViewModels
             {
                 BPCategoryViewModel cur = new BPCategoryViewModel(cat);
                 cur.Image = cat.Content[0].image;
-                MenuJumperList.Add(cur);
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    MenuJumperList.Add(cur);
+                }, DispatcherPriority.ContextIdle);
                 foreach (dynamic item in cat.Content)
                 {
                     item.category = cat.CategoryName;
                     BPMenuViewModel curM = new BPMenuViewModel(item, _events);
-                    MenuList.Add(curM);
-                    await Task.Delay(1);
+                    await Application.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        MenuList.Add(curM);
+                    }, DispatcherPriority.ContextIdle);
                 }
             }
         }
@@ -118,9 +126,17 @@ namespace BPIDM.ViewModels
             }
         }
 
-        protected override void OnActivate()
+        protected override async void OnInitialize()
         {
-            base.OnActivate();
+            base.OnInitialize();
+            await FillMenu();
+        }
+
+        protected override async void OnActivate()
+        {
+            System.Console.WriteLine("Starting a task!");
+            await Task.Run(() => base.OnActivate());
+            System.Console.WriteLine("activated!");
         }
 
         public void Handle(FilterEvent message)

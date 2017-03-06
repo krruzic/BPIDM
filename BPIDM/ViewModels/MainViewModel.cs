@@ -1,10 +1,12 @@
 using BPIDM.Events;
 using Caliburn.Micro;
 using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+
 namespace BPIDM.ViewModels
 {
     [Export(typeof(MainViewModel))]
-    class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>
+    class MainViewModel : Conductor<IScreen>, IHandleWithTask<TestEvent>, IHandle<DishDetailEvent>
     {
         private readonly IEventAggregator _events;
         private HeaderViewModel _Header;
@@ -43,12 +45,13 @@ namespace BPIDM.ViewModels
             this.ActivateItem(MenuPane);
         }
 
-        public void Handle(TestEvent message)
+        public async Task Handle(TestEvent message)
         {
+            //MenuPane = null;
             if (message.res != "BILL")
-                this.ActivateItem(MenuPane);
+                ActivateItem(MenuPane);
             else
-                this.ActivateItem(new BillSplittingViewModel());
+                ActivateItem(new BillSplittingViewModel());
         }
 
         public void Handle(DishDetailEvent message)
@@ -56,9 +59,10 @@ namespace BPIDM.ViewModels
             this.ActivateItem(new DishDetailsViewModel(_events, message.item));
         }
 
-        public void FilterButtonPressed(string fs)
+        public async Task FilterButtonPressed(string fs)
         {
-            _events.PublishOnUIThread(new FilterEvent(fs));
+            _events.PublishOnBackgroundThread(new FilterEvent(fs));
+            await Task.Delay(1);
         }
     }
 }

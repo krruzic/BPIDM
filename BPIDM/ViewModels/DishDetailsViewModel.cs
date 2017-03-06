@@ -1,5 +1,6 @@
 using BPIDM.Events;
 using Caliburn.Micro;
+using System.Threading.Tasks;
 
 namespace BPIDM.ViewModels
 {
@@ -27,10 +28,11 @@ namespace BPIDM.ViewModels
         {
             _events.PublishOnUIThread(new TestEvent("BACK"));
         }
-        public void ConfirmSelection()
+        public async Task ConfirmSelection()
         {
-            _events.PublishOnUIThread(new ItemConfirmedEvent(item));
-            _events.PublishOnUIThread(new TestEvent("BACK"));
+            _events.PublishOnBackgroundThread(new ItemConfirmedEvent(item));
+            _events.PublishOnBackgroundThread(new TestEvent("BACK"));
+            await Task.Delay(1);
         }
     }
 }
