@@ -4,48 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium" TextElement.FontSize="12"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d">
-    <VirtualizingStackPanel>
-        <Border CornerRadius="12" BorderThickness="1" Name="mask" BorderBrush="DarkGray" Height="124" Width="124">
-            <Border.Background>
-                <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
-                    <VisualBrush.Visual>
-                        <Image Source="{Binding Image}"/>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Border.Background>
-            <DockPanel Height="128" Width="128">
-                <DockPanel.Background>
-                    <SolidColorBrush Color="White" Opacity="0.7"/>
-                </DockPanel.Background>
-                <Label DockPanel.Dock="Top"
-                    HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
-                    FontSize="20" VerticalAlignment="Top" FontWeight="Medium">
-                    <Label.Content>
-                        <AccessText 
-                            TextWrapping="Wrap" Name="CategoryName"
-                            TextAlignment="Center"/>
-                    </Label.Content>
-                </Label>
-                <Grid DockPanel.Dock="Bottom">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}" VerticalAlignment="Bottom"
-                        FontSize="12" FontWeight="Light" Grid.Row="0" Grid.ColumnSpan="3">
-                        <TextBlock 
-                            VerticalAlignment="Bottom" Name="Description"
-                            TextWrapping="Wrap" TextAlignment="Left" 
-                            TextTrimming="CharacterEllipsis"/>
-                    </Label>
-                </Grid>
-            </DockPanel>
-        </Border>
-    </VirtualizingStackPanel>
+    <md:Card Width="136">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="136" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="136" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" VerticalAlignment="Center" Source="{Binding Image}" Width="136" Stretch="UniformToFill" />
+            <StackPanel Grid.Row="0" Margin="5">
+                <TextBlock Grid.Row="0"
+                    Style="{DynamicResource MaterialDesignTitleTextBlock}" 
+                    Foreground="{DynamicResource PrimaryHueDarkBrush}" x:Name="CategoryName" 
+                    TextAlignment="Center" TextWrapping="Wrap">TEST</TextBlock>
+                <!--<TextBlock Height="" TextWrapping="Wrap" VerticalAlignment="Bottom" x:Name="Description">A great way to keep fit and forget about the constant grind of IT.</TextBlock>-->
+            </StackPanel>
+            <Button Margin="5" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" 
+                HorizontalAlignment="Right" VerticalAlignment="Bottom">JUMP
+            </Button>
+        </Grid>
+    </md:Card>
 </UserControl>

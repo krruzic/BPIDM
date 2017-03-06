@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
     <Grid>
@@ -35,9 +36,9 @@
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                     <Label Content="Trisha" FontSize="14" FontWeight="Bold" Margin="0,0,-8,0" />
                     <Label Content="is your server today" FontSize="14"/>
-                    <Border HorizontalAlignment="Right" MaxWidth="96" MinWidth="96" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
-                        <Button Name="FlagServer" Style="{StaticResource BPStandardButton}" Content="{Binding FlagText}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                    <ToggleButton Style="{DynamicResource MaterialDesignFlatPrimaryToggleButton}" cal:Message.Attach="[Event Click] = [Action FlagServer]">
+                        <md:PackIcon Kind="Flag" Height="24" Width="24" />
+                    </ToggleButton>
                 </StackPanel>
             </DockPanel>
         </StackPanel>

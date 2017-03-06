@@ -23,9 +23,7 @@
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" HorizontalAlignment="Left" MaxWidth="36" MinWidth="36" MinHeight="36" MaxHeight="36" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
-            <Button Name="ScrollLeft" Style="{StaticResource BPStandardButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Border>
+        <Button Grid.Column="0" Name="ScrollLeft" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ListView Grid.Column="1"
             Background="Transparent" BorderThickness="0"
             HorizontalAlignment="Stretch" 
@@ -46,11 +44,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Border Grid.Column="2" HorizontalAlignment="Right" MaxWidth="36" MinWidth="36" MinHeight="36" MaxHeight="36" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
-            <Button Name="ScrollRight" Style="{StaticResource BPStandardButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Border>
-        <Border Grid.Column="3" HorizontalAlignment="Right" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
-            <Button Name="SubmitOrder" Style="{StaticResource BPStandardButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Border>
+            <Button Grid.Column="2" Name="ScrollRight" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Grid.Column="3" Name="SubmitOrder" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="64" />
     </Grid>
 </UserControl>

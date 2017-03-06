@@ -92,7 +92,7 @@ namespace BPIDM.ViewModels
                 this.price = 4.99;
             }
             this.category = item.category;
-
+            this.isVisible = true;
             this._events = events;
         }
 
@@ -237,12 +237,24 @@ namespace BPIDM.ViewModels
         }
 
         private string _category;
-        public string category {
+        public string category
+        {
             get { return _category; }
             set
             {
                 _category = value;
                 NotifyOfPropertyChange(() => category);
+            }
+        }
+
+        private bool _isVisible;
+        public bool isVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                _isVisible = value;
+                NotifyOfPropertyChange(() => isVisible);
             }
         }
 

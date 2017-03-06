@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System;
 using BPIDM.Events;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace BPIDM.ViewModels
 {
@@ -18,8 +19,6 @@ namespace BPIDM.ViewModels
     [Export(typeof(MainMenuViewModel))]
     public partial class MainMenuViewModel : Screen, IHandle<FilterEvent>
     {
-        private string filterText;
-        private BindableCollection<string> filterButtonText = new BindableCollection<string>();
 
         public ICollectionView MenuCollection { get; set; }
         private BindableCollection<BPMenuViewModel> _MenuList;
@@ -33,7 +32,6 @@ namespace BPIDM.ViewModels
             }
         }
 
-        public ICollectionView JumperCollection { get; set; }
         private BindableCollection<BPCategoryViewModel> _MenuJumperList;
         public BindableCollection<BPCategoryViewModel> MenuJumperList
         {
@@ -53,25 +51,25 @@ namespace BPIDM.ViewModels
             events.Subscribe(this);
             MenuList = new BindableCollection<BPMenuViewModel>();
             MenuJumperList = new BindableCollection<BPCategoryViewModel>();
-
+            FilterButtonText = new BindableCollection<string>();
             MenuCollection = CollectionViewSource.GetDefaultView(MenuList);
-            MenuCollection.Filter += Filter;
             MenuCollection.GroupDescriptions.Add(new PropertyGroupDescription("category"));
-
-            JumperCollection = CollectionViewSource.GetDefaultView(MenuJumperList);
             FillMenu();
         }
 
+        private string filterText;
         public string FilterText
         {
             get { return filterText; }
             set
             {
                 filterText = value;
-                OnFilterChanged();
+                NotifyOfPropertyChange(() => FilterText);
+                Search();
             }
         }
 
+        private BindableCollection<string> filterButtonText;
         public BindableCollection<string> FilterButtonText
         {
             get { return filterButtonText; }
@@ -82,35 +80,17 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private bool Filter(object value)
+        // if you click the search button
+        public void Search()
         {
-            if (string.IsNullOrEmpty(FilterText))
+            foreach (BPMenuViewModel i in MenuList)
             {
-                return true;
+                if (i.ToString().ToUpper().Contains(FilterText.ToUpper()) || String.IsNullOrEmpty(FilterText))
+                    i.isVisible = true;
+                else
+                    i.isVisible = false;
             }
-            return value.ToString().ToUpper().Contains(FilterText.ToUpper());
         }
-
-        private bool FilterButton(object value)
-        {
-            return true;
-            //if (string.IsNullOrEmpty(FilterButtonText))
-            //{
-            //    return true;
-            //}
-            //return value.ToString().ToUpper().Contains(FilterButtonText.ToUpper());
-        }
-
-        private void OnFilterChanged()
-        {
-            MenuCollection.Refresh();
-        }
-
-        private void OnFilterButtonTextChanged()
-        {
-            MenuCollection.Refresh();
-        }
-
         private async Task FillMenu()
         {
             RootMenuObject jsonObj = getJsonFromFile((string)Application.Current.Properties["menuJSON"]);

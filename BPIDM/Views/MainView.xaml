@@ -6,6 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:local="clr-namespace:BPIDM" xmlns:Views="clr-namespace:BPIDM.Views" 
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
     mc:Ignorable="d" WindowState="Maximized">
     <Grid Margin="10,10,10,10">
         <Grid.ColumnDefinitions>

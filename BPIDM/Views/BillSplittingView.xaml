@@ -50,13 +50,10 @@
                     <Label x:Name="lbl_Plus" Content=" +" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Center" Width="57"/>
                 </Grid>
             </StackPanel>
-            <DockPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
-                <Border DockPanel.Dock="Left" HorizontalAlignment="Left" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
-                    <Button Style="{StaticResource BPStandardButton}" DockPanel.Dock="Left" x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Height="66"  VerticalAlignment="Top" Width="116" />
-                </Border>
-                <Border DockPanel.Dock="Right" HorizontalAlignment="Left" MaxWidth="128" MinWidth="128" Margin="4" CornerRadius="4" BorderBrush="Black" BorderThickness="1" Background="{StaticResource BPRed}">
-                    <Button Style="{StaticResource BPStandardButton}" x:Name="btn_ReadyToPay" Content="Ready To Pay" HorizontalAlignment="Right" Height="66"  VerticalAlignment="Top" Width="116" />
-                </Border>
+            <DockPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" LastChildFill="False">
+                <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Go Back" Height="64" DockPanel.Dock="Left"></Button>
+                    <!--<Button Style="{StaticResource BPStandardButton}" DockPanel.Dock="Left" x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Height="66"  VerticalAlignment="Top" Width="116" />-->
+                <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Ready To Pay" Height="64" DockPanel.Dock="Right"></Button>
             </DockPanel>
         </Grid>
 

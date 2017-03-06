@@ -3,60 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium" TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
-    <VirtualizingStackPanel>
-        <Border CornerRadius="12" BorderThickness="1" Name="mask" BorderBrush="DarkGray" Height="256" Width="254">
-            <Border.Background>
-                <VisualBrush Viewbox="0.05,0.05,0.9,0.9">
-                    <VisualBrush.Visual>
-                        <Image Source="{Binding image}"/>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Border.Background>
-            <DockPanel Height="264" Width="256">
-                <DockPanel.Background>
-                    <SolidColorBrush Color="White" Opacity="0.4"/>
-                </DockPanel.Background>
-                <Label DockPanel.Dock="Top"
-                HorizontalContentAlignment="Stretch" Foreground="{StaticResource BPRed}" 
-                FontSize="20" VerticalAlignment="Top" FontWeight="Medium">
-                    <Label.Content>
-                        <AccessText 
-                        TextWrapping="Wrap" Name="title"
-                        TextAlignment="Center"/>
-                    </Label.Content>
-                </Label>
+    <md:Card Width="250">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="264" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" VerticalAlignment="Center" Source="{Binding image}" Width="250" Stretch="UniformToFill" />
+            <Rectangle Grid.Row="0" Fill="White" Opacity="0.6"/>
+            <TextBlock Grid.Row="0" MaxHeight="104" VerticalAlignment="Top"
+                Style="{DynamicResource MaterialDesignHeadlineTextBlock}" 
+                Foreground="{DynamicResource PrimaryHueDarkBrush}" x:Name="title" 
+                TextAlignment="Center" TextWrapping="Wrap">TEST</TextBlock>
+            <DockPanel Height="150" Width="250" VerticalAlignment="Bottom">
                 <Grid DockPanel.Dock="Bottom">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="4*"/>
-                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
                     <Label
-                HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}" VerticalAlignment="Bottom"
-                FontSize="14" FontWeight="Light" Grid.Row="0" Grid.ColumnSpan="3">
+                        HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}" VerticalAlignment="Bottom"
+                        FontWeight="Light" Grid.Row="0" Grid.ColumnSpan="2">
                         <TextBlock VerticalAlignment="Bottom" Name="description"
-                    TextWrapping="Wrap" TextAlignment="Left" 
-                    TextTrimming="CharacterEllipsis"/>
+                            TextWrapping="Wrap" TextAlignment="Left" 
+                            TextTrimming="CharacterEllipsis"/>
                     </Label>
-                    <Label
-                Name="price" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,0,12,6"
-                ContentStringFormat="c" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"
-                Foreground="{StaticResource BPGray}"
-                FontSize="18" FontFamily="Times New Roman"
-                VerticalAlignment="Bottom">
-                    </Label>
-
+                    <Button Margin="5" Grid.Row="0" Grid.Column="2" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
+                        x:Name="listButton">
+                        <Label ContentStringFormat="c" Content="TEST" FontWeight="Medium" Foreground="White" x:Name="price"/>
+                    </Button>
                 </Grid>
             </DockPanel>
-        </Border>
-        <Border Grid.Row="1" Grid.Column="1" CornerRadius="2" Background="White" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-12">
-            <Button Content="VIEW" Style="{StaticResource BPMenuButton}" Width="96" x:Name="listButton"/>
-        </Border>
-    </VirtualizingStackPanel>
+        </Grid>
+    </md:Card>
 </UserControl>

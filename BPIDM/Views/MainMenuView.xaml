@@ -5,7 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
     xmlns:Controls="clr-namespace:BPIDM.Controls" xmlns:cal="http://www.caliburnproject.org"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:bp="clr-namespace:BPIDM" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Background="{DynamicResource MaterialDesignPaper}" TextElement.FontWeight="Medium" TextElement.FontSize="14"
+    FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
     x:Name="MenuControl">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -17,21 +21,35 @@
 
     <DockPanel>
         <ListView
-            DockPanel.Dock="Left"
+            DockPanel.Dock="Left" Background="Transparent"
             HorizontalAlignment="Stretch" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuJumperList"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VirtualizingPanel.ScrollUnit="Pixel"
-            PreviewMouseLeftButtonUp="listView_Click"
+            Button.Click="listView_Click"
+            Margin="0,0,10,0"
             ItemContainerStyle="{StaticResource BPCategoryItemStyle}">
         </ListView>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left">
-            <Controls:SearchBox 
-                HorizontalAlignment="Left" VerticalAlignment="Top"
-                Height="48" Width="320" Margin="10,0,0,0" 
-                SearchText="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
-                x:Name="searchFilter"/>
+            <Border Background="White" MaxHeight="30" CornerRadius="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Margin="5,0,0,0"
+                        md:HintAssist.Hint="Search Menu" x:Name="SearchBox"
+                        Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
+                        md:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
+                        MinWidth="200" VerticalAlignment="Center" />
+                    <Button Grid.Column="1"
+                        Style="{DynamicResource MaterialDesignToolButton}" x:Name="SearchButton"
+                        Height="24" Width="24" cal:Message.Attach="[Event Click] = [Action Search()]">
+                        <md:PackIcon Kind="Magnify" Opacity=".56" />
+                    </Button>
+                </Grid>
+            </Border>
             <Controls:ToggleImageButton Margin="25,0,0,0" Width="48" Height="48" HightlightColor="{StaticResource MaterialYellow}"
                 NonImage="https://images.krruzic.xyz/BPIDM/new-non.png"
                 ClickedImage="https://images.krruzic.xyz/BPIDM/new-fill.png"/>
@@ -63,10 +81,13 @@
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VirtualizingPanel.ScrollUnit="Pixel"
+            VirtualizingPanel.VirtualizationMode="Recycling"
             ItemContainerStyle="{StaticResource BPMenuItemStyle}">
             <lc:HeaderPersister.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=Name}" FontSize="32" Foreground="{StaticResource BPRed}" Background="White" FontWeight="Bold"/>
+                    <TextBlock 
+                        Text="{Binding Path=Name}" FontSize="32" Foreground="{DynamicResource PrimaryHueDarkBrush}" 
+                        FontWeight="Bold" Background="{DynamicResource MaterialDesignPaper}"/>
                 </DataTemplate>
             </lc:HeaderPersister.HeaderTemplate>
             <ListView.ItemsPanel>
