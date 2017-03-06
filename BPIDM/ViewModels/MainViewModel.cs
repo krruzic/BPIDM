@@ -1,6 +1,5 @@
 using BPIDM.Events;
 using Caliburn.Micro;
-using System;
 using System.ComponentModel.Composition;
 namespace BPIDM.ViewModels
 {
@@ -46,9 +45,6 @@ namespace BPIDM.ViewModels
 
         public void Handle(TestEvent message)
         {
-            // remove this later, but images aren't being freed!
-            // see http://stackoverflow.com/a/11203193
-            GC.Collect();
             if (message.res != "BILL")
                 this.ActivateItem(MenuPane);
             else
@@ -58,7 +54,11 @@ namespace BPIDM.ViewModels
         public void Handle(DishDetailEvent message)
         {
             this.ActivateItem(new DishDetailsViewModel(_events, message.item));
-            GC.Collect();
+        }
+
+        public void FilterButtonPressed(string fs)
+        {
+            _events.PublishOnUIThread(new FilterEvent(fs));
         }
     }
 }

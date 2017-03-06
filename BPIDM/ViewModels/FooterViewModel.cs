@@ -1,7 +1,7 @@
+using BPIDM.Events;
 using Caliburn.Micro;
 using System.ComponentModel.Composition;
 using System.Windows.Data;
-using BPIDM.Events;
 
 namespace BPIDM.ViewModels
 {

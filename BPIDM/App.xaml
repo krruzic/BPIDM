@@ -50,6 +50,35 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+                    <Style x:Key="BPFilterButton" TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Background" Value="#FF6DB4EF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Rectangle Fill="{TemplateBinding Background}">
+                                            <Rectangle.OpacityMask>
+                                                <ImageBrush ImageSource="{TemplateBinding Foreground}"/>
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Ellipse Fill="White"/>
+                                        <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="content" Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <TranslateTransform Y="0.5" X="0.5"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
                     <!-- Style for AJAX-like wait spinners http://stackoverflow.com/a/1492141 -->
                     <Style x:Key="WaitSpinnerStyle" TargetType="Control">
                         <Setter Property="Foreground" Value="#888" />

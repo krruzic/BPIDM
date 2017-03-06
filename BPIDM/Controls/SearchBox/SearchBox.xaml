@@ -68,15 +68,6 @@
                 <Rectangle Name="Logo"
                     Height="28"
                     Fill="Gray" Width="28">
-                    <Rectangle.Style>
-                        <Style>
-                            <Style.Triggers>
-                                <Trigger Property="Rectangle.IsMouseDirectlyOver" Value="True">
-                                    <Setter Property="Rectangle.Fill" Value="{StaticResource BPBlue}"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Rectangle.Style>
                     <Rectangle.OpacityMask>
                         <ImageBrush ImageSource="iconsearch.png" />
                     </Rectangle.OpacityMask>
