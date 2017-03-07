@@ -27,6 +27,30 @@ namespace BPIDM.ViewModels
             this.CategoryName = cat.CategoryName;
             this.Image = cat.Image;
             this.Description = cat.Description;
+            this.widthPercent = 0.7;
+            this.heightPercent = 0.25;
+        }
+
+        private double _widthPercent;
+        public double widthPercent
+        {
+            get { return _widthPercent; }
+            set
+            {
+                _widthPercent = value;
+                NotifyOfPropertyChange(() => widthPercent);
+            }
+        }
+
+        private double _heightPercent;
+        public double heightPercent
+        {
+            get { return _heightPercent; }
+            set
+            {
+                _heightPercent = value;
+                NotifyOfPropertyChange(() => heightPercent);
+            }
         }
 
         private string _CategoryName;
@@ -93,7 +117,30 @@ namespace BPIDM.ViewModels
             }
             this.category = item.category;
             this.isVisible = true;
+            this.widthPercent = 0.2;
+            this.heightPercent = 0.6;
             this._events = events;
+        }
+        private double _widthPercent;
+        public double widthPercent
+        {
+            get { return _widthPercent; }
+            set
+            {
+                _widthPercent = value;
+                NotifyOfPropertyChange(() => widthPercent);
+            }
+        }
+
+        private double _heightPercent;
+        public double heightPercent
+        {
+            get { return _heightPercent; }
+            set
+            {
+                _heightPercent = value;
+                NotifyOfPropertyChange(() => heightPercent);
+            }
         }
 
         private string _description;

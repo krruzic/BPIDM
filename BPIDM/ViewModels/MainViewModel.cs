@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace BPIDM.ViewModels
 {
     [Export(typeof(MainViewModel))]
-    class MainViewModel : Conductor<IScreen>, IHandleWithTask<TestEvent>, IHandle<DishDetailEvent>
+    class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>
     {
         private readonly IEventAggregator _events;
         private HeaderViewModel _Header;
@@ -38,20 +38,19 @@ namespace BPIDM.ViewModels
         {
             this.Header = Header;
             this.Footer = Footer;
-            this.MenuPane = MenuPane;
             this._events = events;
             DisplayName = "BPIDM";
             events.Subscribe(this);
+            this.MenuPane = MenuPane;
             this.ActivateItem(MenuPane);
         }
 
-        public async Task Handle(TestEvent message)
+        public void Handle(TestEvent message)
         {
-            //MenuPane = null;
             if (message.res != "BILL")
                 ActivateItem(MenuPane);
             else
-                ActivateItem(new BillSplittingViewModel());
+                ActivateItem(new BillSplittingViewModel(_events));
         }
 
         public void Handle(DishDetailEvent message)

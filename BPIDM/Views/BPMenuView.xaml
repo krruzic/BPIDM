@@ -9,45 +9,38 @@
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
-    <md:Card Width="312" Height="312">
+    <md:Card>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Source="{Binding image}" Stretch="UniformToFill" />
-            <Rectangle Grid.Row="0" Grid.RowSpan="2" Fill="White" Opacity="0.3"/>
-            <TextBlock Grid.Row="0" MaxHeight="104" VerticalAlignment="Top"
+            <Image Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Source="{Binding image}" Stretch="UniformToFill"/>
+            <Rectangle Grid.Row="0" Grid.RowSpan="2" Fill="White" Opacity="0.6"/>
+
+            <TextBlock Grid.Row="0" VerticalAlignment="Top" FontWeight="Black"
                 Style="{DynamicResource MaterialDesignHeadlineTextBlock}" 
                 Foreground="{DynamicResource PrimaryHueDarkBrush}" x:Name="title" 
                 TextAlignment="Center" TextWrapping="Wrap">TEST</TextBlock>
-            <DockPanel Grid.Row="1" VerticalAlignment="Bottom">
-                <Grid DockPanel.Dock="Bottom">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        HorizontalAlignment="Stretch" Foreground="{StaticResource BPGray}" VerticalAlignment="Bottom"
-                        FontWeight="Medium" Grid.Row="0" Grid.ColumnSpan="2">
-                        <TextBlock VerticalAlignment="Bottom" Name="description"
-                            TextWrapping="Wrap" TextAlignment="Left" 
-                            TextTrimming="CharacterEllipsis"/>
-                    </Label>
-                    <Button Margin="5" Grid.Row="0" Grid.Column="2" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" 
-                        HorizontalAlignment="Right" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
-                        x:Name="listButton">
-                        <Label ContentStringFormat="c" Content="TEST" FontWeight="Medium" Foreground="White" x:Name="price"/>
-                    </Button>
-                </Grid>
-            </DockPanel>
+            <Grid Grid.Row="1" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="1*" MinWidth="70"/>
+                </Grid.ColumnDefinitions>
+                <!--<Label
+                    HorizontalAlignment="Left" Foreground="{StaticResource BPGray}" VerticalAlignment="Bottom"
+                    FontWeight="Medium" Grid.Column="0">
+                    <TextBlock VerticalAlignment="Bottom" Name="description"
+                        TextWrapping="Wrap" TextAlignment="Left" Text="TEST ssdjflskd fdfljaksdjf alskfdja; lsdkfja;sdl kfjas dflkaj"
+                        TextTrimming="CharacterEllipsis"/>
+                </Label>-->
+                <Button Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" 
+                    HorizontalContentAlignment="Center" x:Name="listButton"
+                    ToolTipService.InitialShowDelay="100" ToolTipService.ShowDuration="5000" ToolTipService.Placement="MousePoint"
+                    ToolTipService.BetweenShowDelay="100" ToolTip="{Binding description}">
+                    <Label ContentStringFormat="c" Content="$31.99" FontWeight="Medium" Foreground="White" x:Name="price"/>
+                </Button>
+            </Grid>
         </Grid>
     </md:Card>
 </UserControl>

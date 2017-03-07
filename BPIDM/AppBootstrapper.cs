@@ -12,6 +12,7 @@ namespace BPIDM
     using System.Windows.Media.Imaging;
     using ViewModels;
     using Views;
+
     public class AppBootstrapper : BootstrapperBase
     {
         private CompositionContainer container;

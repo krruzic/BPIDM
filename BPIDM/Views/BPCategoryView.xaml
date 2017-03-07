@@ -9,24 +9,25 @@
              TextElement.FontWeight="Medium" TextElement.FontSize="12"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d">
-    <md:Card Width="136">
+    <md:Card>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="136" />
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="136" />
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" VerticalAlignment="Center" Source="{Binding Image}" Width="136" Stretch="UniformToFill" />
+            <Image Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Source="{Binding Image}" Stretch="UniformToFill" />
+            <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="White" Opacity="0.6"/>
             <StackPanel Grid.Row="0" Margin="5">
-                <TextBlock Grid.Row="0"
+                <TextBlock FontWeight="Black"
                     Style="{DynamicResource MaterialDesignTitleTextBlock}" 
                     Foreground="{DynamicResource PrimaryHueDarkBrush}" x:Name="CategoryName" 
                     TextAlignment="Center" TextWrapping="Wrap">TEST</TextBlock>
-                <!--<TextBlock Height="" TextWrapping="Wrap" VerticalAlignment="Bottom" x:Name="Description">A great way to keep fit and forget about the constant grind of IT.</TextBlock>-->
             </StackPanel>
-            <Button Margin="5" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" 
-                HorizontalAlignment="Right" VerticalAlignment="Bottom">JUMP
+            <Button Margin="5" Grid.Row="1" Style="{DynamicResource MaterialDesignRaisedDarkButton}"
+                HorizontalAlignment="Right" FontSize="10" VerticalAlignment="Bottom">JUMP
             </Button>
         </Grid>
     </md:Card>

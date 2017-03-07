@@ -6,7 +6,7 @@
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
     xmlns:Controls="clr-namespace:BPIDM.Controls" xmlns:cal="http://www.caliburnproject.org"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:bp="clr-namespace:BPIDM" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView"
+    xmlns:Utils="clr-namespace:BPIDM.Utils" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}" TextElement.FontWeight="Medium" TextElement.FontSize="14"
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
@@ -16,22 +16,30 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Resources/MainMenuStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Utils:sizePercentConverter x:Key="spc" />
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <DockPanel>
-        <ListView
-            DockPanel.Dock="Left" Background="Transparent"
-            HorizontalAlignment="Stretch" 
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-            lc:HeaderPersister.IsEnabled="True" x:Name="MenuJumperList"
-            ScrollViewer.VerticalScrollBarVisibility="Visible"
-            VirtualizingPanel.ScrollUnit="Pixel"
-            Button.Click="listView_Click"
-            Margin="0,0,10,0"
-            ItemContainerStyle="{StaticResource BPCategoryItemStyle}">
-        </ListView>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left">
+    <DockPanel Name="MenuPanel">
+            <ListView 
+                Background="Transparent"
+                x:Name="MenuJumperList" ItemsSource="{Binding MenuJumperList}"
+                VerticalAlignment="Top" Margin="5"
+                Button.Click="listView_Click"
+                ItemContainerStyle="{StaticResource BPMenuItemStyle}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="1" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Margin="5" cal:View.Model="{Binding .}" HorizontalAlignment="Left"
+                            Width="128" Height="128"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        <StackPanel Margin="10" Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left">
             <Border Background="White" MaxHeight="30" CornerRadius="3">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -87,14 +95,32 @@
                 <DataTemplate>
                     <TextBlock 
                         Text="{Binding Path=Name}" FontSize="32" Foreground="{DynamicResource PrimaryHueDarkBrush}" 
-                        FontWeight="Bold" Background="{DynamicResource MaterialDesignPaper}"/>
+                        FontWeight="Black" Background="{DynamicResource MaterialDesignPaper}"/>
                 </DataTemplate>
             </lc:HeaderPersister.HeaderTemplate>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                    <UniformGrid Columns="4" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding .}" HorizontalAlignment="Left">
+                        <ContentControl.Width>
+                            <MultiBinding Converter="{StaticResource spc}">
+                                <Binding Path="widthPercent"/>
+                                <Binding Path="ActualWidth" ElementName="MenuList"/>
+                            </MultiBinding>
+                        </ContentControl.Width>
+                        <ContentControl.Height>
+                            <MultiBinding Converter="{StaticResource spc}">
+                                <Binding Path="heightPercent"/>
+                                <Binding Path="ActualHeight" ElementName="MenuList"/>
+                            </MultiBinding>
+                        </ContentControl.Height>
+                    </ContentControl>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             <ListView.GroupStyle>
                 <GroupStyle HeaderStringFormat="" />
             </ListView.GroupStyle>

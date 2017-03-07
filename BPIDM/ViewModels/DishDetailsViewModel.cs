@@ -28,11 +28,10 @@ namespace BPIDM.ViewModels
         {
             _events.PublishOnUIThread(new TestEvent("BACK"));
         }
-        public async Task ConfirmSelection()
+        public void ConfirmSelection()
         {
             _events.PublishOnBackgroundThread(new ItemConfirmedEvent(item));
-            _events.PublishOnBackgroundThread(new TestEvent("BACK"));
-            await Task.Delay(1);
+            _events.PublishOnUIThread(new TestEvent("BACK"));
         }
     }
 }
