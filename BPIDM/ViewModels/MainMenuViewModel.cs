@@ -25,8 +25,8 @@ namespace BPIDM.ViewModels
     {
 
         public ICollectionView MenuCollection { get; set; }
-        private ObservableCollection<BPMenuViewModel> _MenuList;
-        public ObservableCollection<BPMenuViewModel> MenuList
+        private BindableCollection<BPMenuViewModel> _MenuList;
+        public BindableCollection<BPMenuViewModel> MenuList
         {
             get { return _MenuList; }
             set
@@ -36,8 +36,8 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private ObservableCollection<BPCategoryViewModel> _MenuJumperList;
-        public ObservableCollection<BPCategoryViewModel> MenuJumperList
+        private BindableCollection<BPCategoryViewModel> _MenuJumperList;
+        public BindableCollection<BPCategoryViewModel> MenuJumperList
         {
             get { return _MenuJumperList; }
             set
@@ -58,6 +58,18 @@ namespace BPIDM.ViewModels
             events.Subscribe(this);
             MenuContent = new List<BPMenuViewModel>();
             JumperContent = new List<BPCategoryViewModel>();
+            FilterButtonText = new BindableCollection<string>();
+            IsLoaded = false;
+        }
+
+        private bool isLoaded;
+        public bool IsLoaded
+        {
+            get { return isLoaded; }
+            set {
+                isLoaded = value;
+                NotifyOfPropertyChange(() => IsLoaded);
+            }
         }
 
         private string filterText;
@@ -82,6 +94,7 @@ namespace BPIDM.ViewModels
                 NotifyOfPropertyChange(() => FilterButtonText);
             }
         }
+
 
 
         // if you click the search button
@@ -131,12 +144,11 @@ namespace BPIDM.ViewModels
         protected override async void OnActivate()
         {
             base.OnActivate();
-            MenuList = new ObservableCollection<BPMenuViewModel>();
+            MenuList = new BindableCollection<BPMenuViewModel>();
             MenuJumperList = new BindableCollection<BPCategoryViewModel>();
 
             MenuCollection = CollectionViewSource.GetDefaultView(MenuList);
             MenuCollection.GroupDescriptions.Add(new PropertyGroupDescription("category"));
-            //FilterButtonText = new BindableCollection<string>();
             List<Tuple<BPCategoryViewModel, BPMenuViewModel>> menus = await FillMenu();
             // each menu item has a category item because its a tuple... 
             //this gets only distinct categories from the tuple
@@ -159,6 +171,7 @@ namespace BPIDM.ViewModels
                 Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background, new Action<BPMenuViewModel>(AddMItemToCollection), i);
             }, () =>
                 {
+                    IsLoaded = true;
                 }
             );
         }
@@ -176,6 +189,8 @@ namespace BPIDM.ViewModels
         protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
+            filterText = "";
+            IsLoaded = false;
         }
 
         public void Handle(FilterEvent message)

@@ -47,6 +47,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Column="0" Margin="5,0,0,0"
+                        IsEnabled="{Binding IsLoaded}"
                         md:HintAssist.Hint="Search Menu" x:Name="SearchBox"
                         Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                         md:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
@@ -54,7 +55,7 @@
                     <Button Grid.Column="1"
                         Style="{DynamicResource MaterialDesignToolButton}" x:Name="SearchButton"
                         Height="24" Width="24" cal:Message.Attach="[Event Click] = [Action Search()]">
-                        <md:PackIcon Kind="Magnify" Opacity=".56" />
+                        <md:PackIcon Kind="{Binding SearchImage}" Opacity=".56" />
                     </Button>
                 </Grid>
             </Border>
