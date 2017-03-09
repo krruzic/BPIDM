@@ -6,7 +6,7 @@
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:Utils="clr-namespace:BPIDM.Utils" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView"
+    mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}" TextElement.FontWeight="Medium" TextElement.FontSize="14"
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
@@ -14,9 +14,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/MainMenuStyles.xaml"/>
+                <ResourceDictionary Source="../Resources/ListStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Utils:sizePercentConverter x:Key="spc" />
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -62,23 +61,33 @@
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
                 <StackPanel Margin="10,0">
                     <StackPanel.Resources>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
                     </StackPanel.Resources>
-                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Vegetarian Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagVegetarian')]"
-                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
-                        <md:PackIcon Kind="FoodApple" Width="36" Height="36"/>
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show our Favourites" cal:Message.Attach="[Event Click] = [Action FilterButton('tagBpFavorite')]"
+                        Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                        <md:PackIcon Kind="ThumbUp" Width="36" Height="36"/>
                     </ToggleButton>
-                    <TextBlock Text="Vegetarian" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                    <TextBlock Text="BP Favourites" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                 </StackPanel>
                 <StackPanel Margin="10,0">
                     <StackPanel.Resources>
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Yellow.xaml" />
                     </StackPanel.Resources>
                     <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only our Newest Items" cal:Message.Attach="[Event Click] = [Action FilterButton('tagNew')]"
-                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                        Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         <md:PackIcon Kind="NewBox" Width="36" Height="36"/>
                     </ToggleButton>
                     <TextBlock Text="New Items" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                </StackPanel>
+                <StackPanel Margin="10,0">
+                    <StackPanel.Resources>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Lime.xaml" />
+                    </StackPanel.Resources>
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Smart Eats" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSmartEats')]"
+                        Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                        <md:PackIcon Kind="CheckboxMultipleMarkedCircleOutline" Width="36" Height="36"/>
+                    </ToggleButton>
+                    <TextBlock Text="Smart Eats" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                 </StackPanel>
                 <StackPanel Margin="10,0">
                     <StackPanel.Resources>
@@ -92,23 +101,13 @@
                 </StackPanel>
                 <StackPanel Margin="10,0">
                     <StackPanel.Resources>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml" />
                     </StackPanel.Resources>
-                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show our Favourites" cal:Message.Attach="[Event Click] = [Action FilterButton('tagBpFavorite')]"
-                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
-                        <md:PackIcon Kind="ThumbUp" Width="36" Height="36"/>
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Vegetarian Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagVegetarian')]"
+                        Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                        <md:PackIcon Kind="FoodApple" Width="36" Height="36"/>
                     </ToggleButton>
-                    <TextBlock Text="BP Favourites" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
-                </StackPanel>
-                <StackPanel Margin="10,0">
-                    <StackPanel.Resources>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Lime.xaml" />
-                    </StackPanel.Resources>
-                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Smart Eats" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSmartEats')]"
-                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
-                        <md:PackIcon Kind="CheckboxMultipleMarkedCircleOutline" Width="36" Height="36"/>
-                    </ToggleButton>
-                    <TextBlock Text="Smart Eats" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                    <TextBlock Text="Vegetarian" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>

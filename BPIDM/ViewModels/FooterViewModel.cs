@@ -4,12 +4,23 @@ using System.Windows.Data;
 
 namespace BPIDM.ViewModels
 {
-    class FooterViewModel : IHandle<ItemConfirmedEvent>
+    class FooterViewModel : PropertyChangedBase, IHandle<ItemConfirmedEvent>
     {
         private readonly IEventAggregator _events;
 
         public CollectionViewSource OrderCollection { get; set; }
         public BindableCollection<BPOrderViewModel> OrderContent { get; private set; }
+
+        private BPOrderViewModel selectedModel;
+        public BPOrderViewModel SelectedModel
+        {
+            get { return selectedModel; }
+            set
+            {
+                selectedModel = value;
+                NotifyOfPropertyChange(() => SelectedModel);
+            }
+        }
 
         public FooterViewModel(IEventAggregator events)
         {
@@ -28,6 +39,11 @@ namespace BPIDM.ViewModels
         public void Handle(ItemConfirmedEvent message)
         {
             OrderContent.Add(new BPOrderViewModel(message.item));
+        }
+
+        public void RemoveItem()
+        {
+            OrderContent.Remove(SelectedModel);
         }
     }
 }

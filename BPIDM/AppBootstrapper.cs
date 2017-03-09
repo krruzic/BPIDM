@@ -22,9 +22,6 @@ namespace BPIDM
             ConventionManager.AddElementConvention<Label>(Label.ContentProperty,
                 "Content",
                 "DataContextChanged");
-            ConventionManager.AddElementConvention<AccessText>(AccessText.TextProperty,
-                "Text",
-                "DataContextChanged");
             Initialize();
         }
 

@@ -2,7 +2,6 @@ using BPIDM.Events;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BPIDM.ViewModels
 {
@@ -111,7 +110,7 @@ namespace BPIDM.ViewModels
             this.description = item.description;
             this.tags = (List<string>)item.tags.ToObject(typeof(List<string>));
             this.tagImages = (List<string>)item.tagImages.ToObject(typeof(List<string>));
-
+            this.tagImages.Sort();
             try
             {
                 this.price = item.retail_pricing;
@@ -193,7 +192,6 @@ namespace BPIDM.ViewModels
         }
 
         private List<String> _tagImages;
-
         public List<string> tagImages
         {
             get { return _tagImages; }
@@ -327,7 +325,7 @@ namespace BPIDM.ViewModels
             return this.title;
         }
 
-        public void listButton()
+        public void ShowDish()
         {
             _events.PublishOnUIThread(new DishDetailEvent(this));
         }
@@ -341,10 +339,34 @@ namespace BPIDM.ViewModels
             this.image = item.image;
             this.description = item.description;
             this.price = item.price;
+            this.widthPercent = 0.1;
+            this.heightPercent = 0.9;
         }
 
-        private string title;
-        public string _title
+        private double _widthPercent;
+        public double widthPercent
+        {
+            get { return _widthPercent; }
+            set
+            {
+                _widthPercent = value;
+                NotifyOfPropertyChange(() => widthPercent);
+            }
+        }
+
+        private double _heightPercent;
+        public double heightPercent
+        {
+            get { return _heightPercent; }
+            set
+            {
+                _heightPercent = value;
+                NotifyOfPropertyChange(() => heightPercent);
+            }
+        }
+
+        private string _title;
+        public string title
         {
             get { return _title; }
             set

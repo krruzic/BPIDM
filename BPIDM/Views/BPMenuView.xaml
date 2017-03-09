@@ -16,7 +16,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Image Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Source="{Binding image}" Stretch="UniformToFill"/>
-            <Rectangle Grid.Row="0" Grid.RowSpan="2" Fill="White" Opacity="0.6"/>
+            <Rectangle Grid.Row="0" Grid.RowSpan="2" Fill="{DynamicResource SecondaryAccentForegroundBrush}" Opacity="0.6"/>
 
             <TextBlock Grid.Row="0" VerticalAlignment="Top" FontWeight="Black"
                 Style="{DynamicResource MaterialDesignHeadlineTextBlock}" 
@@ -35,21 +35,17 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding}" VerticalAlignment="Center" Width="36" Height="36" Margin="2,0" Opacity="0.6"/>
+                            <Rectangle VerticalAlignment="Center" Width="36" Height="36" Margin="2,0" Fill="#CCCCCC">
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="{Binding}"/>
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <!--<Label
-                    HorizontalAlignment="Left" Foreground="{StaticResource BPGray}" VerticalAlignment="Bottom"
-                    FontWeight="Medium" Grid.Column="0">
-                    <TextBlock VerticalAlignment="Bottom" Name="description"
-                        TextWrapping="Wrap" TextAlignment="Left" Text="TEST ssdjflskd fdfljaksdjf alskfdja; lsdkfja;sdl kfjas dflkaj"
-                        TextTrimming="CharacterEllipsis"/>
-                </Label>-->
                 <Button Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" 
-                    HorizontalContentAlignment="Center" x:Name="listButton"
-                    ToolTipService.InitialShowDelay="100" ToolTipService.ShowDuration="5000" ToolTipService.Placement="MousePoint"
-                    ToolTipService.BetweenShowDelay="100" ToolTip="{Binding description}">
+                    HorizontalContentAlignment="Center" x:Name="ShowDish"
+                    ToolTipService.Placement="MousePoint" ToolTip="{Binding description}">
                     <Label ContentStringFormat="c" Content="$31.99" FontWeight="Medium" Foreground="White" x:Name="price"/>
                 </Button>
             </Grid>

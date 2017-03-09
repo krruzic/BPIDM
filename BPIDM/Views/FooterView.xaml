@@ -8,34 +8,44 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <BooleanToVisibilityConverter x:Key="bvc" />
-                </ResourceDictionary>
-                <ResourceDictionary Source="../Resources/MainMenuStyles.xaml"/>
+                <ResourceDictionary Source="../Resources/ListStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Name="ScrollLeft" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Margin="5" Grid.Column="0" Name="ScrollLeft" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ListView Grid.Column="1" VerticalAlignment="Center"
-            Height="94" Background="Transparent" BorderThickness="0"
+            Background="Transparent" BorderThickness="0"
             HorizontalAlignment="Stretch" 
             ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-            x:Name="OrderList"
+            x:Name="OrderList" SelectedItem="{Binding SelectedModel}"
             ItemsSource="{Binding Path=OrderContent}"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
             VirtualizingPanel.ScrollUnit="Item"
             ItemContainerStyle="{StaticResource BPOrderItemStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding .}" />
+                    <ContentControl cal:View.Model="{Binding .}" HorizontalAlignment="Left">
+                        <ContentControl.Width>
+                            <MultiBinding Converter="{StaticResource spc}">
+                                <Binding Path="widthPercent"/>
+                                <Binding Path="ActualWidth" ElementName="OrderList"/>
+                            </MultiBinding>
+                        </ContentControl.Width>
+                        <ContentControl.Height>
+                            <MultiBinding Converter="{StaticResource spc}">
+                                <Binding Path="heightPercent"/>
+                                <Binding Path="ActualHeight" ElementName="OrderList"/>
+                            </MultiBinding>
+                        </ContentControl.Height>
+                    </ContentControl>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.ItemsPanel>
@@ -44,7 +54,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-            <Button Grid.Column="2" Name="ScrollRight" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button Grid.Column="3" Name="SubmitOrder" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="64" />
+        <Button Margin="5" Grid.Column="2" Name="ScrollRight" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Margin="5" Grid.Column="3" Name="SubmitOrder" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="64" />
     </Grid>
 </UserControl>
