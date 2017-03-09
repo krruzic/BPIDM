@@ -1,21 +1,15 @@
 namespace BPIDM
 {
     using Caliburn.Micro;
-    using Controls;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using System.ComponentModel.Composition.Hosting;
-    using System.ComponentModel.Composition.Primitives;
-    using System.Linq;
     using System.Windows.Controls;
     using System.Windows.Media.Imaging;
     using ViewModels;
-    using Views;
 
     public class AppBootstrapper : BootstrapperBase
     {
-        private CompositionContainer container;
+        private SimpleContainer container;
         private readonly SimpleContainer _container = new SimpleContainer();
         public Dictionary<string, object> settings = new Dictionary<string, object>
         {
@@ -36,29 +30,33 @@ namespace BPIDM
 
         protected override void Configure()
         {
-            container = new CompositionContainer(new AggregateCatalog(AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>()));
-            CompositionBatch batch = new CompositionBatch();
-
-            batch.AddExportedValue<IWindowManager>(new WindowManager());
-            batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-            batch.AddExportedValue(container);
-
-            container.Compose(batch);
-            _container.Singleton<IEventAggregator, EventAggregator>();
+            container = new SimpleContainer();
+            container.Singleton<IWindowManager, WindowManager>();
+            container.Singleton<IEventAggregator, EventAggregator>();
+            container.PerRequest<MainViewModel>();
+            container.PerRequest<MainMenuViewModel>();
+            container.PerRequest<HeaderViewModel>();
+            container.PerRequest<FooterViewModel>();
         }
 
-        protected override object GetInstance(Type serviceType, string key)
+        protected override object GetInstance(Type service, string key)
         {
-            string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
-            var exports = container.GetExportedValues<object>(contract);
-
-            if (exports.Count() > 0)
-            {
-                return exports.First();
-            }
-
-            throw new Exception(string.Format("Could not locate any instances of contract {0}.", contract));
+            var instance = container.GetInstance(service, key);
+            if (instance != null)
+                return instance;
+            throw new InvalidOperationException("Could not locate any instances.");
         }
+
+        protected override IEnumerable<object> GetAllInstances(Type service)
+        {
+            return container.GetAllInstances(service);
+        }
+
+        protected override void BuildUp(object instance)
+        {
+            container.BuildUp(instance);
+        }
+
         protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
         {
             DisplayRootViewFor<MainViewModel>(settings);

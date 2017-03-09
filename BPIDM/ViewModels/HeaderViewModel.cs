@@ -1,18 +1,27 @@
 using BPIDM.Events;
 using Caliburn.Micro;
-using System.ComponentModel.Composition;
 
 namespace BPIDM.ViewModels
 {
-    [Export(typeof(HeaderViewModel))]
     class HeaderViewModel : PropertyChangedBase
     {
         private readonly IEventAggregator _events;
-        [ImportingConstructor]
         public HeaderViewModel(IEventAggregator events)
         {
             _events = events;
-            this.FlagText = "Flag";
+            this.ServerName = "Trisha";
+            this.FlagText = "Flag "+this.ServerName;
+        }
+
+        private string _ServerName;
+        public string ServerName
+        {
+            get { return _ServerName; }
+            set
+            {
+                _ServerName = value;
+                NotifyOfPropertyChange(() => ServerName);
+            }
         }
 
         private string _FlagText;
@@ -28,10 +37,10 @@ namespace BPIDM.ViewModels
 
         public void FlagServer()
         {
-            if (FlagText == "Flagged!")
-                FlagText = "Flag";
+            if (FlagText == this.ServerName + " Flagged!")
+                FlagText = "Flag "+this.ServerName;
             else
-                FlagText = "Flagged!";
+                FlagText = this.ServerName+" Flagged!";
         }
 
         public void ViewBill()

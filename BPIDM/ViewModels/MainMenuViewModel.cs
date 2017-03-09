@@ -1,27 +1,22 @@
 using Caliburn.Micro;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.IO;
+using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using System;
-using BPIDM.Events;
-using System.Collections.Generic;
-using System.Windows.Input;
 using System.Windows.Threading;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Collections.ObjectModel;
 
 namespace BPIDM.ViewModels
 {
     /// <summary>
     /// Interaction logic for MainMenu.xaml
     /// </summary>
-    [Export(typeof(MainMenuViewModel))]
-    public partial class MainMenuViewModel : Screen, IHandle<FilterEvent>
+    public partial class MainMenuViewModel : Screen
     {
 
         public ICollectionView MenuCollection { get; set; }
@@ -51,14 +46,15 @@ namespace BPIDM.ViewModels
         public List<BPCategoryViewModel> JumperContent { get; private set; }
 
         private readonly IEventAggregator _events;
-        [ImportingConstructor]
         public MainMenuViewModel(IEventAggregator events)
         {
             _events = events;
             events.Subscribe(this);
             MenuContent = new List<BPMenuViewModel>();
             JumperContent = new List<BPCategoryViewModel>();
-            FilterButtonText = new BindableCollection<string>();
+            FilterButtonList = new List<string>();
+            filterText = "";
+            SearchIcon = "Magnify";
             IsLoaded = false;
         }
 
@@ -79,23 +75,34 @@ namespace BPIDM.ViewModels
             set
             {
                 filterText = value;
+                if (value == "") SearchIcon = "Magnify";
+                else SearchIcon = "Cancel";
                 NotifyOfPropertyChange(() => FilterText);
                 Search();
             }
         }
 
-        private BindableCollection<string> filterButtonText;
-        public BindableCollection<string> FilterButtonText
+        private List<string> filterButtonList;
+        public List<string> FilterButtonList
         {
-            get { return filterButtonText; }
+            get { return filterButtonList; }
             set
             {
-                filterButtonText = value;
-                NotifyOfPropertyChange(() => FilterButtonText);
+                filterButtonList = value;
+                NotifyOfPropertyChange(() => FilterButtonList);
             }
         }
 
-
+        private string searchIcon;
+        public string SearchIcon
+        {
+            get { return searchIcon; }
+            set
+            {
+                searchIcon = value;
+                NotifyOfPropertyChange(() => SearchIcon);
+            }
+        }
 
         // if you click the search button
         public void Search()
@@ -110,6 +117,41 @@ namespace BPIDM.ViewModels
                     i.isVisible = false;
             }
         }
+
+        public void SearchButton()
+        {
+            if (SearchIcon == "Cancel")
+                FilterText = "";
+        }
+
+        public void FilterButton(string f)
+        {
+            if (FilterButtonList.Contains(f))
+                FilterButtonList.Remove(f);
+            else FilterButtonList.Add(f);
+            FilterByButtons();
+        }
+
+        private void FilterByButtons()
+        {
+            foreach (BPMenuViewModel i in MenuList)
+            {
+                if (FilterButtonList.Count == 0 || !FilterButtonList.Except(i.tags).Any())
+                    i.isVisible = true;
+                else
+                    i.isVisible = false;
+            }
+        }
+
+        private void FilterOneItem(BPMenuViewModel i)
+        {
+            if (FilterButtonList.Count == 0 || !FilterButtonList.Except(i.tags).Any())
+                if (i.ToString().ToUpper().Contains(FilterText.ToUpper()) || String.IsNullOrEmpty(FilterText))
+                    i.isVisible = true;
+            else
+                i.isVisible = false;
+        }
+
 
         private async Task<List<Tuple<BPCategoryViewModel, BPMenuViewModel>>> FillMenu()
         {
@@ -183,6 +225,7 @@ namespace BPIDM.ViewModels
 
         private void AddMItemToCollection(BPMenuViewModel item)
         {
+            FilterOneItem(item);
             this.MenuList.Add(item);
         }
 
@@ -191,14 +234,6 @@ namespace BPIDM.ViewModels
             base.OnDeactivate(close);
             filterText = "";
             IsLoaded = false;
-        }
-
-        public void Handle(FilterEvent message)
-        {
-            if (FilterButtonText.Contains(message.filterstring))
-                FilterButtonText.Remove(message.filterstring);
-            else
-                FilterButtonText.Add(message.filterstring);
         }
     }
 }

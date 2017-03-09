@@ -1,11 +1,9 @@
 using BPIDM.Events;
 using Caliburn.Micro;
-using System.ComponentModel.Composition;
 using System.Windows.Data;
 
 namespace BPIDM.ViewModels
 {
-    [Export(typeof(FooterViewModel))]
     class FooterViewModel : IHandle<ItemConfirmedEvent>
     {
         private readonly IEventAggregator _events;
@@ -13,7 +11,6 @@ namespace BPIDM.ViewModels
         public CollectionViewSource OrderCollection { get; set; }
         public BindableCollection<BPOrderViewModel> OrderContent { get; private set; }
 
-        [ImportingConstructor]
         public FooterViewModel(IEventAggregator events)
         {
             _events = events;

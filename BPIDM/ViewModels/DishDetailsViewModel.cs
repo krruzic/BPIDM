@@ -1,6 +1,5 @@
 using BPIDM.Events;
 using Caliburn.Micro;
-using System.Threading.Tasks;
 
 namespace BPIDM.ViewModels
 {

@@ -1,11 +1,8 @@
 using BPIDM.Events;
 using Caliburn.Micro;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
 
 namespace BPIDM.ViewModels
 {
-    [Export(typeof(MainViewModel))]
     class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>
     {
         private readonly IEventAggregator _events;
@@ -33,7 +30,6 @@ namespace BPIDM.ViewModels
 
         public MainMenuViewModel MenuPane { get; private set; }
 
-        [ImportingConstructor]
         public MainViewModel(HeaderViewModel Header, FooterViewModel Footer, MainMenuViewModel MenuPane, IEventAggregator events)
         {
             this.Header = Header;
@@ -56,12 +52,6 @@ namespace BPIDM.ViewModels
         public void Handle(DishDetailEvent message)
         {
             this.ActivateItem(new DishDetailsViewModel(_events, message.item));
-        }
-
-        public async Task FilterButtonPressed(string fs)
-        {
-            _events.PublishOnBackgroundThread(new FilterEvent(fs));
-            await Task.Delay(1);
         }
     }
 }

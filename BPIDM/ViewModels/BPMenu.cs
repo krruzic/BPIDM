@@ -108,6 +108,7 @@ namespace BPIDM.ViewModels
             this.title = item.title;
             this.image = item.image;
             this.description = item.description;
+            this.tags = (List<string>)item.tags.ToObject(typeof(List<string>));
             try
             {
                 this.price = item.retail_pricing;

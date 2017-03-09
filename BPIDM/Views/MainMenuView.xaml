@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
-    xmlns:Controls="clr-namespace:BPIDM.Controls" xmlns:cal="http://www.caliburnproject.org"
+    xmlns:cal="http://www.caliburnproject.org"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:Utils="clr-namespace:BPIDM.Utils" mc:Ignorable="d" x:Class="BPIDM.Views.MainMenuView"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,25 +20,25 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <DockPanel Name="MenuPanel">
-            <ListView 
-                Background="Transparent"
+    <DockPanel Name="MenuPanel" LastChildFill="True">
+        <ListView 
+                Background="Transparent" DockPanel.Dock="Left"
                 x:Name="MenuJumperList" ItemsSource="{Binding MenuJumperList}"
                 VerticalAlignment="Top" Margin="5"
                 Button.Click="listView_Click"
                 ItemContainerStyle="{StaticResource BPMenuItemStyle}">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="1" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl Margin="5" cal:View.Model="{Binding .}" HorizontalAlignment="Left"
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="1" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Margin="5" cal:View.Model="{Binding .}" HorizontalAlignment="Left"
                             Width="128" Height="128"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <StackPanel Margin="10" Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left">
             <Border Background="White" MaxHeight="30" CornerRadius="3">
                 <Grid>
@@ -54,37 +54,53 @@
                         MinWidth="200" VerticalAlignment="Center" />
                     <Button Grid.Column="1"
                         Style="{DynamicResource MaterialDesignToolButton}" x:Name="SearchButton"
-                        Height="24" Width="24" cal:Message.Attach="[Event Click] = [Action Search()]">
-                        <md:PackIcon Kind="{Binding SearchImage}" Opacity=".56" />
+                        Height="24" Width="24">
+                        <md:PackIcon Kind="{Binding SearchIcon}" Opacity=".56" />
                     </Button>
                 </Grid>
             </Border>
-            <Controls:ToggleImageButton Margin="25,0,0,0" Width="48" Height="48" HightlightColor="{StaticResource MaterialYellow}"
-                NonImage="https://images.krruzic.xyz/BPIDM/new-non.png"
-                ClickedImage="https://images.krruzic.xyz/BPIDM/new-fill.png"/>
-            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" 
-                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">NEW</Label>
-
-            <Controls:ToggleImageButton Width="48" Height="48" HightlightColor="{StaticResource MaterialBlue}"
-                NonImage="https://images.krruzic.xyz/BPIDM/bpfavourite-non.png"
-                ClickedImage="https://images.krruzic.xyz/BPIDM/bpfavourite-fill.png"/>
-            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" 
-                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">BP FAVOURITES</Label>
-
-            <Controls:ToggleImageButton x:Name="TES" Width="48" Height="48" HightlightColor="{StaticResource MaterialRed}"
-                NonImage="https://images.krruzic.xyz/BPIDM/spicy-non.png"
-                ClickedImage="https://images.krruzic.xyz/BPIDM/spicy-fill.png"
-                cal:Message.Attach="[Event ImageClicked] = [Action FilterButtonPressed('testspicy')]"/>
-            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
-                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">SPICY</Label>
-
-            <Controls:ToggleImageButton Width="48" Height="48" HightlightColor="{StaticResource MaterialGreen}"
-                NonImage="https://images.krruzic.xyz/BPIDM/vegetarian-non.png"
-                ClickedImage="https://images.krruzic.xyz/BPIDM/vegetarian-fill.png"/>
-            <Label Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" 
-                FontSize="14" Foreground="Black" HorizontalContentAlignment="Left">VEGETARIAN</Label>
+            <StackPanel Margin="10,0">
+                <StackPanel.Resources>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml" />
+                </StackPanel.Resources>
+                <ToggleButton ToolTip="Click to only show Vegetarian Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagVegetarian')]"
+                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                    <md:PackIcon Kind="FoodApple" Width="36" Height="36"/>
+                </ToggleButton>
+                <TextBlock Text="Vegetarian" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+            </StackPanel>
+            <StackPanel Margin="10,0">
+                <StackPanel.Resources>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Yellow.xaml" />
+                </StackPanel.Resources>
+                <ToggleButton ToolTip="Click to only our Newest Items" cal:Message.Attach="[Event Click] = [Action FilterButton('tagNew')]"
+                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                    <md:PackIcon Kind="NewBox" Width="36" Height="36"/>
+                </ToggleButton>
+                <TextBlock Text="New Items" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+            </StackPanel>
+            <StackPanel Margin="10,0">
+                <StackPanel.Resources>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml" />
+                </StackPanel.Resources>
+                <ToggleButton ToolTip="Click to only show Spicy Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSpicy')]"
+                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                    <md:PackIcon Kind="Fire" Width="36" Height="36"/>
+                </ToggleButton>
+                <TextBlock Text="Spicy" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+            </StackPanel>
+            <StackPanel Margin="10,0">
+                <StackPanel.Resources>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
+                </StackPanel.Resources>
+                <ToggleButton ToolTip="Click to only show our Favourites" cal:Message.Attach="[Event Click] = [Action FilterButton('tagBpFavorite')]"
+                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                    <md:PackIcon Kind="ThumbUp" Width="36" Height="36"/>
+                </ToggleButton>
+                <TextBlock Text="BP Favourites" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+            </StackPanel>
         </StackPanel>
-        <ListView 
+        <ListView DockPanel.Dock="Right"
             Background="Transparent" BorderThickness="0" Margin="10,0,0,0"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             lc:HeaderPersister.IsEnabled="True" x:Name="MenuList"
