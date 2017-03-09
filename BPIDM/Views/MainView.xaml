@@ -14,21 +14,23 @@
     TextElement.FontSize="14" ShowIconOnTitleBar="False"
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
     mc:Ignorable="d" WindowState="Maximized">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="1*" MinHeight="110"/>
-        </Grid.RowDefinitions>
-        <ContentControl Grid.Row="0" x:Name="Header" VerticalAlignment="Top">
-            <ContentControl.Effect>
-                <DropShadowEffect Color="{StaticResource MaterialDesignShadow}" BlurRadius="8" Direction="270" ShadowDepth="4.5" Opacity="0.32"/>
-            </ContentControl.Effect>
-        </ContentControl>
-        <ContentControl Margin="10,0" Grid.Row="1" x:Name="ActiveItem"/>
-        <ContentControl Grid.Row="2" x:Name="Footer"/>
-    </Grid>
+    <materialDesign:DialogHost x:Name="dh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*" MinHeight="110"/>
+            </Grid.RowDefinitions>
+            <ContentControl Grid.Row="0" x:Name="Header" VerticalAlignment="Top">
+                <ContentControl.Effect>
+                    <DropShadowEffect Color="{StaticResource MaterialDesignShadow}" BlurRadius="8" Direction="270" ShadowDepth="4.5" Opacity="0.32"/>
+                </ContentControl.Effect>
+            </ContentControl>
+            <ContentControl Margin="10,0" x:Name="ActiveItem" Grid.Row="1"/>
+            <ContentControl Grid.Row="2" x:Name="Footer"/>
+        </Grid>
+    </materialDesign:DialogHost>
 </Controls:MetroWindow>

@@ -23,6 +23,14 @@ namespace BPIDM.ViewModels
             item = ci;
         }
 
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+            string ts = "Dish Building Help";
+            string hs = "Click the expanders and build your meal! When ready, hit confirm and it will be added to your order";
+            _events.PublishOnBackgroundThread(new HelpEvent(ts, hs));
+        }
+
         public void closeDetails()
         {
             _events.PublishOnUIThread(new TestEvent("BACK"));

@@ -37,6 +37,7 @@ namespace BPIDM
             container.PerRequest<MainMenuViewModel>();
             container.PerRequest<HeaderViewModel>();
             container.PerRequest<FooterViewModel>();
+            container.PerRequest<BPDialogViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

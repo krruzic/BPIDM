@@ -64,7 +64,7 @@
                     <StackPanel.Resources>
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml" />
                     </StackPanel.Resources>
-                    <ToggleButton ToolTip="Click to only show Vegetarian Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagVegetarian')]"
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Vegetarian Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagVegetarian')]"
                     Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         <md:PackIcon Kind="FoodApple" Width="36" Height="36"/>
                     </ToggleButton>
@@ -74,7 +74,7 @@
                     <StackPanel.Resources>
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Yellow.xaml" />
                     </StackPanel.Resources>
-                    <ToggleButton ToolTip="Click to only our Newest Items" cal:Message.Attach="[Event Click] = [Action FilterButton('tagNew')]"
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only our Newest Items" cal:Message.Attach="[Event Click] = [Action FilterButton('tagNew')]"
                     Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         <md:PackIcon Kind="NewBox" Width="36" Height="36"/>
                     </ToggleButton>
@@ -84,7 +84,7 @@
                     <StackPanel.Resources>
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml" />
                     </StackPanel.Resources>
-                    <ToggleButton ToolTip="Click to only show Spicy Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSpicy')]"
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Spicy Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSpicy')]"
                     Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         <md:PackIcon Kind="Fire" Width="36" Height="36"/>
                     </ToggleButton>
@@ -94,7 +94,7 @@
                     <StackPanel.Resources>
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
                     </StackPanel.Resources>
-                    <ToggleButton ToolTip="Click to only show our Favourites" cal:Message.Attach="[Event Click] = [Action FilterButton('tagBpFavorite')]"
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show our Favourites" cal:Message.Attach="[Event Click] = [Action FilterButton('tagBpFavorite')]"
                     Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         <md:PackIcon Kind="ThumbUp" Width="36" Height="36"/>
                     </ToggleButton>
@@ -104,7 +104,7 @@
                     <StackPanel.Resources>
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Lime.xaml" />
                     </StackPanel.Resources>
-                    <ToggleButton ToolTip="Click to only show Smart Eats" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSmartEats')]"
+                    <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Smart Eats" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSmartEats')]"
                     Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         <md:PackIcon Kind="CheckboxMultipleMarkedCircleOutline" Width="36" Height="36"/>
                     </ToggleButton>

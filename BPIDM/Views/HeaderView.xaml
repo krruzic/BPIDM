@@ -33,7 +33,7 @@
                     </Button>
                     <Button Margin="2" Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="Help">
                         <StackPanel Orientation="Horizontal">
-                            <md:PackIcon Kind="CommentQuestionOutline" VerticalAlignment="Center"/>
+                            <md:PackIcon Kind="Help" VerticalAlignment="Center"/>
                             <TextBlock Text="Help" Margin="4,0,0,0"/>
                         </StackPanel>
                     </Button>

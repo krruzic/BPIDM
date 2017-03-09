@@ -148,10 +148,16 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Events\DishDetailEvent.cs" />
+    <Compile Include="Events\HelpEvent.cs" />
     <Compile Include="Events\ItemConfirmedEvent.cs" />
+    <Compile Include="Events\ShowHelpEvent.cs" />
     <Compile Include="Utils\Converters.cs" />
+    <Compile Include="ViewModels\BPDialogViewModel.cs" />
     <Compile Include="Views\BPCategoryView.xaml.cs">
       <DependentUpon>BPCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BPDialogView.xaml.cs">
+      <DependentUpon>BPDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BPMenuView.xaml.cs">
       <DependentUpon>BPMenuView.xaml</DependentUpon>
@@ -167,6 +173,10 @@
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Views\BPCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BPDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

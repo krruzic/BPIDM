@@ -47,5 +47,10 @@ namespace BPIDM.ViewModels
         {
             _events.PublishOnUIThread(new TestEvent("BILL"));
         }
+
+        public void Help()
+        {
+            _events.PublishOnUIThread(new ShowHelpEvent());
+        }
     }
 }

@@ -1,3 +1,4 @@
+using BPIDM.Events;
 using Caliburn.Micro;
 using Newtonsoft.Json;
 using System;
@@ -186,6 +187,11 @@ namespace BPIDM.ViewModels
         protected override async void OnActivate()
         {
             base.OnActivate();
+            string ts = "Menu Overview Help";
+            string hs = "Try clicking the circle button with the price on a menu item to add it to your order!";
+
+            _events.PublishOnBackgroundThread(new HelpEvent(ts, hs));
+
             MenuList = new BindableCollection<BPMenuViewModel>();
             MenuJumperList = new BindableCollection<BPCategoryViewModel>();
 

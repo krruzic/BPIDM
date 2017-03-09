@@ -1,9 +1,11 @@
 using BPIDM.Events;
+using BPIDM.Views;
 using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 
 namespace BPIDM.ViewModels
 {
-    class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>
+    class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>, IHandle<ShowHelpEvent>
     {
         private readonly IEventAggregator _events;
         private HeaderViewModel _Header;
@@ -29,8 +31,9 @@ namespace BPIDM.ViewModels
         }
 
         public MainMenuViewModel MenuPane { get; private set; }
-
-        public MainViewModel(HeaderViewModel Header, FooterViewModel Footer, MainMenuViewModel MenuPane, IEventAggregator events)
+        public BPDialogViewModel dialog { get; private set; }
+        private BPDialogView dialogView;
+        public MainViewModel(HeaderViewModel Header, FooterViewModel Footer, MainMenuViewModel MenuPane, BPDialogViewModel dialog, IEventAggregator events)
         {
             this.Header = Header;
             this.Footer = Footer;
@@ -38,6 +41,9 @@ namespace BPIDM.ViewModels
             DisplayName = "BPIDM";
             events.Subscribe(this);
             this.MenuPane = MenuPane;
+            this.dialog = dialog;
+            this.dialogView = new BPDialogView();
+            ViewModelBinder.Bind(dialog, dialogView, null);
             this.ActivateItem(MenuPane);
         }
 
@@ -52,6 +58,11 @@ namespace BPIDM.ViewModels
         public void Handle(DishDetailEvent message)
         {
             this.ActivateItem(new DishDetailsViewModel(_events, message.item));
+        }
+
+        public void Handle(ShowHelpEvent message)
+        { 
+            DialogHost.Show(dialogView);
         }
     }
 }
