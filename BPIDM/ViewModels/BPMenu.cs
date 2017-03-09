@@ -2,6 +2,7 @@ using BPIDM.Events;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BPIDM.ViewModels
 {
@@ -109,6 +110,8 @@ namespace BPIDM.ViewModels
             this.image = item.image;
             this.description = item.description;
             this.tags = (List<string>)item.tags.ToObject(typeof(List<string>));
+            this.tagImages = (List<string>)item.tagImages.ToObject(typeof(List<string>));
+
             try
             {
                 this.price = item.retail_pricing;
@@ -122,6 +125,7 @@ namespace BPIDM.ViewModels
             this.heightPercent = 0.6;
             this._events = events;
         }
+
         private double _widthPercent;
         public double widthPercent
         {
@@ -185,6 +189,18 @@ namespace BPIDM.ViewModels
             {
                 _tags = value;
                 NotifyOfPropertyChange(() => tags);
+            }
+        }
+
+        private List<String> _tagImages;
+
+        public List<string> tagImages
+        {
+            get { return _tagImages; }
+            set
+            {
+                _tagImages = value;
+                NotifyOfPropertyChange(() => tagImages);
             }
         }
 

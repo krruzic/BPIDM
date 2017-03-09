@@ -18,15 +18,13 @@ namespace BPIDM
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             string appPath = Path.Combine(data, name);
             string dataPath = Path.Combine(appPath, "menu.json");
-            string imagePath = Path.Combine(appPath, "images");
-            string src = "https://jsonblob.com/api/jsonBlob/661d7e94-fcc3-11e6-a0ba-cfb86d2966d2";
+            string src = "https://images.krruzic.xyz/BPIDM/menu-min.json";
 
-            Console.WriteLine(appPath);
-            if (!Directory.Exists(appPath)) // only created after first run
+            if (!File.Exists(dataPath)) // only created after first run
             {
                 // first run of app, download JSON from server
-                DirectoryInfo di = Directory.CreateDirectory(appPath);
-                DirectoryInfo dim = Directory.CreateDirectory(imagePath);
+                if (!Directory.Exists(appPath))
+                    Directory.CreateDirectory(appPath);
                 using (var client = new WebClient())
                 {
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
@@ -34,10 +32,45 @@ namespace BPIDM
                     client.DownloadFile(src, dataPath);
                 }
             }
+            else // redownload if modified
+            {
+                if (IsResourceModified(src, File.GetLastAccessTimeUtc(dataPath)))
+                {
+                    using (var client = new WebClient())
+                    {
+                        client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                        client.Headers[HttpRequestHeader.Accept] = "application/json";
+                        File.Delete(dataPath);
+                        client.DownloadFile(new Uri(src), dataPath);
+                    }
+                }
+            }
             Application.Current.Properties["menuJSON"] = dataPath;
-
-            // caching images
             InitializeComponent();
+        }
+
+        bool IsResourceModified(string url, DateTime dateTime)
+        {
+            try
+            {
+                var request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.IfModifiedSince = dateTime;
+                request.Method = "HEAD";
+                var response = (HttpWebResponse)request.GetResponse();
+
+                return true;
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status != WebExceptionStatus.ProtocolError)
+                    throw;
+
+                var response = (HttpWebResponse)ex.Response;
+                if (response.StatusCode != HttpStatusCode.NotModified)
+                    throw;
+
+                return false;
+            }
         }
     }
 }
