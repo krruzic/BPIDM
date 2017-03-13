@@ -1,31 +1,60 @@
+using System;
 using BPIDM.Events;
 using Caliburn.Micro;
 
 namespace BPIDM.ViewModels
 {
-    class BPDialogViewModel : PropertyChangedBase, IHandle<HelpEvent>
+    class BPDialogViewModel : PropertyChangedBase
     {
-        private string helpText;
-        public string HelpText
+        internal struct HelpStruct
         {
-            get { return helpText; }
-            set
+            private string title;
+            public string Title
             {
-                helpText = value;
-                NotifyOfPropertyChange(() => HelpText);
+                get { return title; }
+                set
+                {
+                    title = value;
+                }
+            }
+
+            private string helpText;
+            public string HelpText
+            {
+                get { return helpText; }
+                set { helpText = value; }
+            }
+
+
+            public HelpStruct(string t, string h)
+            {
+                title = t;
+                helpText = h;
             }
         }
 
-        private string title;
-        public string Title
+        private HelpStruct active;
+        public HelpStruct Active
         {
-            get { return title; }
+            get { return active; }
             set
             {
-                title = value;
-                NotifyOfPropertyChange(() => Title);
+                active = value;
+                NotifyOfPropertyChange(() => Active);
             }
         }
+
+        private HelpStruct menuPane = new HelpStruct(
+            "Menu Overview Help",
+            "Try clicking the circle button with the price on a menu item to add it to your order!");
+
+        private HelpStruct dishDetails = new HelpStruct(
+            "Dish Building Help",
+            "Click the expanders and build your meal! When ready, hit confirm and it will be added to your order");
+
+        private HelpStruct billSplitting = new HelpStruct(
+            "Bill Overview Help",
+            "Here you can split your bill, or just confirm you're ready to pay. To split your bill, tap the circle that you want to represent your bill and then select items to add them to your tab");
 
         private IEventAggregator events;
         public BPDialogViewModel(IEventAggregator _events)
@@ -34,10 +63,23 @@ namespace BPIDM.ViewModels
             events.Subscribe(this);
         }
 
-        public void Handle(HelpEvent message)
+        public void setPage(string activeItem)
         {
-            this.Title = message.Title;
-            this.HelpText = message.HelpText;
+            switch (activeItem)
+            {
+                case "MainMenuViewModel":
+                    this.Active = this.menuPane;
+                    break;
+                case "DishDetailsViewModel":
+                    this.Active = this.dishDetails;
+                    break;
+                case "BillSplittingViewModel":
+                    this.Active = this.billSplitting;
+                    break;
+                default:
+                    this.Active = this.menuPane;
+                    break;
+            }
         }
     }
 }

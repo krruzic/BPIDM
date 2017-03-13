@@ -49,6 +49,7 @@ namespace BPIDM.ViewModels
         private readonly IEventAggregator _events;
         public MainMenuViewModel(IEventAggregator events)
         {
+            this.DisplayName = "MainMenuViewModel";
             _events = events;
             events.Subscribe(this);
             MenuContent = new List<BPMenuViewModel>();
@@ -187,11 +188,6 @@ namespace BPIDM.ViewModels
         protected override async void OnActivate()
         {
             base.OnActivate();
-            string ts = "Menu Overview Help";
-            string hs = "Try clicking the circle button with the price on a menu item to add it to your order!";
-
-            _events.PublishOnBackgroundThread(new HelpEvent(ts, hs));
-
             MenuList = new BindableCollection<BPMenuViewModel>();
             MenuJumperList = new BindableCollection<BPCategoryViewModel>();
 

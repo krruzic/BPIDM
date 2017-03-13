@@ -61,7 +61,9 @@ namespace BPIDM.ViewModels
         }
 
         public void Handle(ShowHelpEvent message)
-        { 
+        {
+            System.Console.WriteLine(this.ActiveItem);
+            dialog.setPage(this.ActiveItem.DisplayName);
             DialogHost.Show(dialogView);
         }
     }

@@ -15,10 +15,11 @@ namespace BPIDM.ViewModels
                 _item = value;
                 NotifyOfPropertyChange(() => item);
             }
-        } 
+        }
 
         public DishDetailsViewModel(IEventAggregator events, BPMenuViewModel ci)
         {
+            this.DisplayName = "DishDetailsViewModel";
             _events = events;
             item = ci;
         }
@@ -26,15 +27,13 @@ namespace BPIDM.ViewModels
         protected override void OnActivate()
         {
             base.OnActivate();
-            string ts = "Dish Building Help";
-            string hs = "Click the expanders and build your meal! When ready, hit confirm and it will be added to your order";
-            _events.PublishOnBackgroundThread(new HelpEvent(ts, hs));
         }
 
         public void closeDetails()
         {
             _events.PublishOnUIThread(new TestEvent("BACK"));
         }
+
         public void ConfirmSelection()
         {
             _events.PublishOnBackgroundThread(new ItemConfirmedEvent(item));

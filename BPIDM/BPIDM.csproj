@@ -148,7 +148,6 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Events\DishDetailEvent.cs" />
-    <Compile Include="Events\HelpEvent.cs" />
     <Compile Include="Events\ItemConfirmedEvent.cs" />
     <Compile Include="Events\ShowHelpEvent.cs" />
     <Compile Include="Utils\Converters.cs" />

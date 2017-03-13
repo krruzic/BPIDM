@@ -10,8 +10,8 @@
              TextElement.FontSize="14" FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              d:DesignHeight="400" d:DesignWidth="500">
     <StackPanel Margin="16" Width="400">
-        <TextBlock HorizontalAlignment="Center" FontSize="24" Text="This is an example title" x:Name="Title" Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
-        <TextBlock Margin="10,0" FontSize="14" x:Name="HelpText" Text="This is some example text for a help dialog." TextWrapping="Wrap"/>
+        <TextBlock HorizontalAlignment="Center" FontSize="24" Text="This is an example title" x:Name="Active_Title" Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+        <TextBlock Margin="10,0" FontSize="14" x:Name="Active_HelpText" Text="This is some example text for a help dialog." TextWrapping="Wrap"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button Style="{StaticResource MaterialDesignFlatButton}"
                 IsCancel="True"
