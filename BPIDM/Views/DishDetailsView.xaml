@@ -6,124 +6,144 @@
       xmlns:local="clr-namespace:BPIDM.Views"
       mc:Ignorable="d">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="2*" MinHeight="64"/>
-        </Grid.RowDefinitions>
-        <DataGrid x:Name="nutrition_data_grid" Grid.Row="0"  Margin="330,35,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="235" Visibility="Hidden" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
-                <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
-                <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
-                <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
-                <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
-                <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
-                <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
-                <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
-                <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
-                <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
-                <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
-                <DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>
-                <DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>
-                <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
-                <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-        <StackPanel Orientation="Horizontal">
-            <Image Grid.Row="0" x:Name="item_image" HorizontalAlignment="Left" Height="240" Margin="10" VerticalAlignment="Top" Width="315" Stretch="UniformToFill"/>
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Button Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
-                    <Button Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Grid.Row="0" Content="Nutrition" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14" Click="nutr_button_Click"/>
+    <Border x:Name="dish_details_border" BorderBrush="#FFD32F2F" BorderThickness="3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="2*" MinHeight="64"/>
+            </Grid.RowDefinitions>
+            <DataGrid x:Name="nutrition_data_grid" Grid.Row="0"  Margin="330,35,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="235" Visibility="Hidden" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
+                    <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
+                    <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
+                    <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
+                    <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
+                    <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
+                    <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
+                    <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
+                    <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
+                    <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
+                    <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
+                    <DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>
+                    <DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>
+                    <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
+                    <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+            <StackPanel Orientation="Horizontal">
+                <Image Grid.Row="0" x:Name="item_image" HorizontalAlignment="Left" Height="240" Margin="10" VerticalAlignment="Top" Width="315" Stretch="UniformToFill"/>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Button Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
+                        <Button Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Grid.Row="0" Content="Nutrition" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14" Click="nutr_button_Click"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="0" x:Name="item_description" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
                 </StackPanel>
-                <TextBlock Grid.Row="0" x:Name="item_description" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
             </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Expander x:Name="sides_expander" Header="Sides - (Fries Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Background="#FFE5E5E5">
-                    <StackPanel x:Name="vertical_stackpanel"  Orientation="Vertical">
+            <StackPanel Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander x:Name="sides_expander" Header="Sides - (Fries Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Background="#FFE5E5E5">
 
-                        <StackPanel x:Name="horizontal_stackpanel_1" Margin="10,4,0,0" Orientation="Horizontal">
-                            <RadioButton x:Name="fries_rbn" Margin="6" Content="Fries"/>
-                            <RadioButton x:Name="yam_fries_rbn" Margin="6" Content="Yam Fries ($2.55)"/>
-                            <RadioButton x:Name="cactus_cuts_rbn" Margin="6" Content="Cactus Cut Potatoes ($2.55)"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="167*"/>
+                            <ColumnDefinition Width="170*"/>
+                            <ColumnDefinition Width="201*"/>
+                            <ColumnDefinition Width="177*"/>
+                            <ColumnDefinition Width="249*"/>
+                            <ColumnDefinition Width="994*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <!--<StackPanel x:Name="vertical_stackpanel"  Orientation="Vertical">-->
+
+                        <!--<StackPanel x:Name="horizontal_stackpanel_1" Margin="10,4,0,0" Orientation="Horizontal">-->
+                        <RadioButton Grid.Row="0" Grid.Column="0" x:Name="fries_rbn" Margin="6" Content="Fries"/>
+                        <RadioButton Grid.Row="0" Grid.Column="1" x:Name="yam_fries_rbn" Margin="6" Content="Yam Fries ($2.55)"/>
+                        <RadioButton Grid.Row="0" Grid.Column="2" x:Name="cactus_cuts_rbn" Margin="6" Content="Cactus Cut Potatoes ($2.55)"/>
+                        <!--</StackPanel>-->
+                        <!--<StackPanel x:Name="horizontal_stackpanel_2" Margin="10,4,0,0" Orientation="Horizontal">-->
+                        <RadioButton Grid.Row="1" Grid.Column="0" x:Name="salad_caesar_rbn" Margin="6" Content="Caesar Salad"/>
+                        <RadioButton Grid.Row="1" Grid.Column="1" x:Name="salad_house_rbn" Margin="6" Content="House Salad"/>
+                        <RadioButton Grid.Row="1" Grid.Column="2" x:Name="salad_med_rbn" Margin="6" Content="Mediterranean Salad ($2.55)"/>
+                        <RadioButton Grid.Row="1" Grid.Column="3" x:Name="salad_spinach_rbn" Margin="6" Content="Spinach Salad ($2.55)"/>
+                        <!--/StackPanel>-->
+                        <!--<StackPanel x:Name="horizontal_stackpanel_3" Margin="10,4,0,0" Orientation="Horizontal">-->
+                        <RadioButton Grid.Row="2" Grid.Column="0" x:Name="soup_rbn" Margin="6" Content="Soup of the Day"/>
+                        <RadioButton Grid.Row="2" Grid.Column="1" x:Name="soup_bc_rbn" Margin="6" Content="Broccoli Cheese"/>
+                        <RadioButton Grid.Row="2" Grid.Column="2" x:Name="soup_fo_rbn" Margin="6" Content="French Onion"/>
+                        <RadioButton Grid.Row="2" Grid.Column="3" x:Name="soup_pb_rbn" Margin="6" Content="Potato Bacon"/>
+                        <Label Grid.Row="2" Grid.Column="4" x:Name="soup_up_charge" Content="                *All soups $3.00 up-charge"/>
+                        <!--</StackPanel>-->
+                        <!--<StackPanel x:Name="horizontal_stackpanel_4" Margin="10,4,0,0" Orientation="Horizontal">-->
+                        <RadioButton Grid.Row="3" Grid.Column="0" x:Name="none_rbn" Margin="6" Content="None"/>
+                        <!--</StackPanel>-->
+                        <!--</StackPanel>-->
+                    </Grid>
+                </Expander>
+                <Expander x:Name="extras_expander" Header="Extras - (Gravy &amp; Bacon Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Background="#FFE5E5E5">
+                        <StackPanel Margin="4" Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Add a Dip:"/>
+                                <ComboBox x:Name="add_dip_combo_box" Margin="2" AllowDrop="True"  IsTextSearchEnabled="False" IsTabStop="False" SelectedIndex="0" >
+                                    <Label Content="-- None --"/>
+                                    <Label Content="Creamy Alfredo"/>
+                                    <Label Content="Blue Cheese"/>
+                                    <Label Content="Bolognese"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Add Other:"/>
+                                <CheckBox x:Name="gravy_checkbox"  Content="Gravy" Margin="6"/>
+                                <CheckBox x:Name="cheese_checkbox" Content="Extra Cheese" Margin="6"/>
+                                <CheckBox x:Name="bacon_checkbox" Content="Bacon" Margin="6"/>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel x:Name="horizontal_stackpanel_2" Margin="10,4,0,0" Orientation="Horizontal">
-                            <RadioButton x:Name="salad_caesar_rbn" Margin="6" Content="Caesar Salad"/>
-                            <RadioButton x:Name="salad_house_rbn" Margin="6" Content="House Salad"/>
-                            <RadioButton x:Name="salad_med_rbn" Margin="6" Content="Mediterranean Salad ($2.55)"/>
-                            <RadioButton x:Name="salad_spinach_rbn" Margin="6" Content="Spinach Salad ($2.55)"/>
-                        </StackPanel>
-                        <StackPanel x:Name="horizontal_stackpanel_3" Margin="10,4,0,0" Orientation="Horizontal">
-                            <RadioButton x:Name="soup_rbn" Margin="6" Content="Soup of the Day"/>
-                            <RadioButton x:Name="soup_bc_rbn" Margin="6" Content="Broccoli Cheese"/>
-                            <RadioButton x:Name="soup_fo_rbn" Margin="6" Content="French Onion"/>
-                            <RadioButton x:Name="soup_pb_rbn" Margin="6" Content="Potato Bacon"/>
-                            <Label x:Name="soup_up_charge" Content="                *All soups $3.00 up-charge"/>
-                        </StackPanel>
-                        <StackPanel x:Name="horizontal_stackpanel_4" Margin="10,4,0,0" Orientation="Horizontal">
-                            <RadioButton x:Name="none_rbn" Margin="6" Content="None"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Expander>
-            <Expander x:Name="extras_expander" Header="Extras - (Gravy &amp; Bacon Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Background="#FFE5E5E5">
-                    <StackPanel Margin="4" Orientation="Horizontal">
+                    </Grid>
+                </Expander>
+                <Expander x:Name="allergies_expander" Header="Allergies - (None Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Background="#FFE5E5E5">
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="Add a Dip:"/>
-                            <ComboBox x:Name="add_dip_combo_box" Margin="2" AllowDrop="True"  IsTextSearchEnabled="False" IsTabStop="False" SelectedIndex="0" >
-                                <Label Content="-- None --"/>
-                                <Label Content="Creamy Alfredo"/>
-                                <Label Content="Blue Cheese"/>
-                                <Label Content="Bolognese"/>
-                            </ComboBox>
+                            <CheckBox x:Name="nut_allergies"  Content="Nuts" Margin="6"/>
+                            <CheckBox x:Name="shellfish_allergies" Content="Shellfish" Margin="6"/>
+                            <CheckBox x:Name="dairy_allergies" Content="Dairy" Margin="6"/>
+                            <CheckBox x:Name="gluten_allergies" Content="Gluten" Margin="6"/>
                         </StackPanel>
+                    </Grid>
+                </Expander>
+                <Expander x:Name="soi_expander" Header="Special Order Instructions - (None)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Background="#FFE5E5E5">
+                        <StackPanel Orientation="Vertical">
+                            <RichTextBox x:Name="soi_input" Height="50" />
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+                <Expander x:Name="bill_expander" Header="Bill - (Bill 1 Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Background="#FFE5E5E5">
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="Add Other:"/>
-                            <CheckBox x:Name="gravy_checkbox"  Content="Gravy" Margin="6"/>
-                            <CheckBox x:Name="cheese_checkbox" Content="Extra Cheese" Margin="6"/>
-                            <CheckBox x:Name="bacon_checkbox" Content="Bacon" Margin="6"/>
+                            <Button x:Name="add_new_bill" Content="Add Bill" Margin="4"/>
+                            <CheckBox x:Name="bill_1" Content="Bill 1" Margin="7"/>
+                            <CheckBox x:Name="bill_2" Content="Bill 2" Margin="7"/>
+                            <CheckBox x:Name="bill_3" Content="Bill 3" Margin="7"/>
                         </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Expander>
-            <Expander x:Name="allergies_expander" Header="Allergies - (None Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Background="#FFE5E5E5">
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="nut_allergies"  Content="Nuts" Margin="6"/>
-                        <CheckBox x:Name="shellfish_allergies" Content="Shellfish" Margin="6"/>
-                        <CheckBox x:Name="dairy_allergies" Content="Dairy" Margin="6"/>
-                        <CheckBox x:Name="gluten_allergies" Content="Gluten" Margin="6"/>
-                    </StackPanel>
-                </Grid>
-            </Expander>
-            <Expander x:Name="soi_expander" Header="Special Order Instructions - (None)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Background="#FFE5E5E5">
-                    <StackPanel Orientation="Vertical">
-                        <RichTextBox x:Name="soi_input" Height="50" />
-                    </StackPanel>
-                </Grid>
-            </Expander>
-            <Expander x:Name="bill_expander" Header="Bill - (Bill 1 Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Background="#FFE5E5E5">
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="add_new_bill" Content="Add Bill" Margin="4"/>
-                        <CheckBox x:Name="bill_1" Content="Bill 1" Margin="7"/>
-                        <CheckBox x:Name="bill_2" Content="Bill 2" Margin="7"/>
-                        <CheckBox x:Name="bill_3" Content="Bill 3" Margin="7"/>
-                    </StackPanel>
-                </Grid>
-            </Expander>
-        </StackPanel>
-        <DockPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="4" LastChildFill="False">
-            <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="confirmSelection" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button DockPanel.Dock="Left" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="closeDetails" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </DockPanel>
-        <Label  Grid.Row="0" x:Name="dish_name" Content="Double Bacon BBQ Burger" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Height="28" Width="172" FontSize="14"/>
-    </Grid>
+                    </Grid>
+                </Expander>
+            </StackPanel>
+            <DockPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="4" LastChildFill="False">
+                <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="confirmSelection" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button DockPanel.Dock="Left" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="closeDetails" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </DockPanel>
+            <Label  Grid.Row="0" x:Name="item_title" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Height="45" Width="172" FontSize="20"/>
+            <Label  Grid.Row="0" x:Name="item_price" ContentStringFormat="c" HorizontalAlignment="Left" Margin="213,10,0,0" VerticalAlignment="Top" Height="45" Width="80" FontSize="20"/>
+        </Grid>
+    </Border>
 </UserControl>

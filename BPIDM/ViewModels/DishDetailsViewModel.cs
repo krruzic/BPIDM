@@ -29,6 +29,11 @@ namespace BPIDM.ViewModels
             base.OnActivate();
         }
 
+        public void fries_rbn()
+        {
+            
+        }
+
         public void closeDetails()
         {
             _events.PublishOnUIThread(new TestEvent("BACK"));
