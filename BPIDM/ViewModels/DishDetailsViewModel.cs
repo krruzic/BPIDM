@@ -6,8 +6,8 @@ namespace BPIDM.ViewModels
     class DishDetailsViewModel : Screen
     {
         private readonly IEventAggregator _events;
-        private BPMenuViewModel _item;
-        public BPMenuViewModel item
+        private BPMenuItemViewModel _item;
+        public BPMenuItemViewModel item
         {
             get { return _item; }
             set
@@ -17,7 +17,7 @@ namespace BPIDM.ViewModels
             }
         }
 
-        public DishDetailsViewModel(IEventAggregator events, BPMenuViewModel ci)
+        public DishDetailsViewModel(IEventAggregator events, BPMenuItemViewModel ci)
         {
             this.DisplayName = "DishDetailsViewModel";
             _events = events;

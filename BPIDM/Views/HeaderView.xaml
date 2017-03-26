@@ -13,7 +13,7 @@
                 <StackPanel Margin="16 0 0 0">
                     <TextBlock VerticalAlignment="Center" FontSize="20">Boston Pizza Interactive Digital Menu</TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <md:PackIcon VerticalAlignment="Center" Kind="Map" Margin="2,0,2,0"/>
+                        <md:PackIcon VerticalAlignment="Center" Kind="MapMarker" Margin="2,0,2,0"/>
                         <TextBlock VerticalAlignment="Center" FontSize="16">Cross Iron Mills</TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">

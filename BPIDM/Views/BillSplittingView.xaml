@@ -10,9 +10,7 @@
         <Grid Margin="0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="7*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -20,36 +18,9 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" x:Name="label" Content="Bill Summary" HorizontalAlignment="Left" Height="30"  VerticalAlignment="Top" Width="109" />
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Label Margin="10" x:Name="lbl_Entree1" Content="Veggie Burger" HorizontalAlignment="Left" Height="54"  VerticalAlignment="Top" Width="99" RenderTransformOrigin="0.589,2.176" Background="{StaticResource MaterialBlue}"/>
-                <Label Margin="10" x:Name="lbl_Entree2" Content="Pizza Burger" HorizontalAlignment="Left" Height="54"  VerticalAlignment="Top" Width="99" Background="{StaticResource MaterialGreen}"/>
-                <Label Margin="10" x:Name="lbl_Entree3" Content="Ribber Winger" HorizontalAlignment="Left" Height="54"  VerticalAlignment="Top" Width="99" RenderTransformOrigin="2.471,2.012" Background="{StaticResource MaterialRed}"/>
-            </StackPanel>
-            <Label Grid.Row="2" Grid.ColumnSpan="4" x:Name="label1" Content="Drinks" HorizontalAlignment="Left" Height="27"  VerticalAlignment="Top" Width="75"/>
-            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Label Margin="10" x:Name="lbl_Drink1"  Content="Mugs" HorizontalAlignment="Left" Height="54"  VerticalAlignment="Top" Width="99" Background="{StaticResource MaterialGreen}"/>
-                <Label Margin="10" x:Name="lbl_Drink2" Content="7-UP" HorizontalAlignment="Left" Height="54"  VerticalAlignment="Top" Width="99" Background="{StaticResource MaterialRed}"/>
-                <Label Margin="10" x:Name="lbl_Drink3" Content="Pepsi" HorizontalAlignment="Left" Height="54"  VerticalAlignment="Top" Width="99" Background="{StaticResource MaterialBlue}"/>
-            </StackPanel>
-            <Label x:Name="label3" Content="Select Next Color for Next Bill" HorizontalAlignment="Left" Height="37"  VerticalAlignment="Top" Width="292"/>
-            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <Label x:Name="lbl_bill1" Content="$18.98" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="62" Background="{StaticResource MaterialGreen}"/>
-                    <Ellipse Fill="{StaticResource MaterialGreen}" HorizontalAlignment="Left" Height="24"  Stroke="Black" VerticalAlignment="Top" Width="24"/>
-                </StackPanel>
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <Label x:Name="lbl_bill2" Content="$21.98" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="62" Background="{StaticResource MaterialRed}"/>
-                    <Ellipse Fill="{StaticResource MaterialRed}" HorizontalAlignment="Left" Height="24"  Stroke="Black" VerticalAlignment="Top" Width="24"/>
-                </StackPanel>
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <Label x:Name="lbl_bill3" Content="$17.98" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="62" Background="{StaticResource MaterialBlue}"/>
-                    <Ellipse Fill="{StaticResource MaterialBlue}" HorizontalAlignment="Left" Height="24"  Stroke="Black" VerticalAlignment="Top" Width="24"/>
-                </StackPanel>
-                <Grid>
-                    <Ellipse Fill="{StaticResource MaterialGrey}" HorizontalAlignment="Left" Height="24"  Stroke="Black" VerticalAlignment="Top" Width="24" />
-                    <Label x:Name="lbl_Plus" Content=" +" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Center" Width="57"/>
-                </Grid>
-            </StackPanel>
+            <ListView Grid.Row="1" x:Name="billList">
+                
+            </ListView>
             <DockPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" LastChildFill="False">
                 <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Go Back" Height="64" DockPanel.Dock="Left"></Button>
                     <!--<Button Style="{StaticResource BPStandardButton}" DockPanel.Dock="Left" x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Height="66"  VerticalAlignment="Top" Width="116" />-->

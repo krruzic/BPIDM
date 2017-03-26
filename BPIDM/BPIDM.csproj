@@ -152,14 +152,14 @@
     <Compile Include="Events\ShowHelpEvent.cs" />
     <Compile Include="Utils\Converters.cs" />
     <Compile Include="ViewModels\BPDialogViewModel.cs" />
-    <Compile Include="Views\BPCategoryView.xaml.cs">
-      <DependentUpon>BPCategoryView.xaml</DependentUpon>
+    <Compile Include="Views\BPCategoryItemView.xaml.cs">
+      <DependentUpon>BPCategoryItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BPDialogView.xaml.cs">
       <DependentUpon>BPDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BPMenuView.xaml.cs">
-      <DependentUpon>BPMenuView.xaml</DependentUpon>
+    <Compile Include="Views\BPMenuItemView.xaml.cs">
+      <DependentUpon>BPMenuItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Events\TestEvent.cs" />
     <Compile Include="ViewModels\BillSplittingViewModel.cs" />
@@ -171,7 +171,7 @@
     <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Page Include="Views\BPCategoryView.xaml">
+    <Page Include="Views\BPCategoryItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,7 +179,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BPMenuView.xaml">
+    <Page Include="Views\BPMenuItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,7 +195,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BPOrderView.xaml">
+    <Page Include="Views\BPOrderItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,8 +233,8 @@
     <Compile Include="Views\BillView.xaml.cs">
       <DependentUpon>BillView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BPOrderView.xaml.cs">
-      <DependentUpon>BPOrderView.xaml</DependentUpon>
+    <Compile Include="Views\BPOrderItemView.xaml.cs">
+      <DependentUpon>BPOrderItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CurrentOrderView.xaml.cs">
       <DependentUpon>CurrentOrderView.xaml</DependentUpon>

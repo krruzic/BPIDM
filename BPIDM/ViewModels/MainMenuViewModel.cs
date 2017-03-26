@@ -21,8 +21,8 @@ namespace BPIDM.ViewModels
     {
 
         public ICollectionView MenuCollection { get; set; }
-        private BindableCollection<BPMenuViewModel> _MenuList;
-        public BindableCollection<BPMenuViewModel> MenuList
+        private BindableCollection<BPMenuItemViewModel> _MenuList;
+        public BindableCollection<BPMenuItemViewModel> MenuList
         {
             get { return _MenuList; }
             set
@@ -32,8 +32,8 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private BindableCollection<BPCategoryViewModel> _MenuJumperList;
-        public BindableCollection<BPCategoryViewModel> MenuJumperList
+        private BindableCollection<BPCategoryItemViewModel> _MenuJumperList;
+        public BindableCollection<BPCategoryItemViewModel> MenuJumperList
         {
             get { return _MenuJumperList; }
             set
@@ -43,8 +43,8 @@ namespace BPIDM.ViewModels
             }
         }
 
-        public List<BPMenuViewModel> MenuContent { get; private set; }
-        public List<BPCategoryViewModel> JumperContent { get; private set; }
+        public List<BPMenuItemViewModel> MenuContent { get; private set; }
+        public List<BPCategoryItemViewModel> JumperContent { get; private set; }
 
         private readonly IEventAggregator _events;
         public MainMenuViewModel(IEventAggregator events)
@@ -52,8 +52,8 @@ namespace BPIDM.ViewModels
             this.DisplayName = "MainMenuViewModel";
             _events = events;
             events.Subscribe(this);
-            MenuContent = new List<BPMenuViewModel>();
-            JumperContent = new List<BPCategoryViewModel>();
+            MenuContent = new List<BPMenuItemViewModel>();
+            JumperContent = new List<BPCategoryItemViewModel>();
             FilterButtonList = new List<string>();
             filterText = "";
             SearchIcon = "Magnify";
@@ -111,7 +111,7 @@ namespace BPIDM.ViewModels
         {
             if (FilterText == null)
                 return;
-            foreach (BPMenuViewModel i in MenuList)
+            foreach (BPMenuItemViewModel i in MenuList)
             {
                 if (i.ToString().ToUpper().Contains(FilterText.ToUpper()) || String.IsNullOrEmpty(FilterText))
                     i.isVisible = true;
@@ -136,7 +136,7 @@ namespace BPIDM.ViewModels
 
         private void FilterByButtons()
         {
-            foreach (BPMenuViewModel i in MenuList)
+            foreach (BPMenuItemViewModel i in MenuList)
             {
                 if (FilterButtonList.Count == 0 || !FilterButtonList.Except(i.tags).Any())
                     i.isVisible = true;
@@ -145,7 +145,7 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private void FilterOneItem(BPMenuViewModel i)
+        private void FilterOneItem(BPMenuItemViewModel i)
         {
             if (FilterButtonList.Count == 0 || !FilterButtonList.Except(i.tags).Any())
                 if (i.ToString().ToUpper().Contains(FilterText.ToUpper()) || String.IsNullOrEmpty(FilterText))
@@ -155,20 +155,20 @@ namespace BPIDM.ViewModels
         }
 
 
-        private async Task<List<Tuple<BPCategoryViewModel, BPMenuViewModel>>> FillMenu()
+        private async Task<List<Tuple<BPCategoryItemViewModel, BPMenuItemViewModel>>> FillMenu()
         {
-            List<Tuple<BPCategoryViewModel, BPMenuViewModel>> res = new List<Tuple<BPCategoryViewModel, BPMenuViewModel>>();
+            List<Tuple<BPCategoryItemViewModel, BPMenuItemViewModel>> res = new List<Tuple<BPCategoryItemViewModel, BPMenuItemViewModel>>();
             await Task.Run(() =>
             {
                 RootMenuObject jsonObj = getJsonFromFile((string)Application.Current.Properties["menuJSON"]);
                 foreach (dynamic cat in jsonObj.Menu)
                 {
-                    BPCategoryViewModel cur = new BPCategoryViewModel(cat);
+                    BPCategoryItemViewModel cur = new BPCategoryItemViewModel(cat);
                     cur.Image = cat.Content[0].image;
                     foreach (dynamic item in cat.Content)
                     {
                         item.category = cat.CategoryName;
-                        BPMenuViewModel curM = new BPMenuViewModel(item, _events);
+                        BPMenuItemViewModel curM = new BPMenuItemViewModel(item, _events);
                         res.Add(Tuple.Create(cur, curM));
                     }
                 }
@@ -188,31 +188,31 @@ namespace BPIDM.ViewModels
         protected override async void OnActivate()
         {
             base.OnActivate();
-            MenuList = new BindableCollection<BPMenuViewModel>();
-            MenuJumperList = new BindableCollection<BPCategoryViewModel>();
+            MenuList = new BindableCollection<BPMenuItemViewModel>();
+            MenuJumperList = new BindableCollection<BPCategoryItemViewModel>();
 
             MenuCollection = CollectionViewSource.GetDefaultView(MenuList);
             MenuCollection.GroupDescriptions.Add(new PropertyGroupDescription("category"));
-            List<Tuple<BPCategoryViewModel, BPMenuViewModel>> menus = await FillMenu();
+            List<Tuple<BPCategoryItemViewModel, BPMenuItemViewModel>> menus = await FillMenu();
             // each menu item has a category item because its a tuple... 
             //this gets only distinct categories from the tuple
             var cats = menus.GroupBy(t => t.Item1.CategoryName)
                                         .Select(g => g.First().Item1).ToList();
             var items = menus.Select(t => t.Item2).ToList();
 
-            IObservable<BPCategoryViewModel> catsToLoad = cats.ToObservable<BPCategoryViewModel>();
-            catsToLoad.Subscribe<BPCategoryViewModel>(c =>
+            IObservable<BPCategoryItemViewModel> catsToLoad = cats.ToObservable<BPCategoryItemViewModel>();
+            catsToLoad.Subscribe<BPCategoryItemViewModel>(c =>
             {
-                Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background, new Action<BPCategoryViewModel>(AddCategoryToCollection), c);
+                Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background, new Action<BPCategoryItemViewModel>(AddCategoryToCollection), c);
             }, () =>
             {
             }
             );
 
-            IObservable<BPMenuViewModel> itemsToLoad = items.ToObservable<BPMenuViewModel>();
-            itemsToLoad.Subscribe<BPMenuViewModel>(i =>
+            IObservable<BPMenuItemViewModel> itemsToLoad = items.ToObservable<BPMenuItemViewModel>();
+            itemsToLoad.Subscribe<BPMenuItemViewModel>(i =>
             {
-                Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background, new Action<BPMenuViewModel>(AddMItemToCollection), i);
+                Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background, new Action<BPMenuItemViewModel>(AddMItemToCollection), i);
             }, () =>
                 {
                     IsLoaded = true;
@@ -220,12 +220,12 @@ namespace BPIDM.ViewModels
             );
         }
 
-        private void AddCategoryToCollection(BPCategoryViewModel cat)
+        private void AddCategoryToCollection(BPCategoryItemViewModel cat)
         {
             this.MenuJumperList.Add(cat);
         }
 
-        private void AddMItemToCollection(BPMenuViewModel item)
+        private void AddMItemToCollection(BPMenuItemViewModel item)
         {
             FilterOneItem(item);
             this.MenuList.Add(item);
