@@ -4,8 +4,8 @@ namespace BPIDM.Events
 {
     class ItemConfirmedEvent
     {
-        public BPMenuViewModel item { get; private set; }
-        public ItemConfirmedEvent(BPMenuViewModel ci)
+        public BPMenuItemViewModel item { get; private set; }
+        public ItemConfirmedEvent(BPMenuItemViewModel ci)
         {
             this.item = ci;
         }

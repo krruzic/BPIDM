@@ -9,10 +9,10 @@ namespace BPIDM.ViewModels
         private readonly IEventAggregator _events;
 
         public CollectionViewSource OrderCollection { get; set; }
-        public BindableCollection<BPOrderViewModel> OrderContent { get; private set; }
+        public BindableCollection<BPOrderItemViewModel> OrderContent { get; private set; }
 
-        private BPOrderViewModel selectedModel;
-        public BPOrderViewModel SelectedModel
+        private BPOrderItemViewModel selectedModel;
+        public BPOrderItemViewModel SelectedModel
         {
             get { return selectedModel; }
             set
@@ -26,7 +26,7 @@ namespace BPIDM.ViewModels
         {
             _events = events;
             events.Subscribe(this);
-            OrderContent = new BindableCollection<BPOrderViewModel>();
+            OrderContent = new BindableCollection<BPOrderItemViewModel>();
             OrderCollection = new CollectionViewSource();
             OrderCollection.Source = this.OrderContent;
         }
@@ -38,7 +38,7 @@ namespace BPIDM.ViewModels
 
         public void Handle(ItemConfirmedEvent message)
         {
-            OrderContent.Add(new BPOrderViewModel(message.item));
+            OrderContent.Add(new BPOrderItemViewModel(message.item));
         }
 
         public void RemoveItem()

@@ -4,8 +4,8 @@ namespace BPIDM.Events
 {
     class DishDetailEvent
     {
-        public BPMenuViewModel item;
-        public DishDetailEvent(BPMenuViewModel ci)
+        public BPMenuItemViewModel item;
+        public DishDetailEvent(BPMenuItemViewModel ci)
         {
             this.item = ci;
         }

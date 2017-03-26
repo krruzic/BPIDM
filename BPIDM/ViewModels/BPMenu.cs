@@ -20,9 +20,9 @@ namespace BPIDM.ViewModels
         }
     }
 
-    public class BPCategoryViewModel : PropertyChangedBase
+    public class BPCategoryItemViewModel : PropertyChangedBase
     {
-        public BPCategoryViewModel(dynamic cat)
+        public BPCategoryItemViewModel(dynamic cat)
         {
             this.CategoryName = cat.CategoryName;
             this.Image = cat.Image;
@@ -84,8 +84,8 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private List<BPMenuViewModel> _Content;
-        public List<BPMenuViewModel> Content {
+        private List<BPMenuItemViewModel> _Content;
+        public List<BPMenuItemViewModel> Content {
             get { return _Content; }
             set
             {
@@ -100,10 +100,10 @@ namespace BPIDM.ViewModels
         }
     }
 
-    public class BPMenuViewModel : PropertyChangedBase
+    public class BPMenuItemViewModel : PropertyChangedBase
     {
         private readonly IEventAggregator _events;
-        public BPMenuViewModel(dynamic item, IEventAggregator events)
+        public BPMenuItemViewModel(dynamic item, IEventAggregator events)
         {
             this.title = item.title;
             this.image = item.image;
@@ -120,9 +120,12 @@ namespace BPIDM.ViewModels
             }
             this.category = item.category;
             this.isVisible = true;
-            this.widthPercent = 0.2;
-            this.heightPercent = 0.6;
+            this.widthPercent = 0.17;
+            this.heightPercent = 0.5;
             this._events = events;
+
+            this.category = category.ToUpper();
+            this.title = title.ToUpper();
         }
 
         private double _widthPercent;
@@ -331,9 +334,9 @@ namespace BPIDM.ViewModels
         }
     }
 
-    public class BPOrderViewModel : PropertyChangedBase
+    public class BPOrderItemViewModel : PropertyChangedBase
     {
-        public BPOrderViewModel(BPMenuViewModel item)
+        public BPOrderItemViewModel(BPMenuItemViewModel item)
         {
             this.title = item.title;
             this.image = item.image;

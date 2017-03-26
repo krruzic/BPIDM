@@ -16,7 +16,7 @@ namespace BPIDM.Views
         {
             for (int i = 0; i < MenuList.Items.Count; i++)
             {
-                BPMenuViewModel item = (BPMenuViewModel)MenuList.Items[i];
+                BPMenuItemViewModel item = (BPMenuItemViewModel)MenuList.Items[i];
                 if (item.category.Equals(str))
                 {
                     return i;
