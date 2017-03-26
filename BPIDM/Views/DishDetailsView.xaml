@@ -44,7 +44,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Expander x:Name="sides_expander" Header="Sides - (Fries Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander x:Name="sides_expander" Header="{Binding SidesHeader, TargetNullValue=Sides}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid Background="#FFE5E5E5">
 
                         <Grid.RowDefinitions>
@@ -56,9 +56,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="167*"/>
                             <ColumnDefinition Width="170*"/>
-                            <ColumnDefinition Width="201*"/>
-                            <ColumnDefinition Width="177*"/>
-                            <ColumnDefinition Width="249*"/>
+                            <ColumnDefinition Width="228*"/>
+                            <ColumnDefinition Width="181*"/>
+                            <ColumnDefinition Width="218*"/>
                             <ColumnDefinition Width="994*"/>
                         </Grid.ColumnDefinitions>
 
@@ -66,30 +66,30 @@
                         <!--<StackPanel x:Name="vertical_stackpanel"  Orientation="Vertical">-->
 
                         <!--<StackPanel x:Name="horizontal_stackpanel_1" Margin="10,4,0,0" Orientation="Horizontal">-->
-                        <RadioButton Grid.Row="0" Grid.Column="0" x:Name="fries_rbn" Margin="6" Content="Fries"/>
-                        <RadioButton Grid.Row="0" Grid.Column="1" x:Name="yam_fries_rbn" Margin="6" Content="Yam Fries ($2.55)"/>
-                        <RadioButton Grid.Row="0" Grid.Column="2" x:Name="cactus_cuts_rbn" Margin="6" Content="Cactus Cut Potatoes ($2.55)"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="fries_rbn" Grid.Row="0" Grid.Column="0" x:Name="fries_rbn" Margin="6" Content="Fries"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="yam_fries_rbn" Grid.Row="0" Grid.Column="1" x:Name="yam_fries_rbn" Margin="6" Content="Yam Fries ($2.55)"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="cactus_cuts_rbn" Grid.Row="0" Grid.Column="2" x:Name="cactus_cuts_rbn" Margin="6" Content="Cactus Cut Potatoes ($2.55)"/>
                         <!--</StackPanel>-->
                         <!--<StackPanel x:Name="horizontal_stackpanel_2" Margin="10,4,0,0" Orientation="Horizontal">-->
-                        <RadioButton Grid.Row="1" Grid.Column="0" x:Name="salad_caesar_rbn" Margin="6" Content="Caesar Salad"/>
-                        <RadioButton Grid.Row="1" Grid.Column="1" x:Name="salad_house_rbn" Margin="6" Content="House Salad"/>
-                        <RadioButton Grid.Row="1" Grid.Column="2" x:Name="salad_med_rbn" Margin="6" Content="Mediterranean Salad ($2.55)"/>
-                        <RadioButton Grid.Row="1" Grid.Column="3" x:Name="salad_spinach_rbn" Margin="6" Content="Spinach Salad ($2.55)"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="salad_caesar_rbn" Grid.Row="1" Grid.Column="0" x:Name="salad_caesar_rbn" Margin="6" Content="Caesar Salad"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="salad_house_rbn" Grid.Row="1" Grid.Column="1" x:Name="salad_house_rbn" Margin="6" Content="House Salad"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="salad_med_rbn" Grid.Row="1" Grid.Column="2" x:Name="salad_med_rbn" Margin="6" Content="Mediterranean Salad ($2.55)"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="salad_spinach_rbn" Grid.Row="1" Grid.Column="3" x:Name="salad_spinach_rbn" Margin="6" Content="Spinach Salad ($2.55)"/>
                         <!--/StackPanel>-->
                         <!--<StackPanel x:Name="horizontal_stackpanel_3" Margin="10,4,0,0" Orientation="Horizontal">-->
-                        <RadioButton Grid.Row="2" Grid.Column="0" x:Name="soup_rbn" Margin="6" Content="Soup of the Day"/>
-                        <RadioButton Grid.Row="2" Grid.Column="1" x:Name="soup_bc_rbn" Margin="6" Content="Broccoli Cheese"/>
-                        <RadioButton Grid.Row="2" Grid.Column="2" x:Name="soup_fo_rbn" Margin="6" Content="French Onion"/>
-                        <RadioButton Grid.Row="2" Grid.Column="3" x:Name="soup_pb_rbn" Margin="6" Content="Potato Bacon"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="soup_rbn" Grid.Row="2" Grid.Column="0" x:Name="soup_rbn" Margin="6" Content="Soup of the Day"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="soup_bc_rbn" Grid.Row="2" Grid.Column="1" x:Name="soup_bc_rbn" Margin="6" Content="Broccoli Cheese"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="soup_fo_rbn" Grid.Row="2" Grid.Column="2" x:Name="soup_fo_rbn" Margin="6" Content="French Onion"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="soup_pb_rbn" Grid.Row="2" Grid.Column="3" x:Name="soup_pb_rbn" Margin="6" Content="Potato Bacon"/>
                         <Label Grid.Row="2" Grid.Column="4" x:Name="soup_up_charge" Content="                *All soups $3.00 up-charge"/>
                         <!--</StackPanel>-->
                         <!--<StackPanel x:Name="horizontal_stackpanel_4" Margin="10,4,0,0" Orientation="Horizontal">-->
-                        <RadioButton Grid.Row="3" Grid.Column="0" x:Name="none_rbn" Margin="6" Content="None"/>
+                        <RadioButton Command="{Binding rbnChecked}" CommandParameter="none_rbn" Grid.Row="3" Grid.Column="0" x:Name="none_rbn" Margin="6" Content="None"/>
                         <!--</StackPanel>-->
                         <!--</StackPanel>-->
                     </Grid>
                 </Expander>
-                <Expander x:Name="extras_expander" Header="Extras - (Gravy &amp; Bacon Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander x:Name="extras_expander" Header="{Binding ExtrasHeader, TargetNullValue=Extras}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid Background="#FFE5E5E5">
                         <StackPanel Margin="4" Orientation="Horizontal">
                             <StackPanel Orientation="Horizontal">
@@ -110,7 +110,7 @@
                         </StackPanel>
                     </Grid>
                 </Expander>
-                <Expander x:Name="allergies_expander" Header="Allergies - (None Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander x:Name="allergies_expander" Header="{Binding AllergiesHeader, TargetNullValue=Allergies}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid Background="#FFE5E5E5">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="nut_allergies"  Content="Nuts" Margin="6"/>
@@ -120,14 +120,14 @@
                         </StackPanel>
                     </Grid>
                 </Expander>
-                <Expander x:Name="soi_expander" Header="Special Order Instructions - (None)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander x:Name="soi_expander" Header="{Binding SOIHeader, TargetNullValue='Special Order Instructions'}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid Background="#FFE5E5E5">
                         <StackPanel Orientation="Vertical">
                             <RichTextBox x:Name="soi_input" Height="50" />
                         </StackPanel>
                     </Grid>
                 </Expander>
-                <Expander x:Name="bill_expander" Header="Bill - (Bill 1 Selected)" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander x:Name="bill_expander" Header="{Binding BillHeader, TargetNullValue=Bill}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid Background="#FFE5E5E5">
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="add_new_bill" Content="Add Bill" Margin="4"/>
