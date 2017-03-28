@@ -56,5 +56,6 @@
         </ListView>
         <Button Margin="5" Grid.Column="2" Name="ScrollRight" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button Margin="5" Grid.Column="3" Name="SubmitOrder" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="64" />
+        <Label Name="lblCurrentOrder" Content="Current Order" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,19,0,0" Foreground="#DDF01717"/>
     </Grid>
 </UserControl>
