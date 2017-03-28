@@ -124,7 +124,7 @@ namespace BPIDM.ViewModels
             this.heightPercent = 0.5;
             this._events = events;
 
-            this.category = category.ToUpper();
+            //this.category = category.ToUpper();
             this.title = title.ToUpper();
         }
 
