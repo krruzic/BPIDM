@@ -38,7 +38,7 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <Button Margin="2" Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="FlagServer">
+                <Button Margin="2" Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="FlagServer" Background="{Binding Backgroundcolor}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="Flag" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding FlagText}" Margin="4,0,0,0"/>
