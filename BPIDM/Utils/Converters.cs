@@ -18,4 +18,17 @@ namespace BPIDM.Utils
             throw new NotImplementedException();
         }
     }
+
+    class colorToMDResourcePack : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            return "pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor." + (string)values[0] + ".xaml";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
