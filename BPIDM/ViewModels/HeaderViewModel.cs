@@ -11,7 +11,7 @@ namespace BPIDM.ViewModels
             _events = events;
             this.ServerName = "Trisha";
             this.FlagText = "Flag "+this.ServerName;
-            this.Backgroundcolor = "#304FFE";
+            this.AllowFlagServer = true;
         }
 
         private string _ServerName;
@@ -24,13 +24,13 @@ namespace BPIDM.ViewModels
                 NotifyOfPropertyChange(() => ServerName);
             }
         }
-        private string _Backgroundcolor;
-        public string Backgroundcolor
+        private bool _AllowFlagServer;
+        public bool AllowFlagServer
         {
-            get { return _Backgroundcolor; }
+            get { return _AllowFlagServer; }
             set {
-                _Backgroundcolor = value;
-                NotifyOfPropertyChange(() => Backgroundcolor);
+                _AllowFlagServer = value;
+                NotifyOfPropertyChange(() => AllowFlagServer);
             }
         }
 
@@ -45,20 +45,17 @@ namespace BPIDM.ViewModels
             }
         }
 
-
         public void FlagServer()
         {
+            AllowFlagServer = !AllowFlagServer;
             if (FlagText == this.ServerName + " Flagged!")
             {
                 FlagText = "Flag " + this.ServerName;
-                Backgroundcolor = "#304FFE";
             }
             else
             {
                 FlagText = this.ServerName + " Flagged!";
-                Backgroundcolor = "#FFEE30";
             }
-            
         }
 
         public void ViewBill()

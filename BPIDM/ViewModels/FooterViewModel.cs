@@ -33,6 +33,10 @@ namespace BPIDM.ViewModels
 
         public void SubmitOrder()
         {
+            foreach (BPOrderItemViewModel item in OrderContent)
+            {
+                _events.PublishOnBackgroundThread(new AddItemToBillEvent(item));
+            }
             OrderContent.Clear();
         }
 

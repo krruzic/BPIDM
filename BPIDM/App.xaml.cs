@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace BPIDM
@@ -10,7 +12,14 @@ namespace BPIDM
     /// </summary>
     public partial class App : Application
     {
+        private Task _initializingTask;
+
         public App()
+        {
+            _initializingTask = Init();
+        }
+
+        private async Task Init()
         {
             // stuff needed to download json only once :)
             Application.Current.Properties["menuJSON"] = "";
@@ -34,14 +43,14 @@ namespace BPIDM
             }
             else // redownload if modified
             {
-                if (IsResourceModified(src, File.GetLastAccessTimeUtc(dataPath)))
+                if (await IsResourceModified(src, File.GetLastAccessTimeUtc(dataPath)))
                 {
                     using (var client = new WebClient())
                     {
                         client.Headers[HttpRequestHeader.ContentType] = "application/json";
                         client.Headers[HttpRequestHeader.Accept] = "application/json";
                         File.Delete(dataPath);
-                        client.DownloadFile(new Uri(src), dataPath);
+                        client.DownloadFileAsync(new Uri(src), dataPath);
                     }
                 }
             }
@@ -49,27 +58,19 @@ namespace BPIDM
             InitializeComponent();
         }
 
-        bool IsResourceModified(string url, DateTime dateTime)
+        async Task<bool> IsResourceModified(string url, DateTime dateTime)
         {
             try
             {
-                var request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-                request.IfModifiedSince = dateTime;
-                request.Method = "HEAD";
-                var response = (HttpWebResponse)request.GetResponse();
-
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.IfModifiedSince = dateTime;
+                var request = await client.GetAsync(new Uri(url));
+                if (request.StatusCode != HttpStatusCode.NotModified) return false;
                 return true;
             }
-            catch (WebException ex)
+            catch (Exception e)
             {
-                if (ex.Status != WebExceptionStatus.ProtocolError)
-                    throw;
-
-                var response = (HttpWebResponse)ex.Response;
-                if (response.StatusCode != HttpStatusCode.NotModified)
-                    throw;
-
-                return false;
+                return true;
             }
         }
     }

@@ -13,35 +13,42 @@
                 <RowDefinition Height="6*"/>
                 <RowDefinition Height="2*" MinHeight="64"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="nutrition" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="235" Visibility="Hidden" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
-                    <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
-                    <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
-                    <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
-                    <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
-                    <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
-                    <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
-                    <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
-                    <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
-                    <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
-                    <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
-                    <DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>
-                    <DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>
-                    <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
-                    <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <StackPanel Orientation="Horizontal" x:Name="nutrition" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="235" Visibility="Hidden">
+                <Label Content="Serving Size (g)"/>
+                <Label Content="{Binding ServingSize}"/>
+                <Label Content="Calories (kcal)"/>
+                <Label Content="{Binding Calories}"/>
+                <Label Content="Total Fat (g)"/>
+                <Label Content="{Binding TotalFat}"/>
+                <Label Content="Saturated Fat (g)"/>
+                <Label Content="{Binding SaturatedFat}"/>
+                <Label Content="Trans Fat (g)"/>
+                <Label  Content="{Binding TransFat}"/>
+                <Label Content="Cholesterol (mg)"/>
+                <Label Content="{Binding Cholesterol}"/>
+                <Label Content="Sodium (mg)"/>
+                <Label Content="{Binding Sodium}"/>
+                <Label Content="Carbohydrates (g)"/>
+                <Label  Content="{Binding Carbohydrates}"/>
+                <Label Content="Protein (g)"/>
+                <Label  Content="{Binding Protein}"/>
+                <Label Content="Dietary Fibre (g)"/>
+                <Label  Content="{Binding Dietary Fibre}"/>
+                <Label Content="Sugars (g)"/>
+                <Label  Content="{Binding Sugars}"/>
+                <Label Content="Vitamin A (%DV)"/>
+                <Label Content="{Binding VitaminA}"/>
+                <Label Content="Vitamin C (%DV)"/>
+                <Label Content="{Binding VitaminC}"/>
+                <Label Content="Calcium (%DV)"/>
+                <Label Content="{Binding Calcium}"/>
+                <Label Content="Iron (%DV)"/>
+                <Label Content="{Binding Iron}"/>
+            </StackPanel>
             <Rectangle Grid.Row="0" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-            <StackPanel Orientation="Horizontal">
-                <Image Grid.Row="0" x:Name="item_image" HorizontalAlignment="Left" Height="240" Margin="10" VerticalAlignment="Top" Width="315" Stretch="UniformToFill"/>
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Button Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Grid.Row="0" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
-                        <Button Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Grid.Row="0" Content="Nutrition" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14" Click="nutr_button_Click"/>
-                    </StackPanel>
-                    <TextBlock Grid.Row="0" x:Name="item_description" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
-                </StackPanel>
+            <StackPanel>
+                <Image Grid.Row="0" x:Name="item_image" HorizontalAlignment="Left" Height="240" Margin="10" VerticalAlignment="Top" Stretch="UniformToFill"/>
+                <TextBlock Grid.Row="0" x:Name="item_description" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
             </StackPanel>
             <ScrollViewer Grid.Row="1">
                 <StackPanel Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

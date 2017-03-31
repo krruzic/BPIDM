@@ -20,11 +20,41 @@ namespace BPIDM.ViewModels
             }
         }
 
+        private NutritionInfo nutrition;
+        public NutritionInfo Nutrition
+        {
+            get { return nutrition; }
+            set
+            {
+                nutrition = value;
+                NotifyOfPropertyChange(() => Nutrition);
+            }
+        }
+
         public DishDetailsViewModel(IEventAggregator events, BPMenuItemViewModel ci)
         {
             this.DisplayName = "DishDetailsViewModel";
             _events = events;
             item = ci;
+            Nutrition =
+                new NutritionInfo
+                {
+                    ServingSize = 465,
+                    Calories = 1110,
+                    TotalFat = 77,
+                    SaturatedFat = 28,
+                    TransFat = 2,
+                    Cholesterol = 220,
+                    Sodium = 1520,
+                    Carbohydrates = 48,
+                    Protein = 53,
+                    DietaryFibre = 3,
+                    Sugars = 9,
+                    VitaminA = 25,
+                    VitaminC = 15,
+                    Calcium = 30,
+                    Iron = 35
+                };
         }
 
         protected override void OnActivate()
