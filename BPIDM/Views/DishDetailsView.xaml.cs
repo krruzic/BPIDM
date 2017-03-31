@@ -18,7 +18,7 @@ namespace BPIDM.Views
         private void nutr_button_Click(object sender, RoutedEventArgs e)
         {
             item_description.Visibility = Visibility.Hidden;
-            nutrition_data_grid.Visibility = Visibility.Visible;
+            nutrition.Visibility = Visibility.Visible;
             var data = new Nutrition
             {
                 ServingSize = "465",
@@ -37,12 +37,7 @@ namespace BPIDM.Views
                 Calcium = "30",
                 Iron = "35"
             };
-            nutrition_data_grid.Items.Add(data);
-        }
-
-        private void close_details_Click(object sender, RoutedEventArgs e)
-        {
-
+            nutrition.Items.Add(data);
         }
     }
 

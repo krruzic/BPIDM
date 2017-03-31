@@ -91,10 +91,10 @@
                 </StackPanel>
                 <StackPanel Margin="10,0">
                     <StackPanel.Resources>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepOrange.xaml" />
                     </StackPanel.Resources>
                     <ToggleButton ToolTipService.Placement="Top" ToolTip="Click to only show Spicy Dishes" cal:Message.Attach="[Event Click] = [Action FilterButton('tagSpicy')]"
-                    Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                        Width="48" Height="48" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         <md:PackIcon Kind="Fire" Width="36" Height="36"/>
                     </ToggleButton>
                     <TextBlock Text="Spicy" HorizontalAlignment="Center" FontSize="16" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
@@ -128,7 +128,7 @@
             </lc:HeaderPersister.HeaderTemplate>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="5" />
+                    <UniformGrid Columns="4" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>

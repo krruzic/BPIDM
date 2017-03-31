@@ -6,7 +6,7 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
-    <md:ColorZone Mode="PrimaryDark" Padding="8" md:ShadowAssist.ShadowDepth="Depth0" VerticalAlignment="Center">
+    <md:ColorZone Mode="PrimaryDark" Padding="8" md:ShadowAssist.ShadowDepth="Depth3" VerticalAlignment="Center">
         <DockPanel VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <Image Grid.Column="0" Source="https://images.krruzic.xyz/BPIDM/bplogo.png" Width="64" Height="64"/>
@@ -38,7 +38,7 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <Button Margin="2" Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="FlagServer">
+                <Button Margin="2" Style="{DynamicResource MaterialDesignRaisedAccentButton}" x:Name="FlagServer" Background="{Binding Backgroundcolor}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="Flag" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding FlagText}" Margin="4,0,0,0"/>

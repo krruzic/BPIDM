@@ -3,6 +3,8 @@ using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 
+
+// TODO: convert these into normal models and handle the property changes elsewhere!
 namespace BPIDM.ViewModels
 {
     public class NutritionInfo
@@ -120,8 +122,8 @@ namespace BPIDM.ViewModels
             }
             this.category = item.category;
             this.isVisible = true;
-            this.widthPercent = 0.17;
-            this.heightPercent = 0.5;
+            this.widthPercent = 0.22;
+            this.heightPercent = 0.7;
             this._events = events;
 
             //this.category = category.ToUpper();

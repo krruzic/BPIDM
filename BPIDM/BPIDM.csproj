@@ -150,7 +150,9 @@
     <Compile Include="Events\DishDetailEvent.cs" />
     <Compile Include="Events\ItemConfirmedEvent.cs" />
     <Compile Include="Events\ShowHelpEvent.cs" />
+    <Compile Include="Models\Bill.cs" />
     <Compile Include="Utils\Converters.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="ViewModels\BPDialogViewModel.cs" />
     <Compile Include="Views\BPCategoryItemView.xaml.cs">
       <DependentUpon>BPCategoryItemView.xaml</DependentUpon>
@@ -163,7 +165,6 @@
     </Compile>
     <Compile Include="Events\TestEvent.cs" />
     <Compile Include="ViewModels\BillSplittingViewModel.cs" />
-    <Compile Include="ViewModels\BillViewModel.cs" />
     <Compile Include="ViewModels\BPMenu.cs" />
     <Compile Include="ViewModels\CurrentOrderViewModel.cs" />
     <Compile Include="ViewModels\DishDetailsViewModel.cs" />
