@@ -46,19 +46,15 @@ namespace BPIDM.ViewModels
 
         private HelpStruct menuPane = new HelpStruct(
             "Menu Overview Help",
-            @"Try clicking the circle button with the price on a menu item to add 
-            it to your order!");
+            @"Try clicking the circle button with the price on a menu item to add it to your order!");
 
         private HelpStruct dishDetails = new HelpStruct(
             "Dish Building Help",
-            @"Click the expanders and build your meal! When ready, hit confirm and 
-            it will be added to your order");
+            @"Click the expanders and build your meal! When ready, hit confirm and it will be added to your order");
 
         private HelpStruct billSplitting = new HelpStruct(
             "Bill Overview Help",
-            @"Here you can split your bill, or just confirm you're ready to pay. 
-            To split your bill, tap the circle that you want to represent your bill 
-            and then select items to add them to your tab");
+            @"Here you can split your bill, or just confirm you're ready to pay. To split your bill, tap the circle that you want to represent your bill and then select items to add them to your tab");
 
         private IEventAggregator events;
         public BPDialogViewModel(IEventAggregator _events)

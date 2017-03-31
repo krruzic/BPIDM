@@ -33,6 +33,7 @@ namespace BPIDM.ViewModels
 
         public void SubmitOrder()
         {
+            //_events.PublishOnUIThread(new ShowHelpEvent());
             OrderContent.Clear();
         }
 
