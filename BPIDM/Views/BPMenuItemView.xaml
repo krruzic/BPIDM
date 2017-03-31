@@ -9,9 +9,9 @@
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              xmlns:local="clr-namespace:BPIDM.Views" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d">
-    <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" md:ColorZoneAssist.Mode="PrimaryDark" Padding="6">
+    <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" md:ColorZoneAssist.Mode="PrimaryDark" Padding="0">
         <GroupBox.Header>
-            <DockPanel MinHeight="48" MaxHeight="48">
+            <DockPanel MinHeight="48" MaxHeight="48" Margin="6">
                 <ItemsControl DockPanel.Dock="Right" ItemsSource="{Binding tagImages}" VerticalAlignment="Center" Grid.Column="0" Margin="4,0,0,4" HorizontalAlignment="Right">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -27,7 +27,7 @@
                 <TextBlock TextWrapping="Wrap" DockPanel.Dock="Left" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="White" x:Name="title">TEST</TextBlock>
             </DockPanel>
         </GroupBox.Header>
-        <Grid Margin="-6">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>

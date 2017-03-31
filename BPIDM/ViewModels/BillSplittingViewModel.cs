@@ -4,10 +4,11 @@ using BPIDM.Utils;
 using Caliburn.Micro;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Data;
 
 namespace BPIDM.ViewModels
 {
-    class BillSplittingViewModel : Screen
+    class BillSplittingViewModel : Screen, IHandle<AddItemToBillEvent>
     {
         // all possible bill colors, randomly shuffled so it isn't a gradient
         public static List<string> BillColors;
@@ -44,9 +45,9 @@ namespace BPIDM.ViewModels
             this.DisplayName = "BillSplittingViewModel";
             this._events = events;
 
-            // missing: red (app color), blue (app color), grey (weird bug?)
+            // missing: Red (app color), Indigo (app color), Grey (weird bug?)
             BillColors = new List<string>{
-                "Pink", "Purple", "DeepPurple", "Indigo", "LightBlue",
+                "Pink", "Purple", "DeepPurple", "Blue", "LightBlue",
                 "Cyan", "Teal", "Green", "LightGreen", "Lime", "Yellow",
                 "Amber", "Orange", "DeepOrange", "Brown", "BlueGrey"
             }.Shuffle();
@@ -54,6 +55,9 @@ namespace BPIDM.ViewModels
                 new Bill(BillColors[0]), new Bill(BillColors[1]),
                 new Bill(BillColors[2]), new Bill(BillColors[3])
             };
+            OrderList = new BindableCollection<BPOrderItemViewModel>();
+            OrderCollection = CollectionViewSource.GetDefaultView(OrderList);
+            events.Subscribe(this);
         }
 
         protected override void OnActivate()
@@ -71,9 +75,10 @@ namespace BPIDM.ViewModels
             BillList.Add(new Bill(BillColors[BillList.Count]));
         }
 
-        public void AddItemToOrder()
+        public void Handle(AddItemToBillEvent message)
         {
-
+            System.Console.WriteLine("Event Handled!");
+            OrderList.Add(message.item);
         }
     }
 }

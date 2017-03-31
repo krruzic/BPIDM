@@ -1,5 +1,3 @@
-using System;
-using BPIDM.Events;
 using Caliburn.Micro;
 
 namespace BPIDM.ViewModels
@@ -63,7 +61,7 @@ namespace BPIDM.ViewModels
             events.Subscribe(this);
         }
 
-        public void setPage(string activeItem)
+        public void SetPage(string activeItem)
         {
             switch (activeItem)
             {

@@ -8,42 +8,28 @@ namespace BPIDM.ViewModels
     class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>, IHandle<ShowHelpEvent>
     {
         private readonly IEventAggregator _events;
-        private HeaderViewModel _Header;
-        public HeaderViewModel Header
-        {
-            get { return _Header; }
-            set
-            {
-                _Header = value;
-                NotifyOfPropertyChange(() => Header);
-            }
-        }
 
-        private FooterViewModel _Footer;
-        public FooterViewModel Footer
-        {
-            get { return _Footer; }
-            set
-            {
-                _Footer = value;
-                NotifyOfPropertyChange(() => Footer);
-            }
-        }
-
+        public HeaderViewModel Header { get; private set; }
+        public FooterViewModel Footer { get; private set; }
+        public BillSplittingViewModel Bill { get; private set; }
         public MainMenuViewModel MenuPane { get; private set; }
-        public BPDialogViewModel dialog { get; private set; }
+        public BPDialogViewModel Dialog { get; private set; }
+
         private BPDialogView dialogView;
-        public MainViewModel(HeaderViewModel Header, FooterViewModel Footer, MainMenuViewModel MenuPane, BPDialogViewModel dialog, IEventAggregator events)
+        public MainViewModel(HeaderViewModel Header, FooterViewModel Footer, 
+            MainMenuViewModel MenuPane, BPDialogViewModel Dialog, BillSplittingViewModel Bill,
+            IEventAggregator events)
         {
             this.Header = Header;
             this.Footer = Footer;
+            this.Bill = Bill;
             this._events = events;
             DisplayName = "BPIDM";
             events.Subscribe(this);
             this.MenuPane = MenuPane;
-            this.dialog = dialog;
+            this.Dialog = Dialog;
             this.dialogView = new BPDialogView();
-            ViewModelBinder.Bind(dialog, dialogView, null);
+            ViewModelBinder.Bind(Dialog, dialogView, null);
             this.ActivateItem(MenuPane);
         }
 
@@ -63,7 +49,7 @@ namespace BPIDM.ViewModels
         public void Handle(ShowHelpEvent message)
         {
             System.Console.WriteLine(this.ActiveItem);
-            dialog.setPage(this.ActiveItem.DisplayName);
+            Dialog.SetPage(this.ActiveItem.DisplayName);
             DialogHost.Show(dialogView);
         }
     }

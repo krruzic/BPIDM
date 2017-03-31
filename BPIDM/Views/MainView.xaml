@@ -1,12 +1,12 @@
-<Controls:MetroWindow Panel.ZIndex="1000"
+<mah:MetroWindow
     x:Class="BPIDM.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cal="http://www.caliburnproject.org"
-    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:local="clr-namespace:BPIDM" xmlns:Views="clr-namespace:BPIDM.Views" 
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}" TitleForeground="White"
@@ -14,7 +14,7 @@
     TextElement.FontSize="14" ShowIconOnTitleBar="False"
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
     mc:Ignorable="d" WindowState="Maximized">
-    <materialDesign:DialogHost x:Name="dh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <md:DialogHost x:Name="dh" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="6*" />
@@ -24,9 +24,9 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <ContentControl Grid.Row="0" x:Name="Header" VerticalAlignment="Top" Panel.ZIndex="-100"/>
+            <ContentControl Grid.Row="0" x:Name="Header" VerticalAlignment="Top"/>
             <ContentControl Margin="10,-10" x:Name="ActiveItem" Grid.Row="1"/>
             <ContentControl Grid.Row="2" x:Name="Footer"/>
         </Grid>
-    </materialDesign:DialogHost>
-</Controls:MetroWindow>
+    </md:DialogHost>
+</mah:MetroWindow>

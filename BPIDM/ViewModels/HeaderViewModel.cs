@@ -45,7 +45,6 @@ namespace BPIDM.ViewModels
             }
         }
 
-
         public void FlagServer()
         {
             if (FlagText == this.ServerName + " Flagged!")

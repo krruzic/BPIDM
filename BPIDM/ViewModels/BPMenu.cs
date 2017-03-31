@@ -9,6 +9,50 @@ namespace BPIDM.ViewModels
 {
     public class NutritionInfo
     {
+        private int _Calcium;
+        public int Calcium { get; internal set; }
+
+        private int _Calories;
+        public int Calories { get; internal set; }
+
+        private int _Carbohydrates;
+        public int Carbohydrates { get; internal set; }
+
+        private int _Cholesterol;
+        public int Cholesterol { get; internal set; }
+
+        private int _DietaryFibre;
+        public int DietaryFibre { get; internal set; }
+
+        private int _Iron;
+        public int Iron { get; internal set; }
+
+        private int _Protein;
+        public int Protein { get; internal set; }
+
+        private int _SaturatedFat;
+        public int SaturatedFat { get; internal set; }
+
+        private int _ServingSize;
+        public int ServingSize { get; internal set; }
+
+        private int _Sodium;
+        public int Sodium { get; internal set; }
+
+        private int _Sugars;
+        public int Sugars { get; internal set; }
+
+        private int _TotalFat;
+        public int TotalFat { get; internal set; }
+
+        private int _TransFat;
+        public int TransFat { get; internal set; }
+
+        private int _VitaminA;
+        public int VitaminA { get; internal set; }
+
+        private int _VitaminC;
+        public int VitaminC { get; internal set; }
     }
     public class RootMenuObject
     {
@@ -27,6 +71,7 @@ namespace BPIDM.ViewModels
         public BPCategoryItemViewModel(dynamic cat)
         {
             this.CategoryName = cat.CategoryName;
+            this.CategoryName = CategoryName.ToUpper();
             this.Image = cat.Image;
             this.Description = cat.Description;
             this.widthPercent = 0.7;
@@ -126,7 +171,7 @@ namespace BPIDM.ViewModels
             this.heightPercent = 0.7;
             this._events = events;
 
-            this.category = category.ToUpper();
+            //this.category = category.ToUpper();
             this.title = title.ToUpper();
         }
 

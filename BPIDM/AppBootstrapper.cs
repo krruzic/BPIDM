@@ -34,6 +34,7 @@ namespace BPIDM
             container.PerRequest<MainMenuViewModel>();
             container.PerRequest<HeaderViewModel>();
             container.PerRequest<FooterViewModel>();
+            container.PerRequest<BillSplittingViewModel>();
             container.PerRequest<BPDialogViewModel>();
         }
 

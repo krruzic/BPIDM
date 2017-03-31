@@ -10,8 +10,6 @@ namespace BPIDM.Views
         public HeaderView()
         {
             InitializeComponent();
-
         }
-        
     }
 }

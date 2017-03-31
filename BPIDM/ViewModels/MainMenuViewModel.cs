@@ -1,4 +1,3 @@
-using BPIDM.Events;
 using Caliburn.Micro;
 using Newtonsoft.Json;
 using System;
@@ -43,17 +42,12 @@ namespace BPIDM.ViewModels
             }
         }
 
-        public List<BPMenuItemViewModel> MenuContent { get; private set; }
-        public List<BPCategoryItemViewModel> JumperContent { get; private set; }
-
         private readonly IEventAggregator _events;
         public MainMenuViewModel(IEventAggregator events)
         {
             this.DisplayName = "MainMenuViewModel";
             _events = events;
             events.Subscribe(this);
-            MenuContent = new List<BPMenuItemViewModel>();
-            JumperContent = new List<BPCategoryItemViewModel>();
             FilterButtonList = new List<string>();
             filterText = "";
             SearchIcon = "Magnify";
@@ -78,7 +72,7 @@ namespace BPIDM.ViewModels
             {
                 filterText = value;
                 if (value == "") SearchIcon = "Magnify";
-                else SearchIcon = "Cancel";
+                else SearchIcon = "Close";
                 NotifyOfPropertyChange(() => FilterText);
                 Search();
             }
@@ -122,7 +116,7 @@ namespace BPIDM.ViewModels
 
         public void SearchButton()
         {
-            if (SearchIcon == "Cancel")
+            if (SearchIcon == "Close")
                 FilterText = "";
         }
 

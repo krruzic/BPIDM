@@ -24,7 +24,7 @@
                 Background="Transparent" DockPanel.Dock="Left"
                 x:Name="MenuJumperList" ItemsSource="{Binding MenuJumperList}"
                 VerticalAlignment="Top" Margin="5"
-                Button.Click="listView_Click"
+                MouseLeftButtonUp="listView_Click"
                 ItemContainerStyle="{StaticResource BPMenuItemStyle}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

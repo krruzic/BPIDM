@@ -147,6 +147,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Events\AddItemToBillEvent.cs" />
     <Compile Include="Events\DishDetailEvent.cs" />
     <Compile Include="Events\ItemConfirmedEvent.cs" />
     <Compile Include="Events\ShowHelpEvent.cs" />
