@@ -20,7 +20,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button Margin="5" Grid.Column="0" Name="ScrollLeft" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Margin="5" Grid.Column="0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center" cal:Message.Attach="ScrollLeft($view)"/>
         <ListView Grid.Column="1" VerticalAlignment="Center"
             Background="Transparent" BorderThickness="0"
             HorizontalAlignment="Stretch" 
@@ -28,11 +28,11 @@
             x:Name="OrderList" SelectedItem="{Binding SelectedModel}"
             ItemsSource="{Binding Path=OrderContent}"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-            VirtualizingPanel.ScrollUnit="Item"
+            VirtualizingPanel.ScrollUnit="Pixel"
             ItemContainerStyle="{StaticResource BPOrderItemStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding .}" HorizontalAlignment="Left">
+                    <ContentControl cal:View.Context="Current" cal:View.Model="{Binding .}" HorizontalAlignment="Left">
                         <ContentControl.Width>
                             <MultiBinding Converter="{StaticResource spc}">
                                 <Binding Path="widthPercent"/>
@@ -54,7 +54,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Button Margin="5" Grid.Column="2" Name="ScrollRight" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Margin="5" Grid.Column="2" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center" cal:Message.Attach="ScrollRight($view)"/>
         <Button Margin="5" Grid.Column="3" Name="SubmitOrder" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="64" />
     </Grid>
 </UserControl>

@@ -167,7 +167,6 @@
     <Compile Include="Events\TestEvent.cs" />
     <Compile Include="ViewModels\BillSplittingViewModel.cs" />
     <Compile Include="ViewModels\BPMenu.cs" />
-    <Compile Include="ViewModels\CurrentOrderViewModel.cs" />
     <Compile Include="ViewModels\DishDetailsViewModel.cs" />
     <Compile Include="ViewModels\FooterViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModel.cs" />
@@ -197,11 +196,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BPOrderItemView.xaml">
+    <Page Include="Views\BPOrderItem\Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CurrentOrderView.xaml">
+    <Page Include="Views\BPOrderItem\Current.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,11 +234,11 @@
     <Compile Include="Views\BillView.xaml.cs">
       <DependentUpon>BillView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BPOrderItemView.xaml.cs">
-      <DependentUpon>BPOrderItemView.xaml</DependentUpon>
+    <Compile Include="Views\BPOrderItem\Bill.xaml.cs">
+      <DependentUpon>Bill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CurrentOrderView.xaml.cs">
-      <DependentUpon>CurrentOrderView.xaml</DependentUpon>
+    <Compile Include="Views\BPOrderItem\Current.xaml.cs">
+      <DependentUpon>Current.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DishDetailsView.xaml.cs">
       <DependentUpon>DishDetailsView.xaml</DependentUpon>

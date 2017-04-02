@@ -147,33 +147,12 @@ namespace BPIDM.ViewModels
         }
     }
 
-    public class BPMenuItemViewModel : PropertyChangedBase
+    public abstract class BPBaseItemViewModel : PropertyChangedBase
     {
-        private readonly IEventAggregator _events;
-        public BPMenuItemViewModel(dynamic item, IEventAggregator events)
-        {
-            this.title = item.title;
-            this.image = item.image;
-            this.description = item.description;
-            this.tags = (List<string>)item.tags.ToObject(typeof(List<string>));
-            this.tagImages = (List<string>)item.tagImages.ToObject(typeof(List<string>));
-            this.tagImages.Sort();
-            try
-            {
-                this.price = item.retail_pricing;
-            } catch
-            {
-                this.price = 4.99;
-            }
-            this.category = item.category;
-            this.isVisible = true;
-            this.widthPercent = 0.22;
-            this.heightPercent = 0.7;
-            this._events = events;
+        public BPBaseItemViewModel() { }
 
-            //this.category = category.ToUpper();
-            this.title = title.ToUpper();
-        }
+        private IEventAggregator _events;
+        public IEventAggregator events { get { return _events; } set { _events = value; } }
 
         private double _widthPercent;
         public double widthPercent
@@ -241,7 +220,7 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private List<String> _tagImages;
+        private List<string> _tagImages;
         public List<string> tagImages
         {
             get { return _tagImages; }
@@ -252,7 +231,7 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private List<String> _option_groups;
+        private List<string> _option_groups;
         public List<string> option_groups
         {
             get { return _option_groups; }
@@ -374,88 +353,96 @@ namespace BPIDM.ViewModels
         {
             return this.title;
         }
+    }
+
+    public class BPMenuItemViewModel : BPBaseItemViewModel
+    {
+        public BPMenuItemViewModel(dynamic item, IEventAggregator events)
+        {
+            this.title = item.title;
+            this.image = item.image;
+            this.description = item.description;
+            this.tags = (List<string>)item.tags.ToObject(typeof(List<string>));
+            this.tagImages = (List<string>)item.tagImages.ToObject(typeof(List<string>));
+            this.tagImages.Sort();
+            try
+            {
+                this.price = item.retail_pricing;
+            }
+            catch
+            {
+                this.price = 4.99;
+            }
+            this.category = item.category;
+            this.isVisible = true;
+            this.widthPercent = 0.22;
+            this.heightPercent = 0.7;
+            this.events = events;
+
+            this.category = category.ToUpper();
+            this.title = title.ToUpper();
+        }
 
         public void ShowDish()
         {
-            _events.PublishOnUIThread(new DishDetailEvent(this));
+            events.PublishOnUIThread(new DishDetailEvent(new BPOrderItemViewModel(this)));
         }
     }
 
-    public class BPOrderItemViewModel : PropertyChangedBase
+    public class BPOrderItemViewModel : BPBaseItemViewModel
     {
+        public BPOrderItemViewModel()
+        {
+            this.widthPercent = 0.3;
+            this.heightPercent = 0.85;
+        }
+
         public BPOrderItemViewModel(BPMenuItemViewModel item)
         {
             this.title = item.title;
             this.image = item.image;
             this.description = item.description;
+            this.tags = item.tags;
+            this.tagImages = item.tagImages;
             this.price = item.price;
-            this.widthPercent = 0.1;
-            this.heightPercent = 0.9;
+
+            this.category = item.category;
+            this.isVisible = true;
+            this.widthPercent = 0.3;
+            this.heightPercent = 0.85;
+            this.events = item.events;
         }
 
-        private double _widthPercent;
-        public double widthPercent
+        private string _sidesSelected;
+        public string sidesSelected
         {
-            get { return _widthPercent; }
+            get { return _sidesSelected; }
             set
             {
-                _widthPercent = value;
-                NotifyOfPropertyChange(() => widthPercent);
+                _sidesSelected = value;
+                NotifyOfPropertyChange(() => sidesSelected);
             }
         }
 
-        private double _heightPercent;
-        public double heightPercent
+        private string _extrasSelected;
+        public string extrasSelected
         {
-            get { return _heightPercent; }
+            get { return _extrasSelected; }
             set
             {
-                _heightPercent = value;
-                NotifyOfPropertyChange(() => heightPercent);
+                _extrasSelected = value;
+                NotifyOfPropertyChange(() => extrasSelected);
             }
         }
 
-        private string _title;
-        public string title
+        private string _specialInstructions;
+        public string specialInstructions
         {
-            get { return _title; }
+            get { return _specialInstructions; }
             set
             {
-                _title = value;
-                NotifyOfPropertyChange(() => title);
-            }
-        }
-
-        private string _image;
-        public string image
-        {
-            get { return _image; }
-            set
-            {
-                _image = value;
-                NotifyOfPropertyChange(() => image);
-            }
-        }
-
-        private string _description;
-        public string description
-        {
-            get { return _description; }
-            set
-            {
-                _description = value;
-                NotifyOfPropertyChange(() => description);
-            }
-        }
-
-        private double _price;
-        public double price
-        {
-            get { return _price; }
-            set
-            {
-                _price = value;
-                NotifyOfPropertyChange(() => price);
+                _specialInstructions = value;
+                NotifyOfPropertyChange(() => specialInstructions);
             }
         }
     }

@@ -1,6 +1,8 @@
 using BPIDM.Events;
 using Caliburn.Micro;
+using System.Windows.Controls;
 using System.Windows.Data;
+using Xceed.Wpf.Toolkit.Core.Utilities;
 
 namespace BPIDM.ViewModels
 {
@@ -42,12 +44,32 @@ namespace BPIDM.ViewModels
 
         public void Handle(ItemConfirmedEvent message)
         {
-            OrderContent.Add(new BPOrderItemViewModel(message.item));
+            OrderContent.Add((BPOrderItemViewModel)(BPBaseItemViewModel) message.item);
         }
 
         public void RemoveItem()
         {
             OrderContent.Remove(SelectedModel);
         }
+
+        public void TriggerEdit(BPOrderItemViewModel dataContext)
+        {
+            System.Console.WriteLine("TEST");
+        }
+
+        public void ScrollLeft(UserControl view)
+        {
+            ListView OrderList = (ListView)view.FindName("OrderList");
+            ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(OrderList);
+            sv.PageLeft();
+        }
+
+        public void ScrollRight(UserControl view)
+        {
+            ListView OrderList = (ListView)view.FindName("OrderList");
+            ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(OrderList);
+            sv.PageRight();
+        }
     }
 }
+
