@@ -388,7 +388,7 @@ namespace BPIDM.ViewModels
             this.title = item.title;
             this.image = item.image;
             this.description = item.description;
-            this.price = item.price;
+            this.price = item.price;           
             this.widthPercent = 0.1;
             this.heightPercent = 0.9;
         }
@@ -457,6 +457,6 @@ namespace BPIDM.ViewModels
                 _price = value;
                 NotifyOfPropertyChange(() => price);
             }
-        }
+        }      
     }
 }
