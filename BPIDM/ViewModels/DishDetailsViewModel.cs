@@ -21,43 +21,12 @@ namespace BPIDM.ViewModels
                 NotifyOfPropertyChange(() => item);
             }
         }
-
-        private NutritionInfo nutrition;
-        //public NutritionInfo Nutrition
-        //{
-        //    get { return nutrition; }
-        //    set
-        //    {
-        //        nutrition = value;
-        //        NotifyOfPropertyChange(() => Nutrition);
-        //    }
-        //}                  
-
+                        
         public DishDetailsViewModel(IEventAggregator events, BPMenuItemViewModel ci)
         {
             this.DisplayName = "DishDetailsViewModel";
             _events = events;
-            item = ci;
-            //NutritionInfos =
-            //    new ObservableCollection<Nutrition>
-            //    {
-            //        new Nutrition { ServingSize = 465,
-            //                        Calories = 1110,
-            //                        TotalFat = 77,
-            //                        SaturatedFat = 28,
-            //                        TransFat = 2,
-            //                        Cholesterol = 220,
-            //                        Sodium = 1520,
-            //                        Carbohydrates = 48,
-            //                        Protein = 53,
-            //                        DietaryFibre = 3,
-            //                        Sugars = 9,
-            //                        VitaminA = 25,
-            //                        VitaminC = 15,
-            //                        Calcium = 30,
-            //                        Iron = 35
-            //                    }
-            //    };
+            item = ci;            
 
             NutritionInfos = new ObservableCollection<Nutrition>
             {
@@ -75,12 +44,10 @@ namespace BPIDM.ViewModels
                                     VitaminA = 25,
                                     VitaminC = 15,
                                     Calcium = 30,
-                                    Iron = 35},
-                //new Employee { EmployeeName = "Josh"},
+                                    Iron = 35},                
             };
         }
-        public ObservableCollection<Nutrition> NutritionInfos { get; set; }
-        //public ObservableCollection<Nutrition> NutritionInfos { get; set; }
+        public ObservableCollection<Nutrition> NutritionInfos { get; set; }        
 
         public class Nutrition
         {
@@ -102,32 +69,7 @@ namespace BPIDM.ViewModels
             public int VitaminC { get; set; }
             public int Calcium { get; set; }
             public int Iron { get; set; }
-        }
-
-
-        //public class Nutrition
-        //{
-        //    public Nutrition()
-        //    {
-
-        //    }
-        //    public int ServingSize { get; set; }
-        //    public int Calories { get; set; }
-        //    public int TotalFat { get; set; }
-        //    public int SaturatedFat { get; set; }
-        //    public int TransFat { get; set; }
-        //    public int Cholesterol { get; set; }
-        //    public int Sodium { get; set; }
-        //    public int Carbohydrates { get; set; }
-        //    public int Protein { get; set; }
-        //    public int DietaryFibre { get; set; }
-        //    public int Sugars { get; set; }
-        //    public int VitaminA { get; set; }
-        //    public int VitaminC { get; set; }
-        //    public int Calcium { get; set; }
-        //    public int Iron { get; set; }
-
-        //}
+        }        
 
         protected override void OnActivate()
         {
@@ -266,15 +208,8 @@ namespace BPIDM.ViewModels
                         }
                     }
                 }                
-            }
-            //if (checkbox == "False")
-            //{
-            //    setAppropriateLabel("", header);
-            //}
-            //else
-            //{
-            setAppropriateLabel(labelTitle, header);
-            //}
+            }            
+            setAppropriateLabel(labelTitle, header);           
         }
 
         // Handle any changes to the Special Order Instructions Text box
@@ -298,40 +233,15 @@ namespace BPIDM.ViewModels
             }
 
             if(sectionHeader + "Header" == "ExtrasHeader")
-            {
-                //if(ExtrasHeader != "Extras" && ExtrasHeader != null)
-                //{
-                //    if (ExtrasHeader.Contains(" & More") == false)
-                //    {
-                //        ExtrasHeader = ExtrasHeader + " & More";
-                //    }                                     
-                //}
-                //else
-                //{
-                    ExtrasHeader = sectionHeader + labelTitle;
-                //}
-                
+            {                
+                ExtrasHeader = sectionHeader + labelTitle;                             
             }
 
             // If the section header == Allergies Header then check if the section header has 
             // already been set, if it's been set,  and it contains the & More string, 
             if(sectionHeader + "Header" == "AllergiesHeader")
             {
-                //if (AllergiesHeader != "Allergies" && AllergiesHeader != null)
-                //{
-                //    if(AllergiesHeader.Contains(" & More") == false && labelTitle != null)
-                //    {
-                //        AllergiesHeader = AllergiesHeader + " & More";
-                //    }
-                //    if(AllergiesHeader.Contains(labelTitle) == false)
-                //    {
-                //        AllergiesHeader = sectionHeader + labelTitle;
-                //    }                    
-                //}
-                //else
-                //{
-                    AllergiesHeader = sectionHeader + labelTitle;
-                //}                
+                AllergiesHeader = sectionHeader + labelTitle;                               
             }
 
             if (sectionHeader + "Header" == "SOIHeader")
@@ -590,7 +500,7 @@ namespace BPIDM.ViewModels
             _events.PublishOnUIThread(new TestEvent("BACK"));
         }
 
-        public void ConfirmSelection()
+        public void confirmSelection()
         {
             _events.PublishOnBackgroundThread(new ItemConfirmedEvent(item));
             _events.PublishOnUIThread(new TestEvent("BACK"));
