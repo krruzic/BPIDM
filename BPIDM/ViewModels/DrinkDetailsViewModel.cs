@@ -1,4 +1,4 @@
-﻿using BPIDM.Events;
+using BPIDM.Events;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace BPIDM.ViewModels
     class DrinkDetailsViewModel : Screen
     {
         private double InitialPrice;
-        public DrinkDetailsViewModel(IEventAggregator events, BPMenuItemViewModel ci)
+        public DrinkDetailsViewModel(IEventAggregator events, BPOrderItemViewModel ci)
         {
             this.DisplayName = "DrinkDetailsViewModel";
             _events = events;
@@ -22,8 +22,8 @@ namespace BPIDM.ViewModels
         }
 
         private readonly IEventAggregator _events;
-        private BPMenuItemViewModel _item;
-        public BPMenuItemViewModel item
+        private BPOrderItemViewModel _item;
+        public BPOrderItemViewModel item
         {
             get { return _item; }
             set

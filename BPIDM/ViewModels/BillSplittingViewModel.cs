@@ -93,7 +93,7 @@ namespace BPIDM.ViewModels
 
         public void Handle(GetBillInformationEvent message)
         {
-            _events.PublishOnBackgroundThread(new SendBillInformationEvent(BillList.Count, BillColors));
+            _events.PublishOnUIThread(new SendBillInformationEvent(BillList.Count, BillColors));
         }
 
         public void Handle(AddBillEvent message)

@@ -25,7 +25,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <ContentControl Grid.Row="0" x:Name="Header" VerticalAlignment="Top"/>
-            <ContentControl Margin="10,-10" x:Name="ActiveItem" Grid.Row="1"/>
+            <ContentControl Margin="10,-10,10,0" x:Name="ActiveItem" Grid.Row="1"/>
             <ContentControl Grid.Row="2" x:Name="Footer"/>
         </Grid>
     </md:DialogHost>

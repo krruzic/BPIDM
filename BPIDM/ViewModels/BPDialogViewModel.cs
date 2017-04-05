@@ -1,3 +1,4 @@
+using BPIDM.Events;
 using Caliburn.Micro;
 
 namespace BPIDM.ViewModels
@@ -42,6 +43,28 @@ namespace BPIDM.ViewModels
             }
         }
 
+        private string rightButtonText = "Got it!";
+        public string RightButtonText
+        {
+            get { return rightButtonText; }
+            set
+            {
+                rightButtonText = value;
+                NotifyOfPropertyChange(() => RightButtonText);
+            }
+        }
+
+        private bool showCancel = false;
+        public bool ShowCancel
+        {
+            get { return showCancel; }
+            set
+            {
+                showCancel = value;
+                NotifyOfPropertyChange(() => ShowCancel);
+            }
+        }
+
         private HelpStruct menuPane = new HelpStruct(
             "Menu Overview Help",
             @"Try clicking the circle button with the price on a menu item to add it to your order!");
@@ -53,6 +76,12 @@ namespace BPIDM.ViewModels
         private HelpStruct billSplitting = new HelpStruct(
             "Bill Overview Help",
             @"Here you can split your bill, or just confirm you're ready to pay. To split your bill, tap the circle that you want to represent your bill and then select items to add them to your tab");
+
+        private HelpStruct OrderConfirm = new HelpStruct(
+            "Confirm Order Submit",
+            @"You're about to send your order to the kitchen! Press cancel to go back and review it, or confirm to continue");
+
+
 
         private IEventAggregator events;
         public BPDialogViewModel(IEventAggregator _events)
@@ -74,10 +103,20 @@ namespace BPIDM.ViewModels
                 case "BillSplittingViewModel":
                     this.Active = this.billSplitting;
                     break;
+                case "OrderConfirm":
+                    this.Active = this.OrderConfirm;
+                    RightButtonText = "Confirm";
+                    ShowCancel = true;
+                    break;
                 default:
                     this.Active = this.menuPane;
                     break;
             }
+        }
+
+        public void ConfirmDialog()
+        {
+            events.PublishOnBackgroundThread(new OrderConfirmedEvent());
         }
     }
 }

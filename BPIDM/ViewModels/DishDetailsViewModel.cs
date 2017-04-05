@@ -14,6 +14,35 @@ namespace BPIDM.ViewModels
     {
         public ObservableCollection<Nutrition> NutritionInfos { get; set; }
 
+        internal class BillCheck : PropertyChangedBase
+        {
+            private string _Bill;
+            public string Bill
+            {
+                get { return _Bill; }
+                set
+                {
+                    _Bill = value;
+                    NotifyOfPropertyChange(() => Bill);
+                }
+            }
+            private bool _Checked;
+            public bool Checked
+            {
+                get { return _Checked; }
+                set
+                {
+                    _Checked = value;
+                    NotifyOfPropertyChange(() => Checked);
+                }
+            }
+            public BillCheck(string b)
+            {
+                Bill = b;
+                Checked = false;
+            }
+        }
+
         private BPOrderItemViewModel _item;
         public BPOrderItemViewModel item
         {
@@ -26,8 +55,8 @@ namespace BPIDM.ViewModels
         }
 
         public static List<string> BillColors;
-        private BindableCollection<string> _bills;
-        public BindableCollection<string> Bills
+        private BindableCollection<BillCheck> _bills;
+        public BindableCollection<BillCheck> Bills
         {
             get { return _bills; }
             set
@@ -106,6 +135,14 @@ namespace BPIDM.ViewModels
             }
         }
 
+        private bool _BillChecked = true;
+        public bool BillChecked
+        {
+            get { return _BillChecked; }
+            set
+            { _BillChecked = value; }
+        }
+
         private readonly IEventAggregator _events;
         public DishDetailsViewModel(IEventAggregator events, BPOrderItemViewModel ci)
         {
@@ -113,7 +150,7 @@ namespace BPIDM.ViewModels
             _events = events;
             _events.Subscribe(this);
             item = ci;
-            Bills = new BindableCollection<string>();
+            Bills = new BindableCollection<BillCheck>();
             BillColors = new List<string>();
         }
 
@@ -205,13 +242,14 @@ namespace BPIDM.ViewModels
             CheckBox c = (CheckBox)val.Source;
             int index = Int32.Parse(c.Content.ToString().Split(' ')[1]);
 
-            string actualColor = ((SolidColorBrush)Application.Current.Resources["BillForeground" + BillColors[index]]).Color.ToString();
+            string actualColor = ((SolidColorBrush)Application.Current.Resources["BillForeground" + BillColors[index-1]]).Color.ToString();
             if (c.IsChecked.Value)
             {
                 item.BillsSelected[actualColor] = c.Content.ToString();
             }
             else
                 item.BillsSelected.Remove(actualColor);
+            BillHeader = item.BillsSelected.Count + " Bill(s) Selected";
 
         }
 
@@ -234,11 +272,20 @@ namespace BPIDM.ViewModels
             _events.PublishOnUIThread(new TestEvent("BACK"));
         }
 
+        public bool CanAddBill
+        {
+            get
+            {
+                return (Bills.Count < 15) ? true : false;
+            }
+        }
         public void AddBill()
         {
             if (Bills.Count >= 15) return;
             _events.PublishOnBackgroundThread(new AddBillEvent());
-            Bills.Add("Bill " + (Bills.Count + 1));
+            Bills.Add(new BillCheck("Bill " + (Bills.Count + 1)));
+            NotifyOfPropertyChange(() => CanAddBill);
+
         }
 
         public void Handle(SendBillInformationEvent message)
@@ -246,9 +293,16 @@ namespace BPIDM.ViewModels
             if (Bills.Count != 0) return;
             for (int i = 0; i < message.TotalBills; i++)
             {
-                Bills.Add("Bill " + (i + 1));
+                BillCheck temp = new BillCheck("Bill " + (i + 1));
+                if (i == 0)
+                    temp.Checked = true;
+                Bills.Add(temp);
             }
+            NotifyOfPropertyChange(() => CanAddBill);
             BillColors = message.BillColors;
+            // first check box needs to be checked to begin with
+            string actualColor = ((SolidColorBrush)Application.Current.Resources["BillForeground" + BillColors[0]]).Color.ToString();
+            item.BillsSelected[actualColor] = "Bill 1";
         }
     }
 }

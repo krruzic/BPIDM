@@ -45,7 +45,7 @@
                     <TextBlock DockPanel.Dock="Top" x:Name="item_description" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" FontSize="14"/>
                     <DockPanel DockPanel.Dock="Bottom">
                         <Label DockPanel.Dock="Right" HorizontalAlignment="Right" x:Name="item_price" ContentStringFormat="c" Margin="2" Width="80" FontSize="20" VerticalAlignment="Bottom"/>
-                        <ItemsControl DockPanel.Dock="Left" x:Name="item_BillsSelected" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" Margin="2">
+                        <ItemsControl DockPanel.Dock="Left" x:Name="item_BillsSelected" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Bottom" Margin="2">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <UniformGrid Rows="2"/>
@@ -149,8 +149,8 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <CheckBox cal:Message.Attach="[Event Click] = [Action SetBills($eventargs)]"
-                                            Background="{DynamicResource PrimaryHueDarkBrush}" Content="{Binding}"/>
+                                        <CheckBox cal:Message.Attach="[Event Click] = [Action SetBills($eventargs)]" IsChecked="{Binding Checked}"
+                                            Background="{DynamicResource PrimaryHueDarkBrush}" Content="{Binding Bill}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

@@ -152,6 +152,7 @@
     <Compile Include="Events\DishDetailEvent.cs" />
     <Compile Include="Events\GetBillInformationEvent.cs" />
     <Compile Include="Events\ItemConfirmedEvent.cs" />
+    <Compile Include="Events\OrderConfirmedEvent.cs" />
     <Compile Include="Events\SendBillInformationEvent.cs" />
     <Compile Include="Events\ShowHelpEvent.cs" />
     <Compile Include="Models\Bill.cs" />

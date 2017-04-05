@@ -72,8 +72,10 @@ namespace BPIDM.ViewModels
 
         public void Handle(ShowHelpEvent message)
         {
-            System.Console.WriteLine(this.ActiveItem);
-            Dialog.SetPage(this.ActiveItem.DisplayName);
+            if (message.Param.Equals("OrderConfirm"))
+                Dialog.SetPage("OrderConfirm");
+            else 
+                Dialog.SetPage(this.ActiveItem.DisplayName);
             DialogHost.Show(dialogView);
         }
     }

@@ -6,7 +6,7 @@ using Xceed.Wpf.Toolkit.Core.Utilities;
 
 namespace BPIDM.ViewModels
 {
-    class FooterViewModel : PropertyChangedBase, IHandle<ItemConfirmedEvent>
+    class FooterViewModel : PropertyChangedBase, IHandle<ItemConfirmedEvent>, IHandle<OrderConfirmedEvent>
     {
         public CollectionViewSource OrderCollection { get; set; }
         public BindableCollection<BPOrderItemViewModel> OrderContent { get; private set; }
@@ -32,7 +32,20 @@ namespace BPIDM.ViewModels
             OrderCollection.Source = this.OrderContent;
         }
 
+        public bool CanSubmitOrder
+        {
+            get
+            {
+                return (OrderContent.Count > 0) ? true : false;
+            }
+        }
+
         public void SubmitOrder()
+        {
+            _events.PublishOnUIThread(new ShowHelpEvent("OrderConfirm"));
+        }
+
+        public void Handle(OrderConfirmedEvent message)
         {
             foreach (BPOrderItemViewModel item in OrderContent)
             {
@@ -44,6 +57,7 @@ namespace BPIDM.ViewModels
         public void Handle(ItemConfirmedEvent message)
         {
             OrderContent.Add((BPOrderItemViewModel)(BPBaseItemViewModel) message.item);
+            NotifyOfPropertyChange(() => CanSubmitOrder);
         }
 
         public void RemoveItem()
