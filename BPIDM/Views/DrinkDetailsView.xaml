@@ -37,14 +37,14 @@
             </DockPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <Label x:Name="amount_label" Content="Amount:" HorizontalAlignment="Left" Margin="3"  VerticalAlignment="Top" Height="30"/>
-                <Button x:Name="button" Style="{DynamicResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Top" FontWeight="Bold">
+                <Button x:Name="AmountMinus" Style="{DynamicResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Top" FontWeight="Bold">
                     <md:PackIcon Kind="Minus" VerticalAlignment="Center"/>
                 </Button>
-                <Label x:Name="label1" Content="6" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Top" Height="30"/>
-                <Button x:Name="button_Copy" Style="{DynamicResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Top" FontWeight="Bold">
+                <Label x:Name="label1" Content="{Binding Amount}" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Top" Height="30"/>
+                <Button x:Name="AmountPlus" Style="{DynamicResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Top" FontWeight="Bold">
                     <md:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                 </Button>
-                <Label DockPanel.Dock="Right" x:Name="item_price" ContentStringFormat="c" Margin="3" Height="45" Width="80" />
+                <Label DockPanel.Dock="Right" x:Name="item_price" Content="{Binding Price}" ContentStringFormat="c" Margin="3" Height="45" Width="80" />
             </StackPanel>
             <Label Grid.Row="2" x:Name="label2" Content="Accompaniments:" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
