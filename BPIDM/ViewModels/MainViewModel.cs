@@ -38,7 +38,7 @@ namespace BPIDM.ViewModels
             if (message.res != "BILL")
                 ActivateItem(MenuPane);
             else
-                ActivateItem(new BillSplittingViewModel(_events));
+                ActivateItem(Bill);
         }
 
         public void Handle(DishDetailEvent message)

@@ -20,11 +20,11 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <md:PackIcon VerticalAlignment="Center" Width="32" Height="32" Kind="{Binding}" Foreground="White"/>
+                            <md:PackIcon VerticalAlignment="Center" Width="32" Height="32" Kind="{Binding}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <TextBlock TextWrapping="Wrap" DockPanel.Dock="Left" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="White" x:Name="title">TEST</TextBlock>
+                <TextBlock TextWrapping="Wrap" DockPanel.Dock="Left" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" x:Name="title">TEST</TextBlock>
             </DockPanel>
         </GroupBox.Header>
         <Grid>
@@ -40,7 +40,7 @@
                 <Button Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" 
                     HorizontalContentAlignment="Center" x:Name="ShowDish"
                     ToolTipService.Placement="MousePoint" ToolTip="{Binding description}">
-                    <Label ContentStringFormat="c" Content="$31.99" FontWeight="Medium" Foreground="White" x:Name="price"/>
+                    <Label ContentStringFormat="c" Content="$31.99" FontWeight="Medium" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" x:Name="price"/>
                 </Button>
             </Grid>
         </Grid>

@@ -19,7 +19,6 @@
                     <bp:AppBootstrapper x:Key="bootstrapper" />
                     <BooleanToVisibilityConverter x:Key="bvc" />
                     <Utils:sizePercentConverter x:Key="spc" />
-                    <Utils:colorToMDResourcePack x:Key="cmdr" />
                 </ResourceDictionary>
                 <!--Custom Accent color-->
                 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

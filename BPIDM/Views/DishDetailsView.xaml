@@ -8,53 +8,140 @@
       TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium" TextElement.FontSize="14"
       mc:Ignorable="d">
-
-    <Border x:Name="dish_details_border" BorderBrush="#FFD32F2F" BorderThickness="3">
-        <Grid RenderTransformOrigin="0.499,0.506">
-            <Grid.RowDefinitions>
-                <!--<RowDefinition Height="6*"/>-->
-                <RowDefinition Height="6*"/>
-                <RowDefinition Height="2*" MinHeight="64"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="41*"/>
-                        <RowDefinition Height="245*"/>
-                        <RowDefinition Height="40*"/>
-                        <RowDefinition Height="264*"/>
-                    </Grid.RowDefinitions>
-
-                    <DockPanel Margin="5" Grid.Row="0" Background="#FFD32F2F">
-                        <TextBlock  x:Name="item_title" DockPanel.Dock="Left" TextWrapping="Wrap" Margin="2" VerticalAlignment="Center" FontSize="20"/>
-                        <ItemsControl x:Name="item_tagImages" DockPanel.Dock="Right" Grid.Column="0" VerticalAlignment="Center" Margin="2" HorizontalAlignment="Right">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="2*" MinHeight="64"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" Style="{DynamicResource MaterialDesignCardGroupBox}" md:ColorZoneAssist.Mode="PrimaryDark" Padding="0">
+            <GroupBox.Header>
+                <DockPanel Margin="5">
+                    <TextBlock x:Name="item_title" DockPanel.Dock="Left" TextWrapping="Wrap" Margin="2" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                    <ItemsControl x:Name="item_tagImages" DockPanel.Dock="Right" Grid.Column="0" VerticalAlignment="Center" Margin="2" HorizontalAlignment="Right">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Margin="2,0"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <md:PackIcon VerticalAlignment="Center" Width="32" Height="32" Kind="{Binding}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DockPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" x:Name="item_image" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                <DockPanel Grid.Row="1">
+                    <TextBlock DockPanel.Dock="Top" x:Name="item_description" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" FontSize="14"/>
+                    <DockPanel DockPanel.Dock="Bottom">
+                        <Label DockPanel.Dock="Right" HorizontalAlignment="Right" x:Name="item_price" ContentStringFormat="c" Margin="2" Width="80" FontSize="20" VerticalAlignment="Bottom"/>
+                        <ItemsControl DockPanel.Dock="Left" x:Name="item_BillsSelected" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" Margin="2">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" Margin="2,0"/>
+                                    <UniformGrid Rows="2"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <md:PackIcon VerticalAlignment="Center" Width="32" Height="32" Kind="{Binding}" Foreground="White"/>
+                                    <Ellipse Fill="{Binding Key, Mode=OneWay}" Width="16" Height="16" Margin="2"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-
                     </DockPanel>
-                    <!--<StackPanel Margin="5" Grid.Row="0" Orientation="Horizontal" Background="#FFD32F2F">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="6*" />
-                                <ColumnDefinition Width="0.5*" />
-                                <ColumnDefinition Width="0.5*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock  x:Name="item_title" DockPanel.Dock="Left" TextWrapping="Wrap" Margin="2" VerticalAlignment="Center" FontSize="20"/>
-                            < Grid.Column="1" x:Name="item_price" ContentStringFormat="c" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Center" Height="45" Width="80" FontSize="20"/>
-                            <ItemsControl x:Name="item_tagImages" DockPanel.Dock="Right" Grid.Column="2" VerticalAlignment="Center" Margin="2" HorizontalAlignment="Right">
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+        <ScrollViewer Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel Grid.Row="1" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander x:Name="sides_expander" Header="{Binding SidesHeader, TargetNullValue=Sides}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsExpanded="True">
+                    <Grid Margin="17,0,0,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="182*"/>
+                            <ColumnDefinition Width="242*"/>
+                            <ColumnDefinition Width="250*"/>
+                            <ColumnDefinition Width="294*"/>
+                            <ColumnDefinition Width="527*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Grid.Row="0" Grid.Column="0" Margin="6" Content="Fries" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]" />
+                        <RadioButton Grid.Row="0" Grid.Column="1" Margin="6" Content="Yam Fries ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="0" Grid.Column="2" Margin="6" Content="Cactus Cut Potatoes ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="1" Grid.Column="0" Margin="6" Content="Caesar Salad" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="1" Grid.Column="1" Margin="6" Content="House Salad" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="1" Grid.Column="2" Margin="6" Content="Mediterranean Salad ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="1" Grid.Column="3" Margin="6" Content="Spinach Salad ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="2" Grid.Column="0" Margin="6" Content="Soup of the Day" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="2" Grid.Column="1" Margin="6" Content="Broccoli Cheese" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="2" Grid.Column="2" Margin="6" Content="French Onion" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <RadioButton Grid.Row="2" Grid.Column="3" Margin="6" Content="Potato Bacon" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                        <Label Grid.Row="2" Grid.Column="4" x:Name="soup_up_charge" Content="*All soups $3.00 up-charge"/>
+                        <RadioButton Grid.Row="3" Grid.Column="0" x:Name="none_rbn" Margin="6" Content="None" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
+                    </Grid>
+                </Expander>
+                <Expander x:Name="extras_expander" Header="{Binding ExtrasHeader, TargetNullValue=Extras}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Margin="17,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Add a Dip:" />
+                                <ComboBox x:Name="DipOptions" cal:Message.Attach="[Event SelectionChanged] = [Action SetExtrasHeader($eventargs)]"
+                                          SelectedItem="None" Margin="2" AllowDrop="True" IsTextSearchEnabled="False" IsTabStop="False">
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Add Other:"/>
+                                <CheckBox cal:Message.Attach="[Event Click] = [Action SetExtrasHeader($eventargs)]"
+                                          Background="{DynamicResource PrimaryHueDarkBrush}" Content="Gravy" Margin="6"  VerticalContentAlignment="Center"/>
+                                <CheckBox cal:Message.Attach="[Event Click] = [Action SetExtrasHeader($eventargs)]"
+                                          Background="{DynamicResource PrimaryHueDarkBrush}" Content="Extra Cheese" Margin="6"  VerticalContentAlignment="Center"/>
+                                <CheckBox cal:Message.Attach="[Event Click] = [Action SetExtrasHeader($eventargs)]"
+                                          Background="{DynamicResource PrimaryHueDarkBrush}" Content="Bacon" Margin="6" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+                <Expander x:Name="allergies_expander" Header="{Binding AllergiesHeader, TargetNullValue=Allergies}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Margin="17,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox cal:Message.Attach="[Event Click] = [Action SetAllergiesHeader($eventargs)]" 
+                                      Background="{DynamicResource PrimaryHueDarkBrush}"  Content="Nuts" Margin="6"  VerticalContentAlignment="Center"/>
+                            <CheckBox cal:Message.Attach="[Event Click] = [Action SetAllergiesHeader($eventargs)]" 
+                                      Background="{DynamicResource PrimaryHueDarkBrush}" Content="Shellfish" Margin="6"  VerticalContentAlignment="Center"/>
+                            <CheckBox cal:Message.Attach="[Event Click] = [Action SetAllergiesHeader($eventargs)]" 
+                                      Background="{DynamicResource PrimaryHueDarkBrush}" Content="Dairy" Margin="6"  VerticalContentAlignment="Center"/>
+                            <CheckBox cal:Message.Attach="[Event Click] = [Action SetAllergiesHeader($eventargs)]"
+                                      Background="{DynamicResource PrimaryHueDarkBrush}" Content="Gluten" Margin="6"  VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding SOIHeader, TargetNullValue='Special Order Instructions'}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Margin="25">
+                        <StackPanel Orientation="Vertical">
+                            <TextBox cal:Message.Attach="[Event TextChanged] = [Action SOIChanged($eventargs)]"
+                                Height="25" md:HintAssist.Hint="Enter special order instructions here"/>
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding BillHeader, TargetNullValue=Bill}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Margin="17,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="AddBill" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Add Bill" Margin="4"  VerticalContentAlignment="Center" />
+                            <ItemsControl ItemsSource="{Binding Bills}" VerticalAlignment="Center" Grid.Column="0" Margin="4,0,0,4" HorizontalAlignment="Right">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" Margin="2,0"/>
@@ -62,62 +149,16 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <md:PackIcon VerticalAlignment="Center" Width="32" Height="32" Kind="{Binding}" Foreground="White"/>
+                                        <CheckBox cal:Message.Attach="[Event Click] = [Action SetBills($eventargs)]"
+                                            Background="{DynamicResource PrimaryHueDarkBrush}" Content="{Binding}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                        </Grid>
-
-                    </StackPanel>-->
-
-                    <Image Grid.Row="1" x:Name="item_image" HorizontalAlignment="Left" Height="240" Margin="5,5,0,0" VerticalAlignment="Top" Width="315" Stretch="UniformToFill"/>
-
-                    <!--<StackPanel Orientation="Horizontal">-->
-                    <!--<StackPanel Orientation="Vertical">-->
-                    <!--<StackPanel Orientation="Vertical">-->
-                    <!--<StackPanel Orientation="Horizontal" Margin="5" Grid.Row="2">
-                        <Button  Style="{DynamicResource MaterialDesignRaisedDarkButton}" x:Name="desc_button" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
-                        <Button  Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Nutrition" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="25" FontSize="14"/>
-                    </StackPanel>-->
-                    <!--<StackPanel Grid.Row="2" HorizontalAlignment="Stretch" Orientation="Horizontal">
-                    -->
-                    <!--<DockPanel Grid.Row="2" HorizontalAlignment="Stretch">-->
-                    <!--
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="5*"/>
-                                
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <DockPanel Grid.Column="0">
-                                <Label DockPanel.Dock="Left" Content="Description" Margin="2" FontSize="20"/>    
-                            </DockPanel>
-                            
-                            -->
-                    <!--<Separator Grid.Column="1" Width="Auto" VerticalAlignment="Center"/>-->
-                    <!--
-                            
-                            <DockPanel Grid.Column="1">
-                                <Label DockPanel.Dock="Right" x:Name="item_price" ContentStringFormat="c" Margin="2" Height="45" Width="80" FontSize="20"/>    
-                            </DockPanel>
-                        </Grid>
-                    </StackPanel>-->
-                  
-                        <DockPanel Grid.Row="2">
-                            <StackPanel DockPanel.Dock="Left">
-                                <Label DockPanel.Dock="Left" Content="Description" Margin="2" FontSize="20"/>
-                            <TextBlock Grid.Row="3" x:Name="item_description" HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap" VerticalAlignment="Top" Height="235" Width="365" FontSize="14"/>
                         </StackPanel>
-                        <Label DockPanel.Dock="Right" x:Name="item_price" ContentStringFormat="c" Margin="2" Height="45" Width="80" FontSize="20"/>
-                        </DockPanel>
-
-                        <!--</DockPanel>-->                        
-                   
-                    
-                    <!--</StackPanel>-->
-                    <!--</StackPanel>-->
-
-                    <!--<DataGrid x:Name="nutrition_data_grid" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" AutoGenerateColumns="False">
+                    </Grid>
+                </Expander>
+                <Expander Header="Nutritional Information" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <DataGrid ItemsSource="{Binding NutritionInfos}" Margin="7" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
                             <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
@@ -135,135 +176,15 @@
                             <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
                             <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
                         </DataGrid.Columns>
-                    </DataGrid>-->
-                    <Rectangle Grid.Row="3" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-                </Grid>
+                    </DataGrid>
+                </Expander>
             </StackPanel>
-            <ScrollViewer Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Grid.Row="1" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Expander x:Name="sides_expander" Header="{Binding SidesHeader, TargetNullValue=Sides}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsExpanded="True">
-                        <Grid Margin="17">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="182*"/>
-                                <ColumnDefinition Width="242*"/>
-                                <ColumnDefinition Width="250*"/>
-                                <ColumnDefinition Width="294*"/>
-                                <ColumnDefinition Width="527*"/>
-                            </Grid.ColumnDefinitions>
-                            <RadioButton Grid.Row="0" Grid.Column="0" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Fries" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]" />
-                            <RadioButton Grid.Row="0" Grid.Column="1" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Yam Fries ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="0" Grid.Column="2" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Cactus Cut Potatoes ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="1" Grid.Column="0" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Caesar Salad" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="1" Grid.Column="1" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="House Salad" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="1" Grid.Column="2" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Mediterranean Salad ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="1" Grid.Column="3" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Spinach Salad ($2.55)" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="2" Grid.Column="0" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Soup of the Day" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="2" Grid.Column="1" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Broccoli Cheese" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="2" Grid.Column="2" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="French Onion" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <RadioButton Grid.Row="2" Grid.Column="3" Background="{DynamicResource PrimaryHueDarkBrush}" Margin="6" Content="Potato Bacon" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                            <Label Grid.Row="2" Grid.Column="4" x:Name="soup_up_charge" Content="*All soups $3.00 up-charge"/>
-                            <RadioButton Grid.Row="3" Grid.Column="0" x:Name="none_rbn" Margin="6" Content="None" cal:Message.Attach="[Event Checked] = [Action SetSideHeader($eventargs)]"/>
-                        </Grid>
-                    </Expander>
-                    <Expander x:Name="extras_expander" Header="{Binding ExtrasHeader, TargetNullValue=Extras}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid Margin="17">
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Add a Dip:" />
-                                    <ComboBox x:Name="DipOptions" SelectedItem="{Binding AddDipComboBox, TargetNullValue=None}"  Margin="2" AllowDrop="True"  IsTextSearchEnabled="False" IsTabStop="False"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Add Other:"/>
-                                    <CheckBox x:Name="GravyCheckbox"  Background="{DynamicResource PrimaryHueDarkBrush}" Content="Gravy" Margin="6"  VerticalContentAlignment="Center"/>
-                                    <CheckBox x:Name="CheeseCheckbox" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Extra Cheese" Margin="6"  VerticalContentAlignment="Center"/>
-                                    <CheckBox x:Name="BaconCheckbox" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Bacon" Margin="6" VerticalContentAlignment="Center"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Expander>
-                    <Expander x:Name="allergies_expander" Header="{Binding AllergiesHeader, TargetNullValue=Allergies}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid Margin="17">
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox x:Name="NutAllergiesCheckbox" Background="{DynamicResource PrimaryHueDarkBrush}"  Content="Nuts" Margin="6"  VerticalContentAlignment="Center"/>
-                                <CheckBox x:Name="ShellfishAllergiesCheckbox" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Shellfish" Margin="6"  VerticalContentAlignment="Center"/>
-                                <CheckBox x:Name="DairyAllergiesCheckbox" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Dairy" Margin="6"  VerticalContentAlignment="Center"/>
-                                <CheckBox x:Name="GlutenAllergiesCheckbox" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Gluten" Margin="6"  VerticalContentAlignment="Center"/>
-                            </StackPanel>
-                        </Grid>
-                    </Expander>
-                    <Expander x:Name="soi_expander" Header="{Binding SOIHeader, TargetNullValue='Special Order Instructions'}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid Margin="25">
-                            <StackPanel Orientation="Vertical">
-                                <TextBox x:Name="soi_textbox" Text="{Binding SOITextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="25" md:HintAssist.Hint="Enter special order instructions here"/>
-                            </StackPanel>
-                        </Grid>
-                    </Expander>
-                    <Expander x:Name="bill_expander" Header="{Binding BillHeader, TargetNullValue=Bill}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid Margin="17">
-                            <StackPanel Orientation="Horizontal">
-                                <Button x:Name="add_new_bill" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Add Bill" Margin="4"  VerticalContentAlignment="Center" />
-                                <CheckBox x:Name="BillCheckbox1" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Bill 1" Margin="7"  VerticalContentAlignment="Center" />
-                                <CheckBox x:Name="BillCheckbox2" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Bill 2" Margin="7"  VerticalContentAlignment="Center"/>
-                                <CheckBox x:Name="BillCheckbox3" Background="{DynamicResource PrimaryHueDarkBrush}" Content="Bill 3" Margin="7"  VerticalContentAlignment="Center"/>
-                            </StackPanel>
-                        </Grid>
-                    </Expander>
-                    <Expander Header="Nutritional Information" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <!--<DataGrid Grid.Row="3" ItemsSource="{Binding Nutrition}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
-                                <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
-                                <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
-                                <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
-                                <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
-                                <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
-                                <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
-                                <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
-                                <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
-                                <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
-                                <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
-                                <DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>
-                                <DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>
-                                <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
-                                <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>-->
-                        <DataGrid ItemsSource="{Binding NutritionInfos}" Margin="7" AutoGenerateColumns="False" IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
-                                <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
-                                <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
-                                <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
-                                <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
-                                <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
-                                <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
-                                <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
-                                <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
-                                <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
-                                <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
-                                <DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>
-                                <DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>
-                                <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
-                                <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Expander>
-                </StackPanel>
-            </ScrollViewer>
-            <DockPanel VerticalAlignment="Bottom" Grid.Row="1" Margin="4,0,4,4" LastChildFill="False" Height="32">
-                <!--<Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="confirmSelection" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-                <Button DockPanel.Dock="Left" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="closeDetails" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </DockPanel>
-            <DockPanel VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Margin="4,0,4,4" LastChildFill="False" Height="32">
-                <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="confirmSelection" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </DockPanel>
-        </Grid>
-    </Border>
+        </ScrollViewer>
+        <DockPanel VerticalAlignment="Bottom" Grid.Row="1" Margin="4,0,4,4" LastChildFill="False" Height="32">
+            <Button DockPanel.Dock="Left" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="closeDetails" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </DockPanel>
+        <DockPanel VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Margin="4,0,4,4" LastChildFill="False" Height="32">
+            <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Name="confirmSelection" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </DockPanel>
+    </Grid>
 </UserControl>

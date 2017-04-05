@@ -147,13 +147,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Events\AddBillEvent.cs" />
     <Compile Include="Events\AddItemToBillEvent.cs" />
     <Compile Include="Events\DishDetailEvent.cs" />
+    <Compile Include="Events\GetBillInformationEvent.cs" />
     <Compile Include="Events\ItemConfirmedEvent.cs" />
+    <Compile Include="Events\SendBillInformationEvent.cs" />
     <Compile Include="Events\ShowHelpEvent.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Utils\Converters.cs" />
     <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\ObservableDictionary.cs" />
     <Compile Include="ViewModels\BPDialogViewModel.cs" />
     <Compile Include="Views\BPCategoryItemView.xaml.cs">
       <DependentUpon>BPCategoryItemView.xaml</DependentUpon>
@@ -192,10 +196,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BillView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\BPOrderItem\Bill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,9 +230,6 @@
     </Compile>
     <Compile Include="Views\BillSplittingView.xaml.cs">
       <DependentUpon>BillSplittingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BillView.xaml.cs">
-      <DependentUpon>BillView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BPOrderItem\Bill.xaml.cs">
       <DependentUpon>Bill.xaml</DependentUpon>

@@ -12,7 +12,7 @@
     <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" md:ColorZoneAssist.Mode="PrimaryDark" Padding="6">
         <GroupBox.Header>
             <DockPanel>
-                <TextBlock TextWrapping="Wrap" DockPanel.Dock="Top" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="White" x:Name="CategoryName">TEST</TextBlock>
+                <TextBlock TextWrapping="Wrap" DockPanel.Dock="Top" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" x:Name="CategoryName">TEST</TextBlock>
             </DockPanel>
         </GroupBox.Header>
         <Grid Margin="-6">

@@ -8,8 +8,6 @@ namespace BPIDM.ViewModels
 {
     class FooterViewModel : PropertyChangedBase, IHandle<ItemConfirmedEvent>
     {
-        private readonly IEventAggregator _events;
-
         public CollectionViewSource OrderCollection { get; set; }
         public BindableCollection<BPOrderItemViewModel> OrderContent { get; private set; }
 
@@ -24,6 +22,7 @@ namespace BPIDM.ViewModels
             }
         }
 
+        private readonly IEventAggregator _events;
         public FooterViewModel(IEventAggregator events)
         {
             _events = events;

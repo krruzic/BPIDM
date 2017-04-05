@@ -1,16 +1,19 @@
 using BPIDM.Events;
+using BPIDM.Models;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BPIDM.ViewModels
 {
-    class DishDetailsViewModel : Screen
+    class DishDetailsViewModel : Screen, IHandle<SendBillInformationEvent>
     {
-        private readonly IEventAggregator _events;
+        public ObservableCollection<Nutrition> NutritionInfos { get; set; }
+
         private BPOrderItemViewModel _item;
         public BPOrderItemViewModel item
         {
@@ -22,328 +25,27 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private NutritionInfo nutrition;
-        //public NutritionInfo Nutrition
-        //{
-        //    get { return nutrition; }
-        //    set
-        //    {
-        //        nutrition = value;
-        //        NotifyOfPropertyChange(() => Nutrition);
-        //    }
-        //}                  
-
-        public DishDetailsViewModel(IEventAggregator events, BPOrderItemViewModel ci)
+        public static List<string> BillColors;
+        private BindableCollection<string> _bills;
+        public BindableCollection<string> Bills
         {
-            this.DisplayName = "DishDetailsViewModel";
-            _events = events;
-            item = ci;
-            //NutritionInfos =
-            //    new ObservableCollection<Nutrition>
-            //    {
-            //        new Nutrition { ServingSize = 465,
-            //                        Calories = 1110,
-            //                        TotalFat = 77,
-            //                        SaturatedFat = 28,
-            //                        TransFat = 2,
-            //                        Cholesterol = 220,
-            //                        Sodium = 1520,
-            //                        Carbohydrates = 48,
-            //                        Protein = 53,
-            //                        DietaryFibre = 3,
-            //                        Sugars = 9,
-            //                        VitaminA = 25,
-            //                        VitaminC = 15,
-            //                        Calcium = 30,
-            //                        Iron = 35
-            //                    }
-            //    };
-
-            NutritionInfos = new ObservableCollection<Nutrition>
+            get { return _bills; }
+            set
             {
-                new Nutrition { ServingSize = 465,
-                                    Calories = 1110,
-                                    TotalFat = 77,
-                                    SaturatedFat = 28,
-                                    TransFat = 2,
-                                    Cholesterol = 220,
-                                    Sodium = 1520,
-                                    Carbohydrates = 48,
-                                    Protein = 53,
-                                    DietaryFibre = 3,
-                                    Sugars = 9,
-                                    VitaminA = 25,
-                                    VitaminC = 15,
-                                    Calcium = 30,
-                                    Iron = 35},
-                //new Employee { EmployeeName = "Josh"},
-            };
-        }
-        public ObservableCollection<Nutrition> NutritionInfos { get; set; }
-        //public ObservableCollection<Nutrition> NutritionInfos { get; set; }
-
-        public class Nutrition
-        {
-            public Nutrition()
-            {                
+                _bills = value;
+                NotifyOfPropertyChange(() => Bills);
             }
-            public int ServingSize { get; set; }
-            public int Calories { get; set; }
-            public int TotalFat { get; set; }
-            public int SaturatedFat { get; set; }
-            public int TransFat { get; set; }
-            public int Cholesterol { get; set; }
-            public int Sodium { get; set; }
-            public int Carbohydrates { get; set; }
-            public int Protein { get; set; }
-            public int DietaryFibre { get; set; }
-            public int Sugars { get; set; }
-            public int VitaminA { get; set; }
-            public int VitaminC { get; set; }
-            public int Calcium { get; set; }
-            public int Iron { get; set; }
         }
 
-
-        //public class Nutrition
-        //{
-        //    public Nutrition()
-        //    {
-
-        //    }
-        //    public int ServingSize { get; set; }
-        //    public int Calories { get; set; }
-        //    public int TotalFat { get; set; }
-        //    public int SaturatedFat { get; set; }
-        //    public int TransFat { get; set; }
-        //    public int Cholesterol { get; set; }
-        //    public int Sodium { get; set; }
-        //    public int Carbohydrates { get; set; }
-        //    public int Protein { get; set; }
-        //    public int DietaryFibre { get; set; }
-        //    public int Sugars { get; set; }
-        //    public int VitaminA { get; set; }
-        //    public int VitaminC { get; set; }
-        //    public int Calcium { get; set; }
-        //    public int Iron { get; set; }
-
-        //}
-
-        protected override void OnActivate()
+        private BindableCollection<string> _dipOptions;
+        public BindableCollection<string> DipOptions
         {
-            base.OnActivate();
-        }
-
-
-        public void SetSideHeader(RoutedEventArgs val)
-        {
-            RadioButton r = (RadioButton) val.Source;
-            SidesHeader = "Sides - " + r.Content.ToString() + " Selected";
-        }
-
-        public void SetExtrasHeader(RoutedEventArgs val)
-        {
-            RadioButton r = (RadioButton)val.Source;
-            ExtrasHeader = "Extras - " + r.Content.ToString() + " Selected";
-        }
-
-        // END RADIO BUTTONS
-
-      
-
-        public void handleDipSelected(String selectedDip)
-        {   
-            if (selectedDip == null)
+            get { return _dipOptions; }
+            set
             {
-                setAppropriateLabel("", "Extras");
+                _dipOptions = value;
+                NotifyOfPropertyChange(() => DipOptions);
             }
-            else
-            {
-                setAppropriateLabel(" - (" + selectedDip + " Selected)", "Extras");
-            } 
-        }
-
-        public void handleCheckboxAndDips (String checkbox, String name, String header )
-        {
-            string labelTitle = null;
-            if (checkbox == "True" && name != null)
-            {
-                if(header == "Extras")
-                {
-                    _selectedExtras.Add(name);
-                }
-                if(header == "Allergies")
-                {
-                    _selectedAllergies.Add(name);
-                }
-                if(header == "Bill")
-                {
-                    _selectedBills.Add(name);
-                }
-            }
-
-            if (checkbox == "False")
-            {
-                if (header == "Extras")
-                {
-                    _selectedExtras.Remove(name);
-                }
-                if (header == "Allergies")
-                {
-                    _selectedAllergies.Remove(name);
-                }
-                if (header == "Bill")
-                {
-                    _selectedBills.Remove(name);
-                }
-            }
-
-            if(_selectedExtras.Count > 1 && header == "Extras")
-            {
-                labelTitle = " - (" + _selectedExtras.ToArray()[0] + " Selected & More)";
-            }
-            else if(_selectedAllergies.Count > 1 && header == "Allergies")
-            {
-                labelTitle = " - (" + _selectedAllergies.ToArray()[0] + " Selected & More)";
-            }
-            else if(_selectedBills.Count > 1 && header == "Bill")
-            {
-                labelTitle = " - (" + _selectedBills.ToArray()[0] + " Selected & More)";
-            }
-            else
-            {
-                if (_selectedExtras.Count == 0 && header == "Extras")
-                {
-                    labelTitle = "";
-                }
-                else if (_selectedAllergies.Count == 0 && header == "Allergies")
-                {
-                    labelTitle = "";
-                }
-                else if (_selectedBills.Count == 0 && header == "Bill")
-                {
-                    labelTitle = "";
-                }
-                else
-                {
-                    if(header == "Extras")
-                    {
-                        if (_selectedExtras.Contains(name) == false)
-                        {
-                            labelTitle = " - (" + _selectedExtras.ToArray()[0] + " Selected)";
-                        }
-                        else if (name == "" || name == null)
-                        {
-                            labelTitle = "";
-                        }
-                        else
-                        {
-                            labelTitle = " - (" + name + " Selected)";
-                        } 
-                    }
-
-                    if (header == "Allergies")
-                    {
-                        if (_selectedAllergies.Contains(name) == false)
-                        {
-                            labelTitle = " - (" + _selectedAllergies.ToArray()[0] + " Selected)";
-                        }
-                        else
-                        {
-                            labelTitle = " - (" + name + " Selected)";
-                        }
-                    }
-
-                    if (header == "Bill")
-                    {
-                        if (_selectedBills.Contains(name) == false)
-                        {
-                            labelTitle = " - (" + _selectedBills.ToArray()[0] + " Selected)";
-                        }
-                        else
-                        {
-                            labelTitle = " - (" + name + " Selected)";
-                        }
-                    }
-                }                
-            }
-            //if (checkbox == "False")
-            //{
-            //    setAppropriateLabel("", header);
-            //}
-            //else
-            //{
-            setAppropriateLabel(labelTitle, header);
-            //}
-        }
-
-        // Handle any changes to the Special Order Instructions Text box
-        public void handleSOIRichTextBoxChange(string text)
-        {
-            string truncatedString;
-            string labelTitle;
-
-            truncatedString = text.Length <= 30 ? text : text.Substring(0, 30) + "...";
-            labelTitle = " - (" + truncatedString + ")";
-
-            setAppropriateLabel(labelTitle, "SOI");
-        }
-
-        // Method to set the Header of the corresponding expander
-        public void setAppropriateLabel(String labelTitle, String sectionHeader)
-        {
-            if(sectionHeader + "Header" == "SidesHeader")
-            {
-                SidesHeader = sectionHeader + labelTitle;
-            }
-
-            if(sectionHeader + "Header" == "ExtrasHeader")
-            {
-                //if(ExtrasHeader != "Extras" && ExtrasHeader != null)
-                //{
-                //    if (ExtrasHeader.Contains(" & More") == false)
-                //    {
-                //        ExtrasHeader = ExtrasHeader + " & More";
-                //    }                                     
-                //}
-                //else
-                //{
-                    ExtrasHeader = sectionHeader + labelTitle;
-                //}
-                
-            }
-
-            // If the section header == Allergies Header then check if the section header has 
-            // already been set, if it's been set,  and it contains the & More string, 
-            if(sectionHeader + "Header" == "AllergiesHeader")
-            {
-                //if (AllergiesHeader != "Allergies" && AllergiesHeader != null)
-                //{
-                //    if(AllergiesHeader.Contains(" & More") == false && labelTitle != null)
-                //    {
-                //        AllergiesHeader = AllergiesHeader + " & More";
-                //    }
-                //    if(AllergiesHeader.Contains(labelTitle) == false)
-                //    {
-                //        AllergiesHeader = sectionHeader + labelTitle;
-                //    }                    
-                //}
-                //else
-                //{
-                    AllergiesHeader = sectionHeader + labelTitle;
-                //}                
-            }
-
-            if (sectionHeader + "Header" == "SOIHeader")
-            {
-                SOIHeader = "Special Order Instructions" + labelTitle;
-            }
-
-            if (sectionHeader + "Header" == "BillHeader")
-            {
-                BillHeader = sectionHeader + labelTitle;
-            }
-
         }
 
         private string _SidesHeader;
@@ -357,7 +59,7 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private List<string> _selectedExtras = new List<string>();
+        public List<string> SelectedExtras = new List<string>();
         private string _ExtrasHeader;
         public string ExtrasHeader
         {
@@ -369,7 +71,7 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private List<string> _selectedAllergies = new List<string>();
+        public List<string> SelectedAllergies = new List<string>();
         private string _AllergiesHeader;
         public string AllergiesHeader
         {
@@ -392,7 +94,7 @@ namespace BPIDM.ViewModels
             }
         }
 
-        private List<string> _selectedBills = new List<string>();
+        //private Dictionary<string, string> SelectedBills = new Dictionary<string, string>();
         private string _BillHeader;
         public string BillHeader
         {
@@ -404,185 +106,121 @@ namespace BPIDM.ViewModels
             }
         }
 
-
-        public BindableCollection<string> DipOptions
+        private readonly IEventAggregator _events;
+        public DishDetailsViewModel(IEventAggregator events, BPOrderItemViewModel ci)
         {
-            get
-            {
-                // Collection of Dip Options
-                return new BindableCollection<string>(
-                                 new string[] { "None", "Creamy Alfreado", "Blue Cheese", "Bolognese" });
-            }
+            this.DisplayName = "DishDetailsViewModel";
+            _events = events;
+            _events.Subscribe(this);
+            item = ci;
+            Bills = new BindableCollection<string>();
+            BillColors = new List<string>();
         }
 
-        private String _selectedDip;
-        public String AddDipComboBox
+        protected override void OnActivate()
         {
-            get { return _selectedDip; }
-            set
-            {
-                string previousChoice = _selectedDip;
-                _selectedDip = value;
-                NotifyOfPropertyChange(() => AddDipComboBox);
+            base.OnActivate();
+            _events.PublishOnBackgroundThread(new GetBillInformationEvent());
 
-                // Remove the previous choice from the _selectedExtras list
-                _selectedExtras.Remove(previousChoice);
-                handleCheckboxAndDips("True", _selectedDip, "Extras");
-            }
+            NutritionInfos = new ObservableCollection<Nutrition>
+            {
+                new Nutrition {
+                    ServingSize = 465, Calories = 1110, TotalFat = 77,
+                    SaturatedFat = 28, TransFat = 2, Cholesterol = 220,
+                    Sodium = 1520, Carbohydrates = 48, Protein = 53,
+                    DietaryFibre = 3, Sugars = 9, VitaminA = 25,
+                    VitaminC = 15, Calcium = 30, Iron = 35
+                }
+            };
+            DipOptions = new BindableCollection<string>(new string[] { "None", "Creamy Alfredo", "Blue Cheese", "Bolognese" });
         }
 
-        private String _GravyCheckbox;
-        public String GravyCheckbox
+        internal class Nutrition
         {
-            get { return _GravyCheckbox; }
-            set
-            {
-                _GravyCheckbox = value;
-                NotifyOfPropertyChange(() => GravyCheckbox);
-
-                handleCheckboxAndDips(_GravyCheckbox, "Gravy", "Extras");          
-            }
+            public int ServingSize { get; set; }
+            public int Calories { get; set; }
+            public int TotalFat { get; set; }
+            public int SaturatedFat { get; set; }
+            public int TransFat { get; set; }
+            public int Cholesterol { get; set; }
+            public int Sodium { get; set; }
+            public int Carbohydrates { get; set; }
+            public int Protein { get; set; }
+            public int DietaryFibre { get; set; }
+            public int Sugars { get; set; }
+            public int VitaminA { get; set; }
+            public int VitaminC { get; set; }
+            public int Calcium { get; set; }
+            public int Iron { get; set; }
         }
 
-        private String _CheeseCheckbox;
-        public String CheeseCheckbox
+        public void SetSideHeader(RoutedEventArgs val)
         {
-            get { return _CheeseCheckbox; }
-            set
-            {
-                _CheeseCheckbox = value;
-                NotifyOfPropertyChange(() => CheeseCheckbox);
-
-                handleCheckboxAndDips(_CheeseCheckbox, "Cheese", "Extras");
-            }
+            RadioButton r = (RadioButton)val.Source;
+            SidesHeader = "Sides - " + r.Content.ToString() + " Selected";
         }
 
-        private String _BaconCheckbox;
-        public String BaconCheckbox
+        public void SetExtrasHeader(RoutedEventArgs val)
         {
-            get { return _BaconCheckbox; }
-            set
+            if (val.RoutedEvent.Name == "SelectionChanged")
             {
-                _BaconCheckbox = value;
-                NotifyOfPropertyChange(() => BaconCheckbox);
-
-                handleCheckboxAndDips(_BaconCheckbox, "Bacon", "Extras");
+                SelectedExtras.RemoveAll(x => x.StartsWith("Dip"));
+                if (((ComboBox)val.Source).SelectedValue.ToString() != "None")
+                    SelectedExtras.Add("Dip (" + ((ComboBox)val.Source).SelectedValue.ToString() + ")");
             }
+            else
+            {
+                CheckBox c = (CheckBox)val.Source;
+                if (c.IsChecked.Value)
+                    SelectedExtras.Add(c.Content.ToString());
+                else
+                    SelectedExtras.Remove(c.Content.ToString());
+            }
+            if (SelectedExtras.Count == 0)
+                ExtrasHeader = "Extras";
+            else if (SelectedExtras.Count == 1)
+                ExtrasHeader = "Extras - " + SelectedExtras[0] + " Selected";
+            else // multiple
+                ExtrasHeader = "Extras - " + SelectedExtras[0] + " Selected & More";
         }
 
-        private String _NutAllergiesCheckbox;
-        public String NutAllergiesCheckbox
+        public void SetAllergiesHeader(RoutedEventArgs val)
         {
-            get { return _NutAllergiesCheckbox; }
-            set
-            {
-                _NutAllergiesCheckbox = value;
-                NotifyOfPropertyChange(() => NutAllergiesCheckbox);
+            CheckBox c = (CheckBox)val.Source;
+            if (c.IsChecked.Value)
+                SelectedAllergies.Add(c.Content.ToString());
+            else
+                SelectedAllergies.Remove(c.Content.ToString());
+            if (SelectedAllergies.Count == 0)
+                AllergiesHeader = "Allergies";
+            else if (SelectedAllergies.Count == 1)
+                AllergiesHeader = "Allergies - " + SelectedAllergies[0] + " Selected";
+            else // multiple
+                AllergiesHeader = "Allergies - " + SelectedAllergies[0] + " Selected & More";
 
-                handleCheckboxAndDips(_NutAllergiesCheckbox, "Nut Allergy", "Allergies");
-            }
         }
 
-        private String _ShellfishAllergiesCheckbox;
-        public String ShellfishAllergiesCheckbox
+        public void SetBills(RoutedEventArgs val)
         {
-            get { return _ShellfishAllergiesCheckbox; }
-            set
-            {
-                _ShellfishAllergiesCheckbox = value;
-                NotifyOfPropertyChange(() => ShellfishAllergiesCheckbox);
+            CheckBox c = (CheckBox)val.Source;
+            int index = Int32.Parse(c.Content.ToString().Split(' ')[1]);
 
-                handleCheckboxAndDips(_ShellfishAllergiesCheckbox, "Shellfish Allergy", "Allergies");
+            string actualColor = ((SolidColorBrush)Application.Current.Resources["BillForeground" + BillColors[index]]).Color.ToString();
+            if (c.IsChecked.Value)
+            {
+                item.BillsSelected[actualColor] = c.Content.ToString();
             }
+            else
+                item.BillsSelected.Remove(actualColor);
+
         }
 
-        private String _DairyAllergiesCheckbox;
-        public String DairyAllergiesCheckbox
+        public void SOIChanged(RoutedEventArgs val)
         {
-            get { return _DairyAllergiesCheckbox; }
-            set
-            {
-                _DairyAllergiesCheckbox = value;
-                NotifyOfPropertyChange(() => DairyAllergiesCheckbox);
-
-                handleCheckboxAndDips(_DairyAllergiesCheckbox, "Dairy Allergy", "Allergies");
-            }
-        }
-
-        private String _GlutenAllergiesCheckbox;
-        public String GlutenAllergiesCheckbox
-        {
-            get { return _GlutenAllergiesCheckbox; }
-            set
-            {
-                _GlutenAllergiesCheckbox = value;
-                NotifyOfPropertyChange(() => GlutenAllergiesCheckbox);
-
-                handleCheckboxAndDips(_GlutenAllergiesCheckbox, "Gluten Allergy", "Allergies");
-            }
-        }
-
-        private string _SOITextBox;
-        public string SOITextBox
-        {
-            get { return _SOITextBox; }
-            set
-            {
-                _SOITextBox = value;
-                NotifyOfPropertyChange(() => SOITextBox);
-
-                handleSOIRichTextBoxChange(_SOITextBox);
-            }
-        }
-
-        private String _BillCheckbox1;
-        public String BillCheckbox1
-        {
-            get { return _BillCheckbox1; }
-            set
-            {
-                _BillCheckbox1 = value;
-                NotifyOfPropertyChange(() => BillCheckbox1);
-
-                handleCheckboxAndDips(_BillCheckbox1, "Bill 1", "Bill");
-            }
-        }
-
-        private String _BillCheckbox2;
-        public String BillCheckbox2
-        {
-            get { return _BillCheckbox2; }
-            set
-            {
-                _BillCheckbox2 = value;
-                NotifyOfPropertyChange(() => BillCheckbox2);
-
-                handleCheckboxAndDips(_BillCheckbox2, "Bill 2", "Bill");
-            }
-        }
-
-        private String _BillCheckbox3;
-        public String BillCheckbox3
-        {
-            get { return _BillCheckbox3; }
-            set
-            {
-                _BillCheckbox3 = value;
-                NotifyOfPropertyChange(() => BillCheckbox3);
-
-                handleCheckboxAndDips(_BillCheckbox3, "Bill 3", "Bill");
-            }
-        }
-
-        private string _SpecialText;
-        public string SpecialText
-        {
-            get { return _SpecialText; }
-            set
-            {
-                _SpecialText = value;
-                NotifyOfPropertyChange(() => SpecialText);
-            }
+            string truncatedString = ((TextBox)val.Source).Text;
+            truncatedString = truncatedString.Length <= 30 ? truncatedString : truncatedString.Substring(0, 30) + "...";
+            string labelTitle = " - (" + truncatedString + ")";
+            SOIHeader = "Special Order Instructions" + labelTitle;
         }
 
         public void closeDetails()
@@ -594,6 +232,23 @@ namespace BPIDM.ViewModels
         {
             _events.PublishOnBackgroundThread(new ItemConfirmedEvent(item));
             _events.PublishOnUIThread(new TestEvent("BACK"));
+        }
+
+        public void AddBill()
+        {
+            if (Bills.Count >= 15) return;
+            _events.PublishOnBackgroundThread(new AddBillEvent());
+            Bills.Add("Bill " + (Bills.Count + 1));
+        }
+
+        public void Handle(SendBillInformationEvent message)
+        {
+            if (Bills.Count != 0) return;
+            for (int i = 0; i < message.TotalBills; i++)
+            {
+                Bills.Add("Bill " + (i + 1));
+            }
+            BillColors = message.BillColors;
         }
     }
 }

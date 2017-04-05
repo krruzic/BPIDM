@@ -1,7 +1,9 @@
 using BPIDM.Events;
+using BPIDM.Models;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using Utils;
 
 
 // TODO: convert these into normal models and handle the property changes elsewhere!
@@ -385,7 +387,7 @@ namespace BPIDM.ViewModels
 
         public void ShowDish()
         {
-            events.PublishOnUIThread(new DishDetailEvent(new BPOrderItemViewModel(this)));
+            events.PublishOnUIThread(new DishDetailEvent(new BPOrderItemViewModel(this, events)));
         }
     }
 
@@ -397,7 +399,7 @@ namespace BPIDM.ViewModels
             this.heightPercent = 0.85;
         }
 
-        public BPOrderItemViewModel(BPMenuItemViewModel item)
+        public BPOrderItemViewModel(BPMenuItemViewModel item, IEventAggregator events)
         {
             this.title = item.title;
             this.image = item.image;
@@ -411,6 +413,20 @@ namespace BPIDM.ViewModels
             this.widthPercent = 0.3;
             this.heightPercent = 0.85;
             this.events = item.events;
+            BillsSelected = new ObservableDictionary<string, string>();
+        }
+
+        // just store the color of the bill, we can handle any lookup 
+        // later
+        private ObservableDictionary<string,string> _billsSelected;
+        public ObservableDictionary<string, string> BillsSelected
+        {
+            get { return _billsSelected; }
+            set
+            {
+                _billsSelected = value;
+                NotifyOfPropertyChange(() => BillsSelected);
+            }
         }
 
         private string _sidesSelected;

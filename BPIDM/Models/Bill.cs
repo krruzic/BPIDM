@@ -6,20 +6,21 @@ using System.Windows.Media;
 
 namespace BPIDM.Models
 {
-    class Bill : PropertyChangedBase
+    public class Bill : PropertyChangedBase
     {
-        private float totalCost = 4.00F;
-        public float TotalCost
+        private double totalCost = 0.00;
+        public double TotalCost
         {
             get { return totalCost; }
-            set {
+            set
+            {
                 totalCost = value;
                 NotifyOfPropertyChange(() => TotalCost);
             }
         }
 
         private List<BPOrderItemViewModel> items = new List<BPOrderItemViewModel>();
-        private List<BPOrderItemViewModel> Items
+        public List<BPOrderItemViewModel> Items
         {
             get { return items; }
             set
@@ -62,14 +63,27 @@ namespace BPIDM.Models
             }
         }
 
-        public Bill(string color)
+        private string billName;
+        public string BillName
+        {
+            get { return billName; }
+            set
+            {
+                billName = value;
+                NotifyOfPropertyChange(() => BillName);
+
+            }
+        }
+
+        public Bill(string color, string name)
         {
             BillColor = color;
             BillBackgroundBrush = (SolidColorBrush)Application.Current.Resources["BillBackground" + color];
             BillForegroundBrush = (SolidColorBrush)Application.Current.Resources["BillForeground" + color];
+            BillName = name;
         }
 
-        public void AddToCost(float a)
+        public void AddToCost(double a)
         {
             TotalCost += a;
         }

@@ -27,6 +27,8 @@ namespace BPIDM
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             string appPath = Path.Combine(data, name);
             string dataPath = Path.Combine(appPath, "menu.json");
+            Application.Current.Properties["menuJSON"] = dataPath;
+
             string src = "https://images.krruzic.xyz/BPIDM/menu-min.json";
 
             if (!File.Exists(dataPath)) // only created after first run
@@ -54,7 +56,6 @@ namespace BPIDM
                     }
                 }
             }
-            Application.Current.Properties["menuJSON"] = dataPath;
             InitializeComponent();
         }
 
