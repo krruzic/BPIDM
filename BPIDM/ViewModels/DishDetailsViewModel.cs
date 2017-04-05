@@ -2,6 +2,7 @@ using BPIDM.Events;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,41 +23,111 @@ namespace BPIDM.ViewModels
         }
 
         private NutritionInfo nutrition;
-        public NutritionInfo Nutrition
-        {
-            get { return nutrition; }
-            set
-            {
-                nutrition = value;
-                NotifyOfPropertyChange(() => Nutrition);
-            }
-        }
+        //public NutritionInfo Nutrition
+        //{
+        //    get { return nutrition; }
+        //    set
+        //    {
+        //        nutrition = value;
+        //        NotifyOfPropertyChange(() => Nutrition);
+        //    }
+        //}                  
 
         public DishDetailsViewModel(IEventAggregator events, BPOrderItemViewModel ci)
         {
             this.DisplayName = "DishDetailsViewModel";
             _events = events;
             item = ci;
-            Nutrition =
-                new NutritionInfo
-                {
-                    ServingSize = 465,
-                    Calories = 1110,
-                    TotalFat = 77,
-                    SaturatedFat = 28,
-                    TransFat = 2,
-                    Cholesterol = 220,
-                    Sodium = 1520,
-                    Carbohydrates = 48,
-                    Protein = 53,
-                    DietaryFibre = 3,
-                    Sugars = 9,
-                    VitaminA = 25,
-                    VitaminC = 15,
-                    Calcium = 30,
-                    Iron = 35
-                };
+            //NutritionInfos =
+            //    new ObservableCollection<Nutrition>
+            //    {
+            //        new Nutrition { ServingSize = 465,
+            //                        Calories = 1110,
+            //                        TotalFat = 77,
+            //                        SaturatedFat = 28,
+            //                        TransFat = 2,
+            //                        Cholesterol = 220,
+            //                        Sodium = 1520,
+            //                        Carbohydrates = 48,
+            //                        Protein = 53,
+            //                        DietaryFibre = 3,
+            //                        Sugars = 9,
+            //                        VitaminA = 25,
+            //                        VitaminC = 15,
+            //                        Calcium = 30,
+            //                        Iron = 35
+            //                    }
+            //    };
+
+            NutritionInfos = new ObservableCollection<Nutrition>
+            {
+                new Nutrition { ServingSize = 465,
+                                    Calories = 1110,
+                                    TotalFat = 77,
+                                    SaturatedFat = 28,
+                                    TransFat = 2,
+                                    Cholesterol = 220,
+                                    Sodium = 1520,
+                                    Carbohydrates = 48,
+                                    Protein = 53,
+                                    DietaryFibre = 3,
+                                    Sugars = 9,
+                                    VitaminA = 25,
+                                    VitaminC = 15,
+                                    Calcium = 30,
+                                    Iron = 35},
+                //new Employee { EmployeeName = "Josh"},
+            };
         }
+        public ObservableCollection<Nutrition> NutritionInfos { get; set; }
+        //public ObservableCollection<Nutrition> NutritionInfos { get; set; }
+
+        public class Nutrition
+        {
+            public Nutrition()
+            {                
+            }
+            public int ServingSize { get; set; }
+            public int Calories { get; set; }
+            public int TotalFat { get; set; }
+            public int SaturatedFat { get; set; }
+            public int TransFat { get; set; }
+            public int Cholesterol { get; set; }
+            public int Sodium { get; set; }
+            public int Carbohydrates { get; set; }
+            public int Protein { get; set; }
+            public int DietaryFibre { get; set; }
+            public int Sugars { get; set; }
+            public int VitaminA { get; set; }
+            public int VitaminC { get; set; }
+            public int Calcium { get; set; }
+            public int Iron { get; set; }
+        }
+
+
+        //public class Nutrition
+        //{
+        //    public Nutrition()
+        //    {
+
+        //    }
+        //    public int ServingSize { get; set; }
+        //    public int Calories { get; set; }
+        //    public int TotalFat { get; set; }
+        //    public int SaturatedFat { get; set; }
+        //    public int TransFat { get; set; }
+        //    public int Cholesterol { get; set; }
+        //    public int Sodium { get; set; }
+        //    public int Carbohydrates { get; set; }
+        //    public int Protein { get; set; }
+        //    public int DietaryFibre { get; set; }
+        //    public int Sugars { get; set; }
+        //    public int VitaminA { get; set; }
+        //    public int VitaminC { get; set; }
+        //    public int Calcium { get; set; }
+        //    public int Iron { get; set; }
+
+        //}
 
         protected override void OnActivate()
         {

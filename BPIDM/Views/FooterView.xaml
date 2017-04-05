@@ -13,14 +13,20 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="11*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button Margin="5" Grid.Column="0" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center" cal:Message.Attach="ScrollLeft($view)"/>
+                <Label Margin="0, 5, 0, 0" Grid.Row="0"  Grid.ColumnSpan="2" Name="labelcurrent" Foreground="#D32F2F" Content="Current Order" HorizontalAlignment="Center" VerticalAlignment="Stretch" TextBlock.FontSize="22" />
+        <Button Margin="5" Grid.Column="0" Name="ScrollLeft" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ListView Grid.Column="1" VerticalAlignment="Center"
             Background="Transparent" BorderThickness="0"
             HorizontalAlignment="Stretch" 
@@ -28,7 +34,7 @@
             x:Name="OrderList" SelectedItem="{Binding SelectedModel}"
             ItemsSource="{Binding Path=OrderContent}"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-            VirtualizingPanel.ScrollUnit="Pixel"
+            VirtualizingPanel.ScrollUnit="Item"
             ItemContainerStyle="{StaticResource BPOrderItemStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate>
