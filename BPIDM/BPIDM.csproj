@@ -159,6 +159,7 @@
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\ObservableDictionary.cs" />
     <Compile Include="ViewModels\BPDialogViewModel.cs" />
+    <Compile Include="ViewModels\DrinkDetailsViewModel.cs" />
     <Compile Include="Views\BPCategoryItemView.xaml.cs">
       <DependentUpon>BPCategoryItemView.xaml</DependentUpon>
     </Compile>
@@ -216,7 +217,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DrinkDetails.xaml">
+    <Page Include="Views\DrinkDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,8 +247,8 @@
     <Compile Include="Views\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DrinkDetails.xaml.cs">
-      <DependentUpon>DrinkDetails.xaml</DependentUpon>
+    <Compile Include="Views\DrinkDetailsView.xaml.cs">
+      <DependentUpon>DrinkDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>

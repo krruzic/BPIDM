@@ -5,9 +5,9 @@ namespace BPIDM.Views
     /// <summary>
     /// Interaction logic for DrinkDetails.xaml
     /// </summary>
-    public partial class DrinkDetails : UserControl
+    public partial class DrinkDetailsView : UserControl
     {
-        public DrinkDetails()
+        public DrinkDetailsView()
         {
             InitializeComponent();
         }
