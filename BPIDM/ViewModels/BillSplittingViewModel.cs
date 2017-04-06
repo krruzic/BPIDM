@@ -69,9 +69,23 @@ namespace BPIDM.ViewModels
             base.OnActivate();
         }
 
-        public void Pay()
+        public void Cancel()
         {
             _events.PublishOnUIThread(new TestEvent("BACK"));
+        }
+
+        public void Pay()
+        {
+            //Check if the user has any items in their Current Order, if so, show a dialog informing them
+            //that they cannot submit their bill until the Current Order list is empty
+            if (FooterViewModel.OrderContent.Count > 0)
+            {
+                _events.PublishOnUIThread(new ShowHelpEvent("CannotPay"));
+            }
+            else
+            {
+                _events.PublishOnUIThread(new TestEvent("BACK"));
+            }
         }
 
         public void AddBill()

@@ -158,25 +158,28 @@
                     </Grid>
                 </Expander>
                 <Expander Header="Nutritional Information" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <DataGrid ItemsSource="{Binding NutritionInfos}" Margin="7" AutoGenerateColumns="False" IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>
-                            <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
-                            <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
-                            <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
-                            <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
-                            <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
-                            <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
-                            <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
-                            <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
-                            <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
-                            <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
-                            <DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>
-                            <DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>
-                            <DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>
-                            <DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <StackPanel Orientation="Vertical" Margin="7">
+                        <DataGrid ItemsSource="{Binding NutritionInfos}" AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <!--<DataGridTextColumn Header="Serving Size (g)" Binding="{Binding ServingSize}"/>-->
+                                <DataGridTextColumn Header="Calories (kcal)" Binding="{Binding Calories}"/>
+                                <DataGridTextColumn Header="Total Fat (g)" Binding="{Binding TotalFat}"/>
+                                <DataGridTextColumn Header="Saturated Fat (g)" Binding="{Binding SaturatedFat}"/>
+                                <DataGridTextColumn Header="Trans Fat (g)" Binding="{Binding TransFat}"/>
+                                <DataGridTextColumn Header="Cholesterol (mg)" Binding="{Binding Cholesterol}"/>
+                                <DataGridTextColumn Header="Sodium (mg)" Binding="{Binding Sodium}"/>
+                                <DataGridTextColumn Header="Carbohydrates (g)" Binding="{Binding Carbohydrates}"/>
+                                <DataGridTextColumn Header="Protein (g)" Binding="{Binding Protein}"/>
+                                <DataGridTextColumn Header="Dietary Fibre (g)" Binding="{Binding Dietary Fibre}"/>
+                                <DataGridTextColumn Header="Sugars (g)" Binding="{Binding Sugars}"/>
+                                <!--<DataGridTextColumn Header="Vitamin A (%DV)" Binding="{Binding VitaminA}"/>-->
+                                <!--<DataGridTextColumn Header="Vitamin C (%DV)" Binding="{Binding VitaminC}"/>-->
+                                <!--<DataGridTextColumn Header="Calcium (%DV)" Binding="{Binding Calcium}"/>-->
+                                <!--<DataGridTextColumn Header="Iron (%DV)" Binding="{Binding Iron}"/>-->
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="For full nutritional information, please visit: https://bostonpizza.com/en/nutrition/information/" Margin="10"/>
+                    </StackPanel>
                 </Expander>
             </StackPanel>
         </ScrollViewer>

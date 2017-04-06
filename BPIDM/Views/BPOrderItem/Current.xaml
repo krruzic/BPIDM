@@ -42,13 +42,13 @@
                         FontWeight="Bold" TextWrapping="Wrap" HorizontalAlignment="Left" x:Name="title">TEST</TextBlock>
                 </DockPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="4">
-                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueDarkBrush}">
+                    <Button x:Name="EditItem" cal:Message.Attach="EditItem" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueDarkBrush}">
                         <StackPanel Orientation="Horizontal">
                             <md:PackIcon Kind="Pencil" />
                             <TextBlock Margin="4,0,0,0" VerticalAlignment="Center">Edit</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueDarkBrush}">
+                    <Button x:Name="RemoveItem" cal:Message.Attach="RemoveItem" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueDarkBrush}">
                         <StackPanel Orientation="Horizontal">
                             <md:PackIcon Kind="Close" />
                             <TextBlock Margin="4,0,0,0" VerticalAlignment="Center">Remove</TextBlock>

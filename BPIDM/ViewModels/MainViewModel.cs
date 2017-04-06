@@ -56,8 +56,7 @@ namespace BPIDM.ViewModels
                 dynamic settings = new ExpandoObject();
                 settings.WindowStartupLocation = WindowStartupLocation.Manual;
                 settings.StaysOpen = false;
-                settings.Height = 300;
-                settings.Width = 400;
+                
                 settings.SizeToContent = SizeToContent.WidthAndHeight;
                 settings.Placement = PlacementMode.Center;
                 settings.PlacementTarget = GetView(null);                
@@ -74,6 +73,14 @@ namespace BPIDM.ViewModels
         {
             if (message.Param.Equals("OrderConfirm"))
                 Dialog.SetPage("OrderConfirm");
+            else if (message.Param.Equals("CannotPay"))
+            {
+                Dialog.SetPage("CannotPay");
+            }
+            else if (message.Param.Equals("NothingToSubmit"))
+            {
+                Dialog.SetPage("NothingToSubmit");
+            }
             else 
                 Dialog.SetPage(this.ActiveItem.DisplayName);
             DialogHost.Show(dialogView);

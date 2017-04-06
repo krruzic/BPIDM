@@ -77,7 +77,7 @@
                 </StackPanel>
             </ScrollViewer>
             <DockPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" LastChildFill="False">
-                <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Go Back" Height="64" DockPanel.Dock="Left"></Button>
+                <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Cancel" Height="64" DockPanel.Dock="Left" x:Name="Cancel"></Button>
                 <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Ready To Pay" Height="64" DockPanel.Dock="Right" Name="Pay"></Button>
             </DockPanel>
         </Grid>

@@ -81,7 +81,13 @@ namespace BPIDM.ViewModels
             "Confirm Order Submit",
             @"You're about to send your order to the kitchen! Press cancel to go back and review it, or confirm to continue");
 
+        private HelpStruct CannotPay = new HelpStruct(
+            "Cannot Submit Bill for Payment Yet",
+            @"You still have items in your Current Order that have not yet been sent to the kitchen. Your bill cannot be processed for payment until all of your Current Order items have been sent to the kitchen. Press either Submit Order, or remove all your items from your Current Order first before pressing Ready to Pay.");
 
+        private HelpStruct NothingToSubmit = new HelpStruct(
+            "No Items to Submit!",
+            @"There are no items in the Current Order to submit. Please select some dishes first.");
 
         private IEventAggregator events;
         public BPDialogViewModel(IEventAggregator _events)
@@ -96,17 +102,30 @@ namespace BPIDM.ViewModels
             {
                 case "MainMenuViewModel":
                     this.Active = this.menuPane;
+                    RightButtonText = "Got it";
                     break;
                 case "DishDetailsViewModel":
                     this.Active = this.dishDetails;
+                    RightButtonText = "Got it";
                     break;
                 case "BillSplittingViewModel":
                     this.Active = this.billSplitting;
+                    RightButtonText = "Got it";
                     break;
                 case "OrderConfirm":
                     this.Active = this.OrderConfirm;
                     RightButtonText = "Confirm";
                     ShowCancel = true;
+                    break;
+                case "CannotPay":
+                    this.Active = this.CannotPay;
+                    RightButtonText = "Got it";
+                    ShowCancel = false;
+                    break;
+                case "NothingToSubmit":
+                    this.Active = this.CannotPay;
+                    RightButtonText = "Got it";
+                    ShowCancel = false;
                     break;
                 default:
                     this.Active = this.menuPane;
@@ -116,7 +135,10 @@ namespace BPIDM.ViewModels
 
         public void ConfirmDialog()
         {
-            events.PublishOnBackgroundThread(new OrderConfirmedEvent());
+            if (RightButtonText == "Confirm")
+            {
+                events.PublishOnBackgroundThread(new OrderConfirmedEvent());
+            }           
         }
     }
 }

@@ -9,7 +9,7 @@ namespace BPIDM.ViewModels
     class FooterViewModel : PropertyChangedBase, IHandle<ItemConfirmedEvent>, IHandle<OrderConfirmedEvent>
     {
         public CollectionViewSource OrderCollection { get; set; }
-        public BindableCollection<BPOrderItemViewModel> OrderContent { get; private set; }
+        public static BindableCollection<BPOrderItemViewModel> OrderContent { get; private set; }
 
         private BPOrderItemViewModel selectedModel;
         public BPOrderItemViewModel SelectedModel
@@ -20,7 +20,7 @@ namespace BPIDM.ViewModels
                 selectedModel = value;
                 NotifyOfPropertyChange(() => SelectedModel);
             }
-        }
+        }   
 
         private readonly IEventAggregator _events;
         public FooterViewModel(IEventAggregator events)
@@ -29,7 +29,7 @@ namespace BPIDM.ViewModels
             events.Subscribe(this);
             OrderContent = new BindableCollection<BPOrderItemViewModel>();
             OrderCollection = new CollectionViewSource();
-            OrderCollection.Source = this.OrderContent;
+            OrderCollection.Source = OrderContent;
         }
 
         public bool CanSubmitOrder
@@ -42,7 +42,14 @@ namespace BPIDM.ViewModels
 
         public void SubmitOrder()
         {
-            _events.PublishOnUIThread(new ShowHelpEvent("OrderConfirm"));
+            if(OrderContent.Count < 1)
+            {
+                _events.PublishOnUIThread(new ShowHelpEvent("NothingToSubmit"));
+            }
+            else
+            {
+                _events.PublishOnUIThread(new ShowHelpEvent("OrderConfirm"));
+            }            
         }
 
         public void Handle(OrderConfirmedEvent message)
@@ -52,6 +59,7 @@ namespace BPIDM.ViewModels
                 _events.PublishOnBackgroundThread(new AddItemToBillEvent(item));
             }
             OrderContent.Clear();
+            NotifyOfPropertyChange(() => CanSubmitOrder);
         }
 
         public void Handle(ItemConfirmedEvent message)
@@ -60,10 +68,15 @@ namespace BPIDM.ViewModels
             NotifyOfPropertyChange(() => CanSubmitOrder);
         }
 
+        public void EditItem()
+        {
+            _events.PublishOnUIThread(new DishDetailEvent(selectedModel));           
+        }
+
         public void RemoveItem()
         {
             OrderContent.Remove(SelectedModel);
-        }
+        }       
 
         public void TriggerEdit(BPOrderItemViewModel dataContext)
         {
