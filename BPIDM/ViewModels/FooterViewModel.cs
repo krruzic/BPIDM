@@ -76,6 +76,11 @@ namespace BPIDM.ViewModels
         public void RemoveItem()
         {
             OrderContent.Remove(SelectedModel);
+            // If the last item in the Current Order object list is removed, set the Submit Order button to be disabled
+            if (OrderContent.Count < 1)
+            {
+                NotifyOfPropertyChange(() => CanSubmitOrder);
+            }
         }       
 
         public void TriggerEdit(BPOrderItemViewModel dataContext)

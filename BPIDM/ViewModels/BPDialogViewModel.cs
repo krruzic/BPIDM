@@ -103,14 +103,17 @@ namespace BPIDM.ViewModels
                 case "MainMenuViewModel":
                     this.Active = this.menuPane;
                     RightButtonText = "Got it";
+                    ShowCancel = false;
                     break;
                 case "DishDetailsViewModel":
                     this.Active = this.dishDetails;
                     RightButtonText = "Got it";
+                    ShowCancel = false;
                     break;
                 case "BillSplittingViewModel":
                     this.Active = this.billSplitting;
                     RightButtonText = "Got it";
+                    ShowCancel = false;
                     break;
                 case "OrderConfirm":
                     this.Active = this.OrderConfirm;
@@ -123,7 +126,7 @@ namespace BPIDM.ViewModels
                     ShowCancel = false;
                     break;
                 case "NothingToSubmit":
-                    this.Active = this.CannotPay;
+                    this.Active = this.NothingToSubmit;
                     RightButtonText = "Got it";
                     ShowCancel = false;
                     break;
