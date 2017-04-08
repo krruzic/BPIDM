@@ -137,7 +137,7 @@
                         </StackPanel>
                     </Grid>
                 </Expander>
-                <Expander Header="{Binding BillHeader, TargetNullValue=Bill}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Expander Header="{Binding BillHeader, TargetNullValue='Split Across Bill(s)'}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid Margin="17,0,0,0">
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="AddBill" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Add Bill" Margin="4"  VerticalContentAlignment="Center" />

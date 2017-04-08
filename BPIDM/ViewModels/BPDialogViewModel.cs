@@ -71,7 +71,7 @@ namespace BPIDM.ViewModels
 
         private HelpStruct dishDetails = new HelpStruct(
             "Dish Building Help",
-            @"Click the expanders and build your meal! When ready, hit confirm and it will be added to your order");
+            @"Click the expanders and build your meal! When ready, hit confirm and it will be added to your order.");
 
         private HelpStruct billSplitting = new HelpStruct(
             "Bill Overview Help",
@@ -79,11 +79,11 @@ namespace BPIDM.ViewModels
 
         private HelpStruct OrderConfirm = new HelpStruct(
             "Confirm Order Submit",
-            @"You're about to send your order to the kitchen! Press cancel to go back and review it, or confirm to continue");
+            @"You're about to send your order to the kitchen! Press cancel to go back and review it, or confirm to continue.");
 
         private HelpStruct CannotPay = new HelpStruct(
             "Cannot Submit Bill for Payment Yet",
-            @"You still have items in your Current Order that have not yet been sent to the kitchen. Your bill cannot be processed for payment until all of your Current Order items have been sent to the kitchen. Press either Submit Order, or remove all your items from your Current Order first before pressing Ready to Pay.");
+            @"You still have items in your Current Order that have not yet been sent to the kitchen. Press either Submit Order, or remove all your items from your Current Order before pressing Ready to Pay.");
 
         private HelpStruct NothingToSubmit = new HelpStruct(
             "No Items to Submit!",
