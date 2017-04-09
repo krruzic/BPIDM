@@ -7,6 +7,9 @@ using System.ComponentModel;
 using System.Windows.Data;
 using System;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace BPIDM.ViewModels
 {
@@ -14,9 +17,11 @@ namespace BPIDM.ViewModels
         IHandle<AddItemToBillEvent>, IHandle<GetBillInformationEvent>, IHandle<AddBillEvent>
     {
         // all possible bill colors, randomly shuffled so it isn't a gradient
-        public static List<string> BillColors;
+        public List<string> BillColors;
 
-        // start with four Bills
+        // add/remove bills on select in the view
+        public Dictionary<string, string> SelectedBills;
+
         public ICollectionView BillCollection { get; set; }
         private BindableCollection<Bill> _BillList;
         public BindableCollection<Bill> BillList
@@ -59,8 +64,12 @@ namespace BPIDM.ViewModels
                 new Bill(BillColors[0], "Bill 1"), new Bill(BillColors[1], "Bill 2"),
                 new Bill(BillColors[2], "Bill 3"), new Bill(BillColors[3], "Bill 4")
             };
+
+            SelectedBills = new Dictionary<string, string>();
+
             OrderContent = new BindableCollection<BPOrderItemViewModel>();
             OrderCollection = CollectionViewSource.GetDefaultView(OrderContent);
+            OrderCollection.GroupDescriptions.Add(new PropertyGroupDescription("category"));
             events.Subscribe(this);
         }
 
@@ -71,7 +80,16 @@ namespace BPIDM.ViewModels
 
         public void Cancel()
         {
-            _events.PublishOnUIThread(new TestEvent("BACK"));
+            SelectedBills.Clear();
+            _events.PublishOnUIThread(new NavigationEvent("BACK"));
+        }
+
+        public bool CanPay
+        {
+            get
+            {
+                return (OrderContent.Count > 0) ? true : false;
+            }
         }
 
         public void Pay()
@@ -84,25 +102,22 @@ namespace BPIDM.ViewModels
             }
             else
             {
-                _events.PublishOnUIThread(new TestEvent("BACK"));
+                _events.PublishOnUIThread(new NavigationEvent("BACK"));
+            }
+        }
+
+        public bool CanAddBill
+        {
+            get
+            {
+                return (BillList.Count < 15) ? true : false;
             }
         }
 
         public void AddBill()
         {
-            if (BillList.Count >= 15) return;
             BillList.Add(new Bill(BillColors[BillList.Count], "Bill " + (BillList.Count + 1)));
-        }
-
-        public void Handle(AddItemToBillEvent message)
-        {
-            OrderContent.Add(message.item);
-            foreach (string b in message.item.BillsSelected.Values)
-            {
-                Bill temp = BillList.First(s => s.BillName == b);
-                temp.Items.Add(message.item);
-                temp.AddToCost(message.item.price / message.item.BillsSelected.Count);
-            }
+            NotifyOfPropertyChange(() => CanAddBill);
         }
 
         public void Handle(GetBillInformationEvent message)
@@ -113,6 +128,55 @@ namespace BPIDM.ViewModels
         public void Handle(AddBillEvent message)
         {
             AddBill();
+        }
+
+        public void Handle(AddItemToBillEvent message)
+        {
+            message.item.widthPercent = 0.22;
+            message.item.heightPercent = 0.7;
+            OrderContent.Add(message.item);
+            NotifyOfPropertyChange(() => CanPay);
+            AddItemToBills(message.item);
+        }
+
+        private void AddItemToBills(BPOrderItemViewModel item)
+        {
+            foreach (string b in item.BillsSelected.Values)
+            {
+                Bill temp = BillList.First(s => s.BillName == b);
+                temp.AddItem(item, item.BillsSelected.Count);
+            }
+        }
+
+        private void RemoveItemFromBill(BPOrderItemViewModel selectedModel, Bill bill)
+        {
+            bill.RemoveItem(selectedModel);
+        }
+
+        public void BillSelect(RoutedEventArgs val)
+        {
+            ToggleButton t = (ToggleButton)val.Source;
+            string keyToFind = ((SolidColorBrush)t.Foreground).Color.ToString();
+            if ((bool)t.IsChecked)
+                SelectedBills.Add(keyToFind, (string)t.Tag);
+            else
+                SelectedBills.Remove(keyToFind);
+        }
+
+        public void ModifyBills()
+        {
+            int originalNumBillAttached = SelectedModel.BillsSelected.Count;
+            foreach (KeyValuePair<string, string> entry in SelectedBills)
+            {
+                if (!SelectedModel.BillsSelected.ContainsKey(entry.Key))
+                    SelectedModel.BillsSelected.Add(entry.Key, entry.Value);
+                else
+                {
+                    SelectedModel.BillsSelected.Remove(entry.Key);
+                    RemoveItemFromBill(SelectedModel, BillList.First(s => s.BillName == entry.Value));
+                }
+            }
+            AddItemToBills(SelectedModel);
         }
     }
 }

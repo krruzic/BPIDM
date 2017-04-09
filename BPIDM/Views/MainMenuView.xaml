@@ -150,7 +150,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.GroupStyle>
-                <GroupStyle HeaderStringFormat="" />
+                <GroupStyle HeaderStringFormat="" HidesIfEmpty="True" ContainerStyle="{StaticResource DefaultGroupStyle}"/>
             </ListView.GroupStyle>
         </ListView>
     </DockPanel>

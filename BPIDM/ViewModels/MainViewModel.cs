@@ -8,7 +8,7 @@ using System.Windows.Controls.Primitives;
 
 namespace BPIDM.ViewModels
 {
-    class MainViewModel : Conductor<IScreen>, IHandle<TestEvent>, IHandle<DishDetailEvent>, IHandle<ShowHelpEvent>
+    class MainViewModel : Conductor<IScreen>, IHandle<NavigationEvent>, IHandle<DishDetailEvent>, IHandle<ShowHelpEvent>
     {
         private readonly IEventAggregator _events;
 
@@ -41,7 +41,7 @@ namespace BPIDM.ViewModels
             this._windowManager = new WindowManager();
         }
 
-        public void Handle(TestEvent message)
+        public void Handle(NavigationEvent message)
         {
             if (message.res != "BILL")
                 ActivateItem(MenuPane);

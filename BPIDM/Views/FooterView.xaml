@@ -26,7 +26,7 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Row="0" Grid.ColumnSpan="9" Fill="{DynamicResource PrimaryHueDarkBrush}" HorizontalAlignment="Stretch" Height="1"/>
-        <Label Grid.Row="1" Grid.ColumnSpan="9" Margin="5,0,0,0" Foreground="{DynamicResource PrimaryHueDarkBrush}" 
+        <Label Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,0,0" Foreground="{DynamicResource PrimaryHueDarkBrush}" 
                        Content="Current Order" HorizontalAlignment="Left" TextBlock.FontSize="22" />
         <Button Grid.Row="2" Grid.Column="0" Name="ScrollLeft" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="◀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ListView Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"
@@ -63,6 +63,6 @@
             </ListView.ItemsPanel>
         </ListView>
         <Button Margin="5" Grid.Row="2" Grid.Column="2" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="▶" HorizontalAlignment="Center" VerticalAlignment="Center" cal:Message.Attach="ScrollRight($view)"/>
-        <Button Margin="5" Grid.Row="2" Grid.Column="3" Name="SubmitOrder" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" FontSize="20"/>
+        <Button Margin="5" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" Name="SubmitOrder" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Submit Order" HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="96" FontSize="20"/>
     </Grid>
 </UserControl>

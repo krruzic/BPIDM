@@ -14,35 +14,6 @@ namespace BPIDM.ViewModels
     {
         public ObservableCollection<Nutrition> NutritionInfos { get; set; }
 
-        internal class BillCheck : PropertyChangedBase
-        {
-            private string _Bill;
-            public string Bill
-            {
-                get { return _Bill; }
-                set
-                {
-                    _Bill = value;
-                    NotifyOfPropertyChange(() => Bill);
-                }
-            }
-            private bool _Checked;
-            public bool Checked
-            {
-                get { return _Checked; }
-                set
-                {
-                    _Checked = value;
-                    NotifyOfPropertyChange(() => Checked);
-                }
-            }
-            public BillCheck(string b)
-            {
-                Bill = b;
-                Checked = false;
-            }
-        }
-
         private BPOrderItemViewModel _item;
         public BPOrderItemViewModel item
         {
@@ -154,6 +125,12 @@ namespace BPIDM.ViewModels
             BillColors = new List<string>();
         }
 
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+            _events.Unsubscribe(this);
+        }
+
         protected override void OnActivate()
         {
             base.OnActivate();
@@ -250,7 +227,6 @@ namespace BPIDM.ViewModels
             else
                 item.BillsSelected.Remove(actualColor);
             BillHeader = item.BillsSelected.Count + " Bill(s) Selected";
-
         }
 
         public void SOIChanged(RoutedEventArgs val)
@@ -263,13 +239,13 @@ namespace BPIDM.ViewModels
 
         public void closeDetails()
         {
-            _events.PublishOnUIThread(new TestEvent("BACK"));
+            _events.PublishOnUIThread(new NavigationEvent("BACK"));
         }
 
         public void ConfirmSelection()
         {
             _events.PublishOnBackgroundThread(new ItemConfirmedEvent(item));
-            _events.PublishOnUIThread(new TestEvent("BACK"));
+            _events.PublishOnUIThread(new NavigationEvent("BACK"));
         }
 
         public bool CanAddBill
@@ -279,13 +255,13 @@ namespace BPIDM.ViewModels
                 return (Bills.Count < 15) ? true : false;
             }
         }
+
         public void AddBill()
         {
             if (Bills.Count >= 15) return;
             _events.PublishOnBackgroundThread(new AddBillEvent());
             Bills.Add(new BillCheck("Bill " + (Bills.Count + 1)));
             NotifyOfPropertyChange(() => CanAddBill);
-
         }
 
         public void Handle(SendBillInformationEvent message)

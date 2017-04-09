@@ -156,6 +156,7 @@
     <Compile Include="Events\SendBillInformationEvent.cs" />
     <Compile Include="Events\ShowHelpEvent.cs" />
     <Compile Include="Models\Bill.cs" />
+    <Compile Include="Models\BillCheck.cs" />
     <Compile Include="Utils\Converters.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\ObservableDictionary.cs" />
@@ -170,7 +171,7 @@
     <Compile Include="Views\BPMenuItemView.xaml.cs">
       <DependentUpon>BPMenuItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Events\TestEvent.cs" />
+    <Compile Include="Events\NavigationEvent.cs" />
     <Compile Include="ViewModels\BillSplittingViewModel.cs" />
     <Compile Include="ViewModels\BPMenu.cs" />
     <Compile Include="ViewModels\DishDetailsViewModel.cs" />

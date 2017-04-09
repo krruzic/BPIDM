@@ -416,8 +416,7 @@ namespace BPIDM.ViewModels
             BillsSelected = new ObservableDictionary<string, string>();
         }
 
-        // just store the color of the bill, we can handle any lookup 
-        // later
+        // just store the color of the bill, we can handle any lookup later
         private ObservableDictionary<string,string> _billsSelected;
         public ObservableDictionary<string, string> BillsSelected
         {

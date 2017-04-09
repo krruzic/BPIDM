@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:bp="clr-namespace:BPIDM" xmlns:cal="http://www.caliburnproject.org">
 
-    <Style TargetType="{x:Type GroupItem}">
+    <Style x:Key="DefaultGroupStyle" TargetType="{x:Type GroupItem}">
         <Setter Property="TextBlock.FontSize" Value="32"/>
         <Setter Property="TextBlock.FontWeight" Value="Black"/>
         <Setter Property="TextBlock.Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
@@ -17,6 +17,9 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="BillGroupStyle" BasedOn="{StaticResource DefaultGroupStyle}" TargetType="{x:Type GroupItem}">
+        <Setter Property="TextBlock.FontSize" Value="18"/>
     </Style>
     <Style x:Key="BPCategoryItemStyle" TargetType="{x:Type ListViewItem}">
         <Setter Property="Margin" Value="4"/>
@@ -58,10 +61,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="IsSelected" Value="True"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

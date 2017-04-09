@@ -8,79 +8,103 @@
              xmlns:lc="clr-namespace:WpfGhost.Controls;assembly=WpfGhost.Controls.HeaderPersister"
              xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d" 
              d:DesignHeight="392.646" d:DesignWidth="705.322">
-    <Grid>
-        <Grid Margin="0,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="7*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" x:Name="label" Content="Bill Summary" HorizontalAlignment="Left" Height="30"  VerticalAlignment="Top" Width="109" />
-            <ListView Grid.Row="1" VerticalAlignment="Center"
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/ListStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="BILL SUMMARY" FontSize="32" Foreground="{DynamicResource PrimaryHueDarkBrush}" 
+                    FontWeight="Black" Background="{DynamicResource MaterialDesignPaper}"/>
+        <ListView VerticalAlignment="Stretch" Grid.Row="1"
                     Background="Transparent" BorderThickness="0"
                     HorizontalAlignment="Stretch" 
-                    ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                    x:Name="OrderList" SelectedItem="{Binding SelectedModel}"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                    lc:HeaderPersister.IsEnabled="True" x:Name="OrderList"
+                    SelectedItem="{Binding SelectedModel}"
                     ItemsSource="{Binding Path=OrderContent}"
+                    ItemContainerStyle="{StaticResource BPMenuItemStyle}"
                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    cal:Message.Attach="[Event MouseLeftButtonUp] = [Action ModifyBills]"
                     VirtualizingPanel.ScrollUnit="Item">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Context="Current" cal:View.Model="{Binding .}" HorizontalAlignment="Left">
-                            <ContentControl.Width>
-                                <MultiBinding Converter="{StaticResource spc}">
-                                    <Binding Path="widthPercent"/>
-                                    <Binding Path="ActualWidth" ElementName="OrderList"/>
-                                </MultiBinding>
-                            </ContentControl.Width>
-                            <ContentControl.Height>
-                                <MultiBinding Converter="{StaticResource spc}">
-                                    <Binding Path="heightPercent"/>
-                                    <Binding Path="ActualHeight" ElementName="OrderList"/>
-                                </MultiBinding>
-                            </ContentControl.Height>
-                        </ContentControl>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-            <ScrollViewer VerticalAlignment="Top" Grid.Row="1" Grid.Column="1">
-                <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="1">
-                    <ItemsControl x:Name="BillList" VerticalAlignment="Top" Margin="4,0,0,4" HorizontalAlignment="Center">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="3"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="2">
-                                    <ToggleButton
+            <lc:HeaderPersister.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock 
+                        Text="{Binding Path=Name}" FontSize="18" Foreground="{DynamicResource PrimaryHueDarkBrush}" 
+                        FontWeight="Black" Background="{DynamicResource MaterialDesignPaper}"/>
+                </DataTemplate>
+            </lc:HeaderPersister.HeaderTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Context="Bill" cal:View.Model="{Binding .}" HorizontalAlignment="Left">
+                        <ContentControl.Width>
+                            <MultiBinding Converter="{StaticResource spc}">
+                                <Binding Path="widthPercent"/>
+                                <Binding Path="ActualWidth" ElementName="OrderList"/>
+                            </MultiBinding>
+                        </ContentControl.Width>
+                        <ContentControl.Height>
+                            <MultiBinding Converter="{StaticResource spc}">
+                                <Binding Path="heightPercent"/>
+                                <Binding Path="ActualHeight" ElementName="OrderList"/>
+                            </MultiBinding>
+                        </ContentControl.Height>
+                    </ContentControl>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupStyle>
+                <GroupStyle HeaderStringFormat="" HidesIfEmpty="True" ContainerStyle="{StaticResource BillGroupStyle}"/>
+            </ListView.GroupStyle>
+        </ListView>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer VerticalAlignment="Stretch" Grid.Row="0">
+                <ItemsControl x:Name="BillList" VerticalAlignment="Top" Margin="4,0,0,4" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="2">
+                                <ToggleButton
                                     Background="{Binding BillBackgroundBrush}" Foreground="{Binding BillForegroundBrush}"
-                                    Width="36" Height="36" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
-                                        <md:PackIcon Kind="Cards" Width="24" Height="24"/>
-                                    </ToggleButton>
-                                    <TextBlock Text="{Binding TotalCost, StringFormat={}{0:C}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="{Binding BillForegroundBrush}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <Button x:Name="AddBill" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Add Bill" Margin="4"  VerticalContentAlignment="Center" />
-                </StackPanel>
+                                    Width="36" Height="36" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}" 
+                                    cal:Message.Attach="[Event Click] = [Action BillSelect($eventargs)]" Tag="{Binding BillName}">
+                                    <md:PackIcon Kind="Cards" Width="24" Height="24"/>
+                                </ToggleButton>
+                                <TextBlock Text="{Binding TotalCost, StringFormat={}{0:C}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="{Binding BillForegroundBrush}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
-            <DockPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" LastChildFill="False">
-                <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Cancel" Height="64" DockPanel.Dock="Left" x:Name="Cancel"></Button>
-                <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Ready To Pay" Height="64" DockPanel.Dock="Right" Name="Pay"></Button>
-            </DockPanel>
+            <Button Grid.Row="1" x:Name="AddBill" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Add Bill" Margin="4"  VerticalContentAlignment="Center" />
         </Grid>
-
+        <DockPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" LastChildFill="False">
+            <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Cancel" Height="64" DockPanel.Dock="Left" x:Name="Cancel"></Button>
+            <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Ready To Pay" Height="64" DockPanel.Dock="Right" Name="Pay"></Button>
+        </DockPanel>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 using BPIDM.Events;
 using Caliburn.Micro;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Xceed.Wpf.Toolkit.Core.Utilities;
@@ -20,7 +21,7 @@ namespace BPIDM.ViewModels
                 selectedModel = value;
                 NotifyOfPropertyChange(() => SelectedModel);
             }
-        }   
+        }
 
         private readonly IEventAggregator _events;
         public FooterViewModel(IEventAggregator events)
@@ -42,14 +43,14 @@ namespace BPIDM.ViewModels
 
         public void SubmitOrder()
         {
-            if(OrderContent.Count < 1)
+            if (OrderContent.Count < 1)
             {
                 _events.PublishOnUIThread(new ShowHelpEvent("NothingToSubmit"));
             }
             else
             {
                 _events.PublishOnUIThread(new ShowHelpEvent("OrderConfirm"));
-            }            
+            }
         }
 
         public void Handle(OrderConfirmedEvent message)
@@ -60,17 +61,20 @@ namespace BPIDM.ViewModels
             }
             OrderContent.Clear();
             NotifyOfPropertyChange(() => CanSubmitOrder);
+
+            // change to bill view, user then knows what they should do next
+            _events.PublishOnUIThread(new NavigationEvent("BILL"));
         }
 
         public void Handle(ItemConfirmedEvent message)
         {
-            OrderContent.Add((BPOrderItemViewModel)(BPBaseItemViewModel) message.item);
+            OrderContent.Add((BPOrderItemViewModel)(BPBaseItemViewModel)message.item);
             NotifyOfPropertyChange(() => CanSubmitOrder);
         }
 
         public void EditItem()
         {
-            _events.PublishOnUIThread(new DishDetailEvent(selectedModel));           
+            _events.PublishOnUIThread(new DishDetailEvent(selectedModel));
         }
 
         public void RemoveItem()
@@ -81,7 +85,7 @@ namespace BPIDM.ViewModels
             {
                 NotifyOfPropertyChange(() => CanSubmitOrder);
             }
-        }       
+        }
 
         public void TriggerEdit(BPOrderItemViewModel dataContext)
         {

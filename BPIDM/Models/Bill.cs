@@ -19,8 +19,11 @@ namespace BPIDM.Models
             }
         }
 
-        private List<BPOrderItemViewModel> items = new List<BPOrderItemViewModel>();
-        public List<BPOrderItemViewModel> Items
+        // confusing but:
+        // key is item, value is number of bills this item is shared across.
+        // this way we can update the cost of the bill easily 
+        private Dictionary<BPOrderItemViewModel, int> items = new Dictionary<BPOrderItemViewModel, int>();
+        public Dictionary<BPOrderItemViewModel, int> Items
         {
             get { return items; }
             set
@@ -86,6 +89,23 @@ namespace BPIDM.Models
         public void AddToCost(double a)
         {
             TotalCost += a;
+        }
+
+        public void AddItem(BPOrderItemViewModel item, int billSplitAcross)
+        {
+            if (Items.ContainsKey(item))
+            {
+                RemoveItem(item);
+            }
+            Items.Add(item, billSplitAcross);
+            TotalCost += (item.price / billSplitAcross);
+        }
+
+        public void RemoveItem(BPOrderItemViewModel item)
+        {
+            int div = Items[item];
+            Items.Remove(item);
+            TotalCost -= (item.price / div);
         }
     }
 }
