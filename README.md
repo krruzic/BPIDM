@@ -10,8 +10,12 @@ All common interactions with a paper menu a customer would have are supported by
 ### Menu Searching, filtering and quicknav
 The menu can be filtered down through two mechanisms: the search bar (to search by name) or through the filter tags seen next to it. The menu can also be quickly jumped to any category through the sidebar.
 
-### Lionel Assistance 
-BP's mascot helps to guide new users through making a menu selection and adding it to their order
+### Help
+Every page has a conveniently accessible Help Button, customized to provide optimal information
 
 ### Bill Splitting
 A bill can be split in one of two ways: concurrently as items are added to an order, or at the end when the guests are ready to pay
+
+### Running
+Download the exe from master and run it. That's all! Needs .NET 4.5 runtime which is on almost every system.
+Built on Windows 10 with VS2015
