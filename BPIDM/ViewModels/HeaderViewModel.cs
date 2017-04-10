@@ -10,7 +10,7 @@ namespace BPIDM.ViewModels
         {
             _events = events;
             this.ServerName = "Trisha";
-            this.FlagText = "Flag "+this.ServerName;
+            this.FlagText = "Notify "+this.ServerName;
             this.Foregroundcolor = "#DDFFFFFF";
         }
 
