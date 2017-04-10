@@ -12,7 +12,7 @@
     <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" md:ColorZoneAssist.Mode="PrimaryDark" Padding="0">
         <GroupBox.Header>
             <DockPanel MinHeight="48" MaxHeight="48" Margin="6">
-                <TextBlock x:Name="price" TextWrapping="Wrap" DockPanel.Dock="Right" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Text="{Binding price, StringFormat={}{0:C}}">TEST</TextBlock>
+                <TextBlock TextWrapping="Wrap" DockPanel.Dock="Right" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Text="{Binding price, StringFormat={}{0:C}}"/>
                 <TextBlock TextWrapping="Wrap" DockPanel.Dock="Left" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" x:Name="title">TEST</TextBlock>
             </DockPanel>
         </GroupBox.Header>
