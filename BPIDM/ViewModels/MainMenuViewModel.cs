@@ -51,7 +51,7 @@ namespace BPIDM.ViewModels
             FilterButtonList = new List<string>();
             filterText = "";
             SearchIcon = "Magnify";
-            IsLoaded = false;
+            IsLoaded = true;
         }
 
         private bool isLoaded;
@@ -144,6 +144,8 @@ namespace BPIDM.ViewModels
             if (FilterButtonList.Count == 0 || !FilterButtonList.Except(i.tags).Any())
                 if (i.ToString().ToUpper().Contains(FilterText.ToUpper()) || String.IsNullOrEmpty(FilterText))
                     i.isVisible = true;
+                else
+                    i.isVisible = false;
             else
                 i.isVisible = false;
         }
@@ -229,7 +231,7 @@ namespace BPIDM.ViewModels
         {
             base.OnDeactivate(close);
             filterText = "";
-            IsLoaded = false;
+            IsLoaded = true;
         }
     }
 }

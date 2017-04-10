@@ -38,6 +38,22 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                     VirtualizingPanel.ScrollUnit="Item"
                     ItemContainerStyle="{StaticResource BPOrderItemStyle}">
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Style.Triggers>
+                        <Trigger Property="HasItems"
+                         Value="False">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListView">
+                                        <TextBlock Text="Your Order is empty, try adding some items!" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" FontSize="20"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Style>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ContentControl cal:View.Context="Current" cal:View.Model="{Binding .}" HorizontalAlignment="Left">

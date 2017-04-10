@@ -40,7 +40,7 @@ namespace BPIDM
                 {
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
                     client.Headers[HttpRequestHeader.Accept] = "application/json";
-                    client.DownloadFile(src, dataPath);
+                    await client.DownloadFileTaskAsync(src, dataPath);
                 }
             }
             else // redownload if modified
@@ -52,7 +52,7 @@ namespace BPIDM
                         client.Headers[HttpRequestHeader.ContentType] = "application/json";
                         client.Headers[HttpRequestHeader.Accept] = "application/json";
                         File.Delete(dataPath);
-                        client.DownloadFileAsync(new Uri(src), dataPath);
+                        await client.DownloadFileTaskAsync(new Uri(src), dataPath);
                     }
                 }
             }
