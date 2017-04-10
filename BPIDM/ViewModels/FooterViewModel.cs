@@ -1,6 +1,5 @@
 using BPIDM.Events;
 using Caliburn.Micro;
-using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Xceed.Wpf.Toolkit.Core.Utilities;
@@ -63,7 +62,7 @@ namespace BPIDM.ViewModels
             NotifyOfPropertyChange(() => CanSubmitOrder);
 
             // change to bill view, user then knows what they should do next
-            _events.PublishOnUIThread(new NavigationEvent("BILL"));
+            //_events.PublishOnUIThread(new NavigationEvent("BILL"));
         }
 
         public void Handle(ItemConfirmedEvent message)
@@ -80,11 +79,7 @@ namespace BPIDM.ViewModels
         public void RemoveItem()
         {
             OrderContent.Remove(SelectedModel);
-            // If the last item in the Current Order object list is removed, set the Submit Order button to be disabled
-            if (OrderContent.Count < 1)
-            {
-                NotifyOfPropertyChange(() => CanSubmitOrder);
-            }
+            NotifyOfPropertyChange(() => CanSubmitOrder);
         }
 
         public void TriggerEdit(BPOrderItemViewModel dataContext)

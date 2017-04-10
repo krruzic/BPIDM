@@ -1,5 +1,4 @@
 using BPIDM.Events;
-using BPIDM.Models;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;

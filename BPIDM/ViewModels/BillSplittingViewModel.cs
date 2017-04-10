@@ -4,11 +4,10 @@ using BPIDM.Utils;
 using Caliburn.Micro;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Data;
-using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace BPIDM.ViewModels
