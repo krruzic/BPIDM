@@ -47,14 +47,14 @@ namespace BPIDM.ViewModels
 
         public void FlagServer()
         {
-            if (FlagText == this.ServerName + " Flagged!")
+            if (FlagText == this.ServerName + " Notified!")
             {
-                FlagText = "Flag " + this.ServerName;
+                FlagText = "Notify " + this.ServerName;
                 Foregroundcolor = "#DDFFFFFF";
             }
             else
             {
-                FlagText = this.ServerName + " Flagged!";
+                FlagText = this.ServerName + " Notified!";
                 Foregroundcolor = "#FFEB3B";
             }
             
