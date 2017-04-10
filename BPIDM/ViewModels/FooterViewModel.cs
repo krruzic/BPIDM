@@ -73,7 +73,7 @@ namespace BPIDM.ViewModels
 
         public void EditItem()
         {
-            _events.PublishOnUIThread(new DishDetailEvent(selectedModel));
+            _events.PublishOnUIThread(new DishDetailEvent(SelectedModel));
         }
 
         public void RemoveItem()
