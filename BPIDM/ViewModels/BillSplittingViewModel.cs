@@ -101,7 +101,7 @@ namespace BPIDM.ViewModels
             }
             else
             {
-                BillList.Clear();
+                OrderContent.Clear();
                 _events.PublishOnUIThread(new NavigationEvent("BACK"));
             }
         }
