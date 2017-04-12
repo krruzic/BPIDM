@@ -89,6 +89,7 @@ namespace BPIDM.ViewModels
 
         public void ScrollLeft(UserControl view)
         {
+            if (OrderContent.Count == 0) return;
             ListView OrderList = (ListView)view.FindName("OrderList");
             ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(OrderList);
             sv.PageLeft();
@@ -96,6 +97,7 @@ namespace BPIDM.ViewModels
 
         public void ScrollRight(UserControl view)
         {
+            if (OrderContent.Count == 0) return;
             ListView OrderList = (ListView)view.FindName("OrderList");
             ScrollViewer sv = VisualTreeHelperEx.FindDescendantByType<ScrollViewer>(OrderList);
             sv.PageRight();

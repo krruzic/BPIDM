@@ -231,6 +231,7 @@ namespace BPIDM.ViewModels
         {
             base.OnDeactivate(close);
             filterText = "";
+            FilterButtonList.Clear();
             IsLoaded = true;
         }
     }
