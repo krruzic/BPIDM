@@ -222,7 +222,7 @@ namespace BPIDM.ViewModels
             string actualColor = ((SolidColorBrush)Application.Current.Resources["BillForeground" + BillColors[index-1]]).Color.ToString();
             if (c.IsChecked.Value)
             {
-                item.BillsSelected[actualColor] = c.Content.ToString();
+                item.BillsSelected.Add(actualColor, c.Content.ToString());
             }
             else
                 item.BillsSelected.Remove(actualColor);
@@ -278,7 +278,7 @@ namespace BPIDM.ViewModels
             BillColors = message.BillColors;
             // first check box needs to be checked to begin with
             string actualColor = ((SolidColorBrush)Application.Current.Resources["BillForeground" + BillColors[0]]).Color.ToString();
-            item.BillsSelected[actualColor] = "Bill 1";
+            item.BillsSelected.Add(actualColor, "Bill 1");
         }
     }
 }
