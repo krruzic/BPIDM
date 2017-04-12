@@ -117,7 +117,8 @@ namespace BPIDM.ViewModels
             int i = Amount;
             while (i > 0)
             {
-                _events.PublishOnBackgroundThread(new ItemConfirmedEvent(item));
+                BPOrderItemViewModel tempItem = new BPOrderItemViewModel(item);
+                _events.PublishOnBackgroundThread(new ItemConfirmedEvent(tempItem));
                 i--;
             }
             TryClose();            

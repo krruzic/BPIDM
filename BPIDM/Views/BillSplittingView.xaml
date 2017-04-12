@@ -23,7 +23,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="11*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="BILL SUMMARY" FontSize="32" Foreground="{DynamicResource PrimaryHueDarkBrush}" 
@@ -37,7 +37,6 @@
                     ItemsSource="{Binding Path=OrderContent}"
                     ItemContainerStyle="{StaticResource BPMenuItemStyle}"
                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                    cal:Message.Attach="[Event MouseLeftButtonUp] = [Action ModifyBills]"
                     VirtualizingPanel.ScrollUnit="Item">
             <lc:HeaderPersister.HeaderTemplate>
                 <DataTemplate>
@@ -48,12 +47,14 @@
             </lc:HeaderPersister.HeaderTemplate>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="3" />
+                    <UniformGrid Columns="4" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl cal:View.Context="Bill" cal:View.Model="{Binding .}" HorizontalAlignment="Left">
+                    <ContentControl 
+                        cal:Message.Attach="[Event MouseLeftButtonUp] = [Action ModifyBills]"
+                        cal:View.Context="Bill" cal:View.Model="{Binding .}" HorizontalAlignment="Left">
                         <ContentControl.Width>
                             <MultiBinding Converter="{StaticResource spc}">
                                 <Binding Path="widthPercent"/>
@@ -82,7 +83,7 @@
                 <ItemsControl x:Name="BillList" VerticalAlignment="Top" Margin="4,0,0,4" HorizontalAlignment="Center">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="3"/>
+                            <UniformGrid Columns="1"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
@@ -100,7 +101,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <Button Grid.Row="1" x:Name="AddBill" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Add Bill" Margin="4"  VerticalContentAlignment="Center" />
+            <Button Grid.Row="1" x:Name="AddBill" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="+" Margin="4" VerticalContentAlignment="Center" />
         </Grid>
         <DockPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" LastChildFill="False">
             <Button Style="{DynamicResource MaterialDesignRaisedDarkButton}" Content="Cancel" Height="64" DockPanel.Dock="Left" x:Name="Cancel"></Button>

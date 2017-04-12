@@ -398,6 +398,27 @@ namespace BPIDM.ViewModels
             this.heightPercent = 0.85;
         }
 
+        public BPOrderItemViewModel(BPOrderItemViewModel item)
+        {
+            this.title = item.title;
+            this.image = item.image;
+            this.description = item.description;
+            this.tags = item.tags;
+            this.tagImages = item.tagImages;
+            this.price = item.price;
+
+            this.category = item.category;
+            this.isVisible = true;
+            this.widthPercent = 0.3;
+            this.heightPercent = 0.85;
+            this.events = item.events;
+            this.BillsSelected = new ObservableDictionary<string, string>();
+            foreach (KeyValuePair<string, string> entry in item.BillsSelected)
+                BillsSelected.Add(entry.Key, entry.Value);
+            //BillsSelected = item.BillsSelected;
+        }
+
+
         public BPOrderItemViewModel(BPMenuItemViewModel item, IEventAggregator events)
         {
             this.title = item.title;

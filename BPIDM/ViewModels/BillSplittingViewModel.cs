@@ -165,7 +165,13 @@ namespace BPIDM.ViewModels
 
         public void ModifyBills()
         {
-            int originalNumBillAttached = SelectedModel.BillsSelected.Count;
+            try
+            {
+                int originalNumBillAttached = SelectedModel.BillsSelected.Count;
+            } catch
+            {
+                return; // item was somehow not selected even though a button press was caught
+            }
             foreach (KeyValuePair<string, string> entry in SelectedBills)
             {
                 if (!SelectedModel.BillsSelected.ContainsKey(entry.Key))
