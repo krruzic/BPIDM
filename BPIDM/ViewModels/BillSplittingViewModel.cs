@@ -102,6 +102,10 @@ namespace BPIDM.ViewModels
             else
             {
                 OrderContent.Clear();
+                BillList = new BindableCollection<Bill>{
+                    new Bill(BillColors[0], "Bill 1"), new Bill(BillColors[1], "Bill 2"),
+                    new Bill(BillColors[2], "Bill 3"), new Bill(BillColors[3], "Bill 4")
+                };
                 _events.PublishOnUIThread(new NavigationEvent("BACK"));
             }
         }
@@ -168,7 +172,8 @@ namespace BPIDM.ViewModels
             try
             {
                 int originalNumBillAttached = SelectedModel.BillsSelected.Count;
-            } catch
+            }
+            catch
             {
                 return; // item was somehow not selected even though a button press was caught
             }
