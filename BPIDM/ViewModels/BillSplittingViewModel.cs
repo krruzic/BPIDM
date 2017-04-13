@@ -136,11 +136,14 @@ namespace BPIDM.ViewModels
 
         public void Handle(AddItemToBillEvent message)
         {
-            message.item.widthPercent = 0.22;
-            message.item.heightPercent = 0.7;
-            OrderContent.Add(message.item);
+            foreach (BPOrderItemViewModel item in message.items)
+            {
+                item.widthPercent = 0.22;
+                item.heightPercent = 0.7;
+                OrderContent.Add(item);
+                AddItemToBills(item);
+            }
             NotifyOfPropertyChange(() => CanPay);
-            AddItemToBills(message.item);
         }
 
         private void AddItemToBills(BPOrderItemViewModel item)

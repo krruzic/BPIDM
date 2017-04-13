@@ -1,13 +1,18 @@
 using BPIDM.ViewModels;
+using System.Collections.Generic;
 
 namespace BPIDM.Events
 {
     class AddItemToBillEvent
     {
-        public BPOrderItemViewModel item { get; private set; }
-        public AddItemToBillEvent(BPOrderItemViewModel oi)
+        public List<BPOrderItemViewModel> items { get; private set; }
+        public AddItemToBillEvent()
         {
-            this.item = oi;
+        }
+
+        public void Add(BPOrderItemViewModel item)
+        {
+            items.Add(item);
         }
     }
 }

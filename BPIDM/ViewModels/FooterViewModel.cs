@@ -54,15 +54,14 @@ namespace BPIDM.ViewModels
 
         public void Handle(OrderConfirmedEvent message)
         {
+            AddItemToBillEvent ev = new AddItemToBillEvent();
             foreach (BPOrderItemViewModel item in OrderContent)
             {
-                _events.PublishOnBackgroundThread(new AddItemToBillEvent(item));
+                ev.Add(item);
             }
+            _events.PublishOnBackgroundThread(ev);
             OrderContent.Clear();
             NotifyOfPropertyChange(() => CanSubmitOrder);
-
-            // change to bill view, user then knows what they should do next
-            //_events.PublishOnUIThread(new NavigationEvent("BILL"));
         }
 
         public void Handle(ItemConfirmedEvent message)
